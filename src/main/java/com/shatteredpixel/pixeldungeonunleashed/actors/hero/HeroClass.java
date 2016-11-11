@@ -33,6 +33,7 @@ import com.shatteredpixel.pixeldungeonunleashed.items.Amulet;
 import com.shatteredpixel.pixeldungeonunleashed.items.Generator;
 import com.shatteredpixel.pixeldungeonunleashed.items.TomeOfMastery;
 // import com.shatteredpixel.pixeldungeonunleashed.items.armor.ClothArmor;
+import com.shatteredpixel.pixeldungeonunleashed.items.Torch;
 import com.shatteredpixel.pixeldungeonunleashed.items.armor.HuntressArmor;
 import com.shatteredpixel.pixeldungeonunleashed.items.artifacts.CloakOfShadows;
 import com.shatteredpixel.pixeldungeonunleashed.items.artifacts.SandalsOfNature;
@@ -160,6 +161,7 @@ public enum HeroClass {
 		hero.HT = 80;
 		hero.HP = 80;
 		new ShieldOfWonders().identify().collect();
+		new Torch().identify().collect();
 		// things we only want a few of..
 		for (int i = 0; i < 4; i++) {
 			new PotionOfMight().collect();

@@ -30,13 +30,16 @@ import com.shatteredpixel.pixeldungeonunleashed.effects.Speck;
 import com.shatteredpixel.pixeldungeonunleashed.effects.particles.ShadowParticle;
 import com.shatteredpixel.pixeldungeonunleashed.items.Ankh;
 import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.ScrollOfPsionicBlast;
+import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.pixeldungeonunleashed.items.wands.WandOfDisintegration;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.enchantments.Death;
 import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
+import com.shatteredpixel.pixeldungeonunleashed.scenes.GameScene;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.NecromancerSprite;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Necromancer extends Mob {
@@ -70,44 +73,46 @@ public class Necromancer extends Mob {
     }
 
     private boolean summon() {
-        int mobsToSpawn = 4;
+        Mob DUMMY = new Mob() {};
 
         sprite.centerEmitter().start(Speck.factory(Speck.BONE), 0.4f, 2);
         Sample.INSTANCE.play(Assets.SND_CHALLENGE);
-        // TODO: Check interference from spawned plants with the visible checks when spawning the mobs here.
-        while (mobsToSpawn > 0) {
-            if (Random.Int(2) == 0) {
-                Mob mob = new Zombie();
-                if (Dungeon.difficultyLevel == Dungeon.DIFF_ENDLESS) {
-                    mob.infiniteScaleMob(Dungeon.depth + 5);
-                } else {
-                    mob.scaleMob();
-                }
-                mob.pos = 0;
-                int tries = 0;
-                while (!Dungeon.visible[mob.pos] || tries++ < 20) {
-                    mob.pos = Dungeon.level.randomDestination();
-                }
-                if (mob.pos != -1 && Actor.findChar( mob.pos ) == null && (Level.passable[mob.pos] || Level.avoid[mob.pos])) {
-                    Dungeon.level.mobs.add(mob);
-                }
-            } else {
-                Mob mob = new Skeleton();
-                if (Dungeon.difficultyLevel == Dungeon.DIFF_ENDLESS) {
-                    mob.infiniteScaleMob(Dungeon.depth + 5);
-                } else {
-                    mob.scaleMob();
-                }
-                mob.pos = 0;
-                int tries = 0;
-                while (!Dungeon.visible[mob.pos] || tries++ < 20) {
-                    mob.pos = Dungeon.level.randomDestination();
-                }
-                if (mob.pos != -1 && Actor.findChar( mob.pos ) == null && (Level.passable[mob.pos] || Level.avoid[mob.pos])) {
-                    Dungeon.level.mobs.add(mob);
-                }
+
+        int nMobs = 2;
+        if (Random.Int( 1 ) == 0) {
+            nMobs++;
+            if (Random.Int( 2 ) == 0) {
+                nMobs++;
             }
-            mobsToSpawn--;
+        }
+
+        ArrayList<Integer> candidates = new ArrayList<>();
+
+        for (int i=0; i < Level.NEIGHBOURS8.length; i++) {
+            int p = pos + Level.NEIGHBOURS8[i];
+            if (Actor.findChar( p ) == null && (Level.passable[p] || Level.avoid[p])) {
+                candidates.add( p );
+            }
+        }
+
+        ArrayList<Integer> respawnPoints = new ArrayList<>();
+
+        while (nMobs > 0 && candidates.size() > 0) {
+            int index = Random.index( candidates );
+
+            DUMMY.pos = candidates.get( index );
+
+            respawnPoints.add( candidates.remove( index ) );
+            nMobs--;
+        }
+
+        for (Integer point : respawnPoints) {
+            Mob mob = (Random.Int(2) == 0) ? new Zombie() : new Skeleton();
+            mob.scaleMob();
+
+            mob.state = mob.WANDERING;
+            GameScene.add( mob, 2f );
+            ScrollOfTeleportation.appear( mob, point );
         }
         yell( "Arise my children!" );
         return true;

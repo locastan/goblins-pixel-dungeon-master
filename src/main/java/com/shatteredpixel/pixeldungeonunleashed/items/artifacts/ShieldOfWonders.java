@@ -644,12 +644,29 @@ public class ShieldOfWonders extends Artifact{
 
     @Override
     public boolean doUnequip( Hero hero, boolean collect, boolean single ) {
+        if (cursed) {
+            GLog.w("You can't remove cursed %s!", name());
+            return false;
+        }
+
+        if (single) {
+            hero.spendAndNext( time2equip( hero ) );
+        } else {
+            hero.spend( time2equip( hero ) );
+        }
+
+        if (collect && !collect( hero.belongings.backpack )) {
+            onDetach();
+            Dungeon.quickslot.clearItem(this);
+            updateQuickslot();
+            Dungeon.level.drop(this, hero.pos);
+        }
+
         if (hero.belongings.misc1 == this) {
             hero.belongings.misc1 = null;
         } else {
             hero.belongings.misc2 = null;
         }
-
         return true;
     }
 

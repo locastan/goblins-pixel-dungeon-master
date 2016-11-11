@@ -25,6 +25,13 @@ package com.shatteredpixel.pixeldungeonunleashed.items;
 
 import java.util.ArrayList;
 
+import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
+import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.Blob;
+import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.Fire;
+import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
+import com.shatteredpixel.pixeldungeonunleashed.scenes.CellSelector;
+import com.shatteredpixel.pixeldungeonunleashed.scenes.GameScene;
+import com.shatteredpixel.pixeldungeonunleashed.utils.GLog;
 import com.watabou.noosa.particles.Emitter;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Buff;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Light;
@@ -35,6 +42,7 @@ import com.shatteredpixel.pixeldungeonunleashed.sprites.ItemSpriteSheet;
 public class Torch extends Item {
 
 	public static final String AC_LIGHT	= "LIGHT";
+	public static final String AC_BURN	= "BURN";
 	
 	public static final float TIME_TO_LIGHT = 1;
 	
@@ -51,6 +59,7 @@ public class Torch extends Item {
 	public ArrayList<String> actions( Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
 		actions.add( AC_LIGHT );
+		actions.add(AC_BURN);
 		return actions;
 	}
 	
@@ -70,13 +79,36 @@ public class Torch extends Item {
 			Emitter emitter = hero.sprite.centerEmitter();
 			emitter.start( FlameParticle.FACTORY, 0.2f, 3 );
 			
+		} else if (action.equals( AC_BURN )) {
+            GameScene.selectCell( burnee );
 		} else {
 			
 			super.execute( hero, action );
 			
 		}
 	}
-	
+
+    private static CellSelector.Listener burnee = new CellSelector.Listener() {
+        @Override
+        public void onSelect( Integer target ) {
+            if (target != null && Level.passable[target]) {
+                for (int i : Level.NEIGHBOURS8) {
+                    if (target == Dungeon.hero.pos + i) {
+						Item torch = Dungeon.hero.belongings.getItem(Torch.class);
+                        torch.detach(Dungeon.hero.belongings.backpack);
+                        GameScene.add( Blob.seed( target, 1, Fire.class ) );
+                    } else {
+                        GLog.w( "You can only burn stuff next to you." );
+                    }
+                }
+            }
+        }
+        @Override
+        public String prompt() {
+            return "Select burn location";
+        }
+    };
+
 	@Override
 	public boolean isUpgradable() {
 		return false;
@@ -95,6 +127,7 @@ public class Torch extends Item {
 	@Override
 	public String info() {
 		return
-			"An adventuring staple, when a dungeon goes dark, a torch can help lead the way.";
+			"An adventuring staple, when a dungeon goes dark, a torch can help lead the way." +
+            "\n\nIt can also be used to burn stuff...";
 	}
 }
