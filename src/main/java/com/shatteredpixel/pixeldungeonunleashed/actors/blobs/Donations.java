@@ -30,6 +30,7 @@ import com.shatteredpixel.pixeldungeonunleashed.actors.hero.Hero;
 import com.shatteredpixel.pixeldungeonunleashed.effects.BlobEmitter;
 import com.shatteredpixel.pixeldungeonunleashed.effects.Speck;
 import com.shatteredpixel.pixeldungeonunleashed.items.Generator;
+import com.shatteredpixel.pixeldungeonunleashed.items.Gold;
 import com.shatteredpixel.pixeldungeonunleashed.items.Heap;
 import com.shatteredpixel.pixeldungeonunleashed.items.Item;
 import com.shatteredpixel.pixeldungeonunleashed.items.potions.PotionOfHealing;
@@ -136,9 +137,15 @@ public class Donations extends Blob {
                     hero.donatedLoot = 0;
                 } else {
                     try {
-                        GLog.p("You are rewarded with an ancient Artifact!");
-                        throwItem(cell, Generator.random(Generator.Category.ARTIFACT));
-                        hero.donatedLoot = 0;
+                        Item item = Generator.random(Generator.Category.ARTIFACT);
+                        if (!Generator.spawnedArtifacts.contains(item.getClass().getSimpleName())) {
+                            GLog.p("You are rewarded with an ancient Artifact!");
+                            throwItem(cell, item);
+                            hero.donatedLoot = 0;
+                        } else {
+                            Item newitem = new Gold(item.price()*4);
+                            throwItem(cell, newitem);
+                        }
                     } catch (Exception ex) {
                     }
                 }

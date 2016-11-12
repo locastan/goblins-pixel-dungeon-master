@@ -72,20 +72,20 @@ public class WndStory extends Window {
 		CHAPTERS.put( ID_CAVES,
 		"The caves, which stretch down under the abandoned prison, are sparcely populated. They lie too deep to be exploited " +
 		"by the City and they are too poor in minerals to interest the dwarves. In the past there was a trade outpost " +
-		"somewhere here on the route between these two states, but it has perished since the decline of Dwarven Metropolis. " +
+		"somewhere here on the route between these two states, but it has perished since the decline of Greyhill. " +
 		"Only omnipresent gnolls and subterranean animals dwell here now." );
 		
 		CHAPTERS.put( ID_METROPOLIS,
-		"Dwarven Metropolis was once the greatest of dwarven city-states. In its heyday the mechanized army of dwarves " +
-		"has successfully repelled the invasion of the old god Herbert and his demon army. But it is said, that the returning warriors " +
-		"have brought seeds of corruption with them, and that victory was the beginning of the end for the underground kingdom." );
+		"Greyhill was once the greatest of dwarven city-states. In its heyday the mechanized army of dwarves " +
+		"has successfully repelled the invasion of the Sacred and his demon army. But it is said, that the returning paladin " +
+		"has brought the seed of corruption with him, and that victory was the beginning of the end for the underground kingdom." );
 
 		CHAPTERS.put( ID_FROZEN,
 		"The air suddenly grows cold; This was once an extension of the dwarven empire but years of abandonment have let something "+
 		"else take over.  With the Undead Dwarven King behind you, it is time to press on.  The magic that pervades this place "+
 		"feels vaguely demonic\n\n");
 		CHAPTERS.put( ID_HALLS,
-		"In the past these levels were the outskirts of Metropolis. After the costly victory in the war with the old god " +
+		"In the past these levels were the outskirts of Greyhill. After the costly victory in the war with the Sacred " +
 		"dwarves were too weakened to clear them of remaining demons. Gradually demons have tightened their grip on this place " +
 		"and now it's called Demon Halls.\n\n" +
 		"Very few adventurers have ever descended this far..." );

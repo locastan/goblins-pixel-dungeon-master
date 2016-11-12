@@ -47,6 +47,14 @@ public class WelcomeScene extends PixelScene {
 			"Enjoy";
 
 	private static final String TXT_Update =
+			"v0.1.3: Beta Hotfix release\n"+
+					"- .\n"+
+					"- .\n"+
+					"- .\n"+
+					"- Artifacts should spawn unique now.\n"+
+					"- Hotfix for Shield of Wonder disappear.\n"+
+					"- Completely rewritten Necromancer summon.\n"+
+					"- Other small bugfixes and typo fixes.\n"+
 			"v0.1.2: Open Beta release\n"+
 					"- reworked Prismweed effect and reduced duration.\n"+
 					"- added Shield of Wonder artifact.\n"+

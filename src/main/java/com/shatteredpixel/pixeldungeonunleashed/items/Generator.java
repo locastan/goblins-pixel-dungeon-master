@@ -423,7 +423,7 @@ public class Generator {
 		if (Ghost.Quest.processed) Category.ARTIFACT.probs[10] = 1;
 	}
 
-	private static ArrayList<String> spawnedArtifacts = new ArrayList<String>();
+	public static ArrayList<String> spawnedArtifacts = new ArrayList<String>();
 
 	private static final String ARTIFACTS = "artifacts";
 

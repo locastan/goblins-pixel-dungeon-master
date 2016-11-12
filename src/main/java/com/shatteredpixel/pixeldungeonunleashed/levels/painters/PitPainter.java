@@ -66,7 +66,7 @@ public class PitPainter extends Painter {
 		if (loot == 0) {
 			level.drop( Generator.random( Generator.Category.RING ), remains );
 		} else if (loot == 1) {
-			level.drop( Generator.random( Generator.Category.ARTIFACT ), remains );
+			level.drop( Generator.randomArtifact(), remains );
 		} else {
 			level.drop( Generator.random( Random.oneOf(
 				Generator.Category.WEAPON,

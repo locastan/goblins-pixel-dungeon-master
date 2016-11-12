@@ -406,7 +406,7 @@ public class CursedWand {
 				do {
 					result = Generator.random(Random.oneOf(Generator.Category.WEAPON, Generator.Category.ARMOR,
 							Generator.Category.RING, Generator.Category.ARTIFACT));
-				} while (result.level < 0 && !(result instanceof MissileWeapon));
+				} while (result.level < 0 && !(result instanceof MissileWeapon) && (Generator.spawnedArtifacts.contains(result.getClass().getSimpleName())));
 				if (result.isUpgradable()) result.upgrade();
 				result.cursed = result.cursedKnown = true;
 				GLog.w("your wand transmogrifies into a different item!");
