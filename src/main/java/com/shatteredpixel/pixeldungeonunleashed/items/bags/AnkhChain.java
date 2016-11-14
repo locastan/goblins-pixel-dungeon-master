@@ -20,6 +20,7 @@ package com.shatteredpixel.pixeldungeonunleashed.items.bags;
 
 import com.shatteredpixel.pixeldungeonunleashed.items.Ankh;
 import com.shatteredpixel.pixeldungeonunleashed.items.Item;
+import com.shatteredpixel.pixeldungeonunleashed.items.keys.Key;
 import com.shatteredpixel.pixeldungeonunleashed.items.rings.Ring;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.ItemSpriteSheet;
 
@@ -35,7 +36,7 @@ public class AnkhChain extends Bag {
 	
 	@Override
 	public boolean grab(Item item) {
-		if (item instanceof Ankh ||  item instanceof Ring){
+		if (item instanceof Ankh ||  item instanceof Ring || item instanceof Key){
 			return true;
 			} else {
 			return false;
@@ -49,7 +50,7 @@ public class AnkhChain extends Bag {
 
 	@Override
 	public String info() {
-		return "This chain can hold your amulets and other small jewelery.\n\n"
+		return "This chain can hold your amulets, keys and other small jewelery.\n\n"
 				+"Must be a pretty scary dungeon you are heading into!";
 	}
 }

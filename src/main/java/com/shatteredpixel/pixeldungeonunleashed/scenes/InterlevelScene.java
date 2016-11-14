@@ -23,12 +23,16 @@
  */
 package com.shatteredpixel.pixeldungeonunleashed.scenes;
 
+import android.util.Log;
+
 import com.shatteredpixel.pixeldungeonunleashed.Assets;
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.Statistics;
 import com.shatteredpixel.pixeldungeonunleashed.actors.Actor;
 import com.shatteredpixel.pixeldungeonunleashed.items.Generator;
+import com.shatteredpixel.pixeldungeonunleashed.levels.LastLevel;
 import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
+import com.shatteredpixel.pixeldungeonunleashed.utils.GLog;
 import com.shatteredpixel.pixeldungeonunleashed.windows.WndError;
 import com.shatteredpixel.pixeldungeonunleashed.windows.WndStory;
 import com.watabou.noosa.BitmapText;
@@ -234,12 +238,12 @@ public class InterlevelScene extends PixelScene {
 		}
 
 		Level level;
-		if (Dungeon.difficultyLevel == Dungeon.DIFF_ENDLESS || Dungeon.depth >= Statistics.deepestFloor) {
-			level = Dungeon.newLevel();
-		} else {
-			Dungeon.depth++;
-			level = Dungeon.loadLevel( Dungeon.hero.heroClass );
-		}
+        if (Dungeon.difficultyLevel == Dungeon.DIFF_ENDLESS || Dungeon.depth >= Statistics.deepestFloor) {
+            level = Dungeon.newLevel();
+        } else {
+            Dungeon.depth++;
+            level = Dungeon.loadLevel( Dungeon.hero.heroClass );
+        }
 		Dungeon.switchLevel( level, level.entrance );
 	}
 	

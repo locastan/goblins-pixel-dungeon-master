@@ -318,7 +318,6 @@ public class Dungeon {
 				}
 			} else {
 
-
 				switch (depth) {
 					case 1:
 						final Calendar calendar = Calendar.getInstance();

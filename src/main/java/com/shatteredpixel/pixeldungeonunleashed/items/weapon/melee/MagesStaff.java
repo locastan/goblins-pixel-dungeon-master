@@ -157,7 +157,7 @@ public class MagesStaff extends MeleeWeapon {
 		}
 
 		//syncs the level of the two items.
-		int targetLevel = ((this.level + wand.level) / 2) + 1;
+		int targetLevel = Math.max(this.level, wand.level);
 		this.upgrade(targetLevel);
 		wand.upgrade(targetLevel);
 

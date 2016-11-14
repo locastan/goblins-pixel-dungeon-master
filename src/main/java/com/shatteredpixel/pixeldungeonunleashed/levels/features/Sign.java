@@ -93,11 +93,11 @@ public class Sign {
 
 		"No weapons allowed in the presence of His Majesty!",
 		"Beware, wolves tend to travel in packs.",
-		"Deep dwellers have a special attack",
+		"Mr. Fingers has a special attack",
 		"Most Badges can't be earned in the Easy difficulty level.",
 		"Have you ever thrown a potion at a mob?",
-		"Sign writers wanted, please apply at the Yog level!",
-		"The Yog moved downstairs...",
+		"Sign writers wanted, please apply at the Sacred level!",
+		"The Sacred moved downstairs...",
 
 		"Pixel-Mart. Special prices for demon hunters!",
 

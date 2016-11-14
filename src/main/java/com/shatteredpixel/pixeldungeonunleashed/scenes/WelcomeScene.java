@@ -48,9 +48,9 @@ public class WelcomeScene extends PixelScene {
 
 	private static final String TXT_Update =
 			"v0.1.3: Beta Hotfix release\n"+
-					"- .\n"+
-					"- .\n"+
-					"- .\n"+
+					"- Torches can burn stuff now.\n"+
+					"- Ankh chain now holds your keys.\n"+
+					"- Fixed amulet endless button option.\n"+
 					"- Artifacts should spawn unique now.\n"+
 					"- Hotfix for Shield of Wonder disappear.\n"+
 					"- Completely rewritten Necromancer summon.\n"+

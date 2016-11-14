@@ -55,11 +55,15 @@ public class TrapSprite extends Image {
 	public void reset( Trap trap ) {
 
 		revive();
-// DSM-xxxx
+// Fixed endless mode problem with traps beyond level 36.
 		if (Dungeon.depth == 1) {
 			reset(trap.image +24);
 		} else {
-			reset(trap.image + (((Dungeon.depth - 1) / 6) * 8));
+			int depth = Dungeon.depth;
+            while (((depth - 1) / 6) > 5) {
+				depth = depth - 30;
+			}
+			reset(trap.image + (((depth - 1) / 6) * 8));
 		}
 		alpha( 1f );
 

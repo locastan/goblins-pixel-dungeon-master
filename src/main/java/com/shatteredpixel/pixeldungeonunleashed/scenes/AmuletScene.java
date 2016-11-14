@@ -93,13 +93,7 @@ public class AmuletScene extends PixelScene {
                 GoblinsPixelDungeon.setDifficulty(15);
                 Dungeon.difficultyLevel = GoblinsPixelDungeon.getDifficulty();
                 InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
-
-                if (GoblinsPixelDungeon.intro()) {
-                    GoblinsPixelDungeon.intro( false );
-                    Game.switchScene( IntroScene.class );
-                } else {
-                    Game.switchScene( InterlevelScene.class );
-                }
+				Game.switchScene( InterlevelScene.class );
 			}
 		};
 		btnEndless.setSize( WIDTH, BTN_HEIGHT );

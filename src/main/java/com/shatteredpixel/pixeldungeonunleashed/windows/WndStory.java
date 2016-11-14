@@ -81,12 +81,12 @@ public class WndStory extends Window {
 		"has brought the seed of corruption with him, and that victory was the beginning of the end for the underground kingdom." );
 
 		CHAPTERS.put( ID_FROZEN,
-		"The air suddenly grows cold; This was once an extension of the dwarven empire but years of abandonment have let something "+
+		"The air suddenly grows cold. This was once an extension of the dwarven empire but years of abandonment have let something "+
 		"else take over.  With the Undead Dwarven King behind you, it is time to press on.  The magic that pervades this place "+
 		"feels vaguely demonic\n\n");
 		CHAPTERS.put( ID_HALLS,
 		"In the past these levels were the outskirts of Greyhill. After the costly victory in the war with the Sacred " +
-		"dwarves were too weakened to clear them of remaining demons. Gradually demons have tightened their grip on this place " +
+		"dwarves were too weakened to clear them of remaining demons. Gradually demons have made this place an extension of hell  " +
 		"and now it's called Demon Halls.\n\n" +
 		"Very few adventurers have ever descended this far..." );
 

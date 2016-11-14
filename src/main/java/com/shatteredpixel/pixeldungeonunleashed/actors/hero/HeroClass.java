@@ -35,11 +35,14 @@ import com.shatteredpixel.pixeldungeonunleashed.items.TomeOfMastery;
 // import com.shatteredpixel.pixeldungeonunleashed.items.armor.ClothArmor;
 import com.shatteredpixel.pixeldungeonunleashed.items.Torch;
 import com.shatteredpixel.pixeldungeonunleashed.items.armor.HuntressArmor;
+import com.shatteredpixel.pixeldungeonunleashed.items.armor.PlateArmor;
 import com.shatteredpixel.pixeldungeonunleashed.items.artifacts.CloakOfShadows;
 import com.shatteredpixel.pixeldungeonunleashed.items.artifacts.SandalsOfNature;
 import com.shatteredpixel.pixeldungeonunleashed.items.artifacts.ShieldOfWonders;
+import com.shatteredpixel.pixeldungeonunleashed.items.bags.AnkhChain;
 import com.shatteredpixel.pixeldungeonunleashed.items.food.Food;
 import com.shatteredpixel.pixeldungeonunleashed.items.food.Yumyuck;
+import com.shatteredpixel.pixeldungeonunleashed.items.potions.PotionOfExperience;
 import com.shatteredpixel.pixeldungeonunleashed.items.potions.PotionOfHealing;
 import com.shatteredpixel.pixeldungeonunleashed.items.potions.PotionOfMight;
 import com.shatteredpixel.pixeldungeonunleashed.items.potions.PotionOfMindVision;
@@ -49,6 +52,9 @@ import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.ScrollOfMagicMappi
 import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.ScrollOfRemoveCurse;
 import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.pixeldungeonunleashed.items.wands.WandOfPrismaticLight;
+import com.shatteredpixel.pixeldungeonunleashed.items.weapon.Weapon;
+import com.shatteredpixel.pixeldungeonunleashed.items.weapon.enchantments.Ancient;
+import com.shatteredpixel.pixeldungeonunleashed.items.weapon.melee.BattleAxe;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.pixeldungeonunleashed.items.wands.WandOfMagicMissile;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.melee.Dagger;
@@ -162,25 +168,24 @@ public enum HeroClass {
 		hero.HP = 80;
 		new ShieldOfWonders().identify().collect();
 		new Torch().identify().collect();
+		new AnkhChain().collect();
+        new PlateArmor().identify().upgrade(10).collect();
+        new BattleAxe().identify().upgrade(10).collect();
 		// things we only want a few of..
 		for (int i = 0; i < 4; i++) {
 			new PotionOfMight().collect();
-			new PotionOfMindVision().identify().collect();
 			new ScrollOfRemoveCurse().collect();
-            new Prismweed.Seed().collect();
-            new YumyuckMoss.Seed().collect();
 		}
-
+		for (int i = 0; i < 34; i++) {
+			new PotionOfExperience().identify().collect();
+			new ScrollOfMagicMapping().identify().collect();
+		}
 		// things we want a bunch of...
 		for (int i = 0; i < 8; i++) {
 			new Food().collect();
-            new Yumyuck().collect();
-			new ScrollOfMagicMapping().identify().collect();
 			new ScrollOfIdentify().identify().collect();
-			new PotionOfHealing().identify().collect();
 			new ScrollOfUpgrade().collect();
 		}
-
 		try {
 			Generator.random(Generator.Category.WAND).collect();
 			Generator.random(Generator.Category.WAND).collect();

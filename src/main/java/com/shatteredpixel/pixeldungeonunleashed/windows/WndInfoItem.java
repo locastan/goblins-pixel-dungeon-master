@@ -99,7 +99,7 @@ public class WndInfoItem extends Window {
 						info = "'Jokes over. Let me out now!'\n\n" + TXT_OWNER;
 						break;
 					case 3:
-						info = "'Here lies Bob, he died from not forwarding that text message to 10 people.'\n\n" + TXT_OWNER;
+						info = "'I’ll pull the lever.'\n\n" + TXT_OWNER;
 						break;
 					case 4:
 						info = "'Here lies Tom, he loved bacon.  Oh, and his wife and kids too.'\n\n" + TXT_OWNER;
@@ -108,7 +108,7 @@ public class WndInfoItem extends Window {
 						info = "'Here lies my husband Tom, now I know where he is every night.'\n\n" + TXT_OWNER;
 						break;
 					case 6:
-						info = "'I told you I was sick!'\n\n" + TXT_OWNER;
+						info = "'What do you mean the whole room I'm in detects as a trap?'\n\n" + TXT_OWNER;
 						break;
 					case 7:
 						info = "'Here lies Carl.  The second fastest draw in the west.'\n\n" + TXT_OWNER;
@@ -120,13 +120,13 @@ public class WndInfoItem extends Window {
 						info = "'This was not in my job description'\n\n" + TXT_OWNER;
 						break;
 					case 10:
-						info = "'Here lies mister Jones, he should have paid off those Mafia loans.'\n\n" + TXT_OWNER;
+						info = "'There’s a smell of gas, huh? Well, my lantern is hooded. It ought to be safe.'\n\n" + TXT_OWNER;
 						break;
 					case 11:
 						info = "'I made some good deals and I made some bad ones.  I really went in the hole with this one.'\n\n" + TXT_OWNER;
 						break;
 					case 12:
-						info = "'Those weren't goldfish'\n\n" + TXT_OWNER;
+						info = "'A ballista? What’s that? How many dice of damage does it do?'\n\n" + TXT_OWNER;
 						break;
 					case 13:
 						info = "'That was not a potion of healing.'\n\n" + TXT_OWNER;
@@ -135,16 +135,16 @@ public class WndInfoItem extends Window {
 						info = "'I came here without being consulted and I leave without my consent.'\n\n" + TXT_OWNER;
 						break;
 					case 15:
-						info = "'DM-299 died doing what he loved.  Killing humans.'\n\n" + TXT_OWNER;
+						info = "'I go through the door… Wait, I check for traps!'\n\n" + TXT_OWNER;
 						break;
 					case 16:
-						info = "'Here lies Magda.  If you are reading this I must be dead.'\n\n" + TXT_OWNER;
+						info = "'Hmm…how do I know you are the REAL Angel of Death?'\n\n" + TXT_OWNER;
 						break;
 					case 17:
 						info = "'... well this sucks.'\n\n" + TXT_OWNER;
 						break;
 					case 18:
-						info = "'Waldo'\n\n" + TXT_OWNER;
+						info = "'Okay, if I max out this round and win initiative next round, maybe…'\n\n" + TXT_OWNER;
 						break;
 					case 19:
 						info = "'but it was just a flesh wound.'\n\n" + TXT_OWNER;
@@ -153,16 +153,16 @@ public class WndInfoItem extends Window {
 						info = "'Let me out now!'\n\n" + TXT_OWNER;
 						break;
 					case 21:
-						info = "'Yul B. Next'\n\n" + TXT_OWNER;
+						info = "'That purple robe really clashes with your burning eyes…'\n\n" + TXT_OWNER;
 						break;
 					case 22:
 						info = "'He died like he lived, screaming and crying in the corner.'\n\n" + TXT_OWNER;
 						break;
 					case 23:
-						info = "'Barry A. Live - here he lies, but he never died!'\n\n" + TXT_OWNER;
+						info = "'Yeah, I know it’s dangerous, but think of the experience points.'\n\n" + TXT_OWNER;
 						break;
 					case 24:
-						info = "'That potion of levitation didn't last as long as I'd like it to.'\n\n" + TXT_OWNER;
+						info = "'What do you mean with, 'Your potion of levitation wore off'?'\n\n" + TXT_OWNER;
 						break;
 					default:
 						info = TXT_OWNER;
