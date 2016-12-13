@@ -69,10 +69,10 @@ public class StartScene extends PixelScene {
 	private static final String TXT_YES		= "Yes, start new game";
 	private static final String TXT_NO		= "No, return to main menu";
 
-	private static final String TXT_UNLOCK	= "To unlock this character class, slay the 3rd boss with any other class";
+	private static final String TXT_UNLOCK	= "To unlock this character, slay the 3rd boss with any other char";
 
 	private static final String TXT_WIN_THE_GAME =
-			"To unlock \"Challenges\", win the game with any character class.";
+			"To unlock \"Challenges\", win the game with any character.";
 
 	private static final float WIDTH_P    = 116;
 	private static final float HEIGHT_P    = 220;

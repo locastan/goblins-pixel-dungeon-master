@@ -102,9 +102,9 @@ public class Sign {
 		"Pixel-Mart. Special prices for demon hunters!",
 
 		//hmm.. I wonder what this is?
-		"Ash nazg durbatulûk",
+		"Ash nazg durbatuluk",
 		"Ash nazg gimbatul",
-		"Ash nazg thrakatulûk",
+		"Ash nazg thrakatuluk",
 		"Agh burzum-ishi krimpatul"
 	};
 	

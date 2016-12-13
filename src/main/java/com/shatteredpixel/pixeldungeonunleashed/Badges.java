@@ -135,6 +135,7 @@ public enum Badge {
 		DEATH_FROM_HUNGER( "Death from hunger", 27 ),
 		DEATH_FROM_GLYPH( "Death from a glyph", 57 ),
 		DEATH_FROM_FALLING( "Death from falling down", 59 ),
+		DEATH_FROM_SOW( "Death by shield of wonder", 2 ),
 		YASD( "Death from fire, poison, toxic gas & hunger", 34, true ),
 
 		BOSS_SLAIN_1( "1st boss slain", 12 ),
@@ -146,7 +147,7 @@ public enum Badge {
 		BOSS_SLAIN_1_MAGE,
 		BOSS_SLAIN_1_ROGUE,
 		BOSS_SLAIN_1_HUNTRESS,
-		BOSS_SLAIN_1_ALL_CLASSES( "1st boss slain by Warrior, Mage, Rogue & Huntress", 32, true ),
+		BOSS_SLAIN_1_ALL_CLASSES( "1st boss slain by Complains, Chief, Fumbles & Thaco", 32, true ),
 		BOSS_SLAIN_3_GLADIATOR,
 		BOSS_SLAIN_3_BERSERKER,
 		BOSS_SLAIN_3_WARLOCK,
@@ -156,7 +157,7 @@ public enum Badge {
 		BOSS_SLAIN_3_SNIPER,
 		BOSS_SLAIN_3_WARDEN,
 		BOSS_SLAIN_3_ALL_SUBCLASSES(
-			"3rd boss slain by Gladiator, Berserker, Warlock, Battlemage, " +
+			"3rd boss slain by Gladiator, Berserker, Exorcist, War Cleric, " +
 			"Freerunner, Assassin, Sniper & Warden", 33, true ),
 		RING_OF_HAGGLER( "Ring of Haggler obtained", 20 ),
 		RING_OF_THORNS( "Ring of Thorns obtained", 21 ),
@@ -175,7 +176,7 @@ public enum Badge {
 		VICTORY_ROGUE,
 		VICTORY_HUNTRESS,
 		VICTORY( "Amulet of Yendor obtained", 22 ),
-		VICTORY_ALL_CLASSES( "Amulet of Yendor obtained by Warrior, Mage, Rogue & Huntress", 36, true ),
+		VICTORY_ALL_CLASSES( "Amulet of Yendor obtained by Complains, Chief, Fumbles & Thaco", 36, true ),
 		MASTERY_COMBO( "7-hit combo", 56 ),
 		GRIM_WEAPON( "Monster killed by a Grim weapon", 29 ),
 		PIRANHAS( "6 piranhas killed", 30 ),
@@ -631,6 +632,12 @@ public enum Badge {
 		local.add( badge );
 		displayBadge( badge );
 	}
+
+    public static void validateDeathBySoW() {
+        Badge badge = Badge.DEATH_FROM_SOW;
+        local.add( badge );
+        displayBadge( badge );
+    }
 	
 	public static void validateDeathFromFalling() {
 		Badge badge = Badge.DEATH_FROM_FALLING;

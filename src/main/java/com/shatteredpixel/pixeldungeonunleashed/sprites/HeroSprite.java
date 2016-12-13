@@ -63,8 +63,6 @@ public class HeroSprite extends CharSprite {
 
 	public void refresh() {
 
-		link( Dungeon.hero );
-
 		texture( Dungeon.hero.heroClass.spritesheet() );
 		updateArmor();
 

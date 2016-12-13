@@ -60,6 +60,9 @@ public class AboutScene extends PixelScene {
 	public void create() {
 		super.create();
 
+		int w = Camera.main.width;
+		int h = Camera.main.height;
+
         // some math to determine out layout
 		final float colWidth = Camera.main.width / (GoblinsPixelDungeon.landscape() ? 2 : 1);
 		final float colTop = (Camera.main.height / 2) - (GoblinsPixelDungeon.landscape() ? 30 : 90);
@@ -159,7 +162,7 @@ public class AboutScene extends PixelScene {
 
         // Display archs in the background
 		Archs archs = new Archs();
-		archs.setSize( Camera.main.width, Camera.main.height );
+		archs.setSize( w, h );
 		addToBack( archs );
 
         // Add the exit button in the top-right corner

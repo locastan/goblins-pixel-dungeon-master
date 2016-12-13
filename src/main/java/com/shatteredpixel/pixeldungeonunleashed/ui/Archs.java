@@ -30,21 +30,22 @@ import com.shatteredpixel.pixeldungeonunleashed.Assets;
 
 public class Archs extends Component {
 
-	private static final float SCROLL_SPEED	= 20f;
+	private static final float SCROLL_SPEED	= 10f;
 
-	private SkinnedBlock arcsBg;
+	//private SkinnedBlock arcsBg;
 	private SkinnedBlock arcsFg;
 
-	private static float offsB = 0;
+	//private static float offsB = 0;
 	private static float offsF = 0;
 
 	public boolean reversed = false;
 
 	@Override
 	protected void createChildren() {
+		/*
 		arcsBg = new SkinnedBlock( 1, 1, Assets.ARCS_BG );
 		arcsBg.offsetTo( 0,  offsB );
-		add( arcsBg );
+		add( arcsBg );*/
 
 		arcsFg = new SkinnedBlock( 1, 1, Assets.ARCS_FG );
 		arcsFg.offsetTo( 0,  offsF );
@@ -53,11 +54,11 @@ public class Archs extends Component {
 
 	@Override
 	protected void layout() {
-		arcsBg.size( width, height );
-		arcsBg.offset( arcsBg.texture.width / 4 - (width % arcsBg.texture.width) / 2, 0 );
+		/*arcsBg.size( width, height );
+		arcsBg.offset( arcsBg.texture.height / 4 - (height % arcsBg.texture.height) / 2, 0 );*/
 
 		arcsFg.size( width, height );
-		arcsFg.offset( arcsFg.texture.width / 4 - (width % arcsFg.texture.width) / 2, 0 );
+		arcsFg.offset( arcsFg.texture.height / 4 - (height % arcsFg.texture.height) / 2, 0 );
 	}
 
 	@Override
@@ -70,10 +71,10 @@ public class Archs extends Component {
 			shift = -shift;
 		}
 
-		arcsBg.offset( 0, shift );
-		arcsFg.offset( 0, shift * 2 );
+		//arcsBg.offset( shift, 0 );
+		arcsFg.offset( shift * 2, 0 );
 
-		offsB = arcsBg.offsetY();
-		offsF = arcsFg.offsetY();
+		//offsB = arcsBg.offsetX();
+		offsF = arcsFg.offsetX();
 	}
 }

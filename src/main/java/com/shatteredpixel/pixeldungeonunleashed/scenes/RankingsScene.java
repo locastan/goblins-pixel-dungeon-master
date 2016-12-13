@@ -47,7 +47,7 @@ import com.watabou.utils.GameMath;
 
 public class RankingsScene extends PixelScene {
 	
-	private static final String TXT_TITLE		= "Top Rankings - Goblins";
+	private static final String TXT_TITLE		= "Top Ranking Goblins";
 	private static final String TXT_TOTAL		= "Games Played: ";
 	private static final String TXT_NO_GAMES	= "No games have been played yet.";
 	

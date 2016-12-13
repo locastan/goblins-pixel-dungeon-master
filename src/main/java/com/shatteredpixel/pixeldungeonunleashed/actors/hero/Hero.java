@@ -99,6 +99,7 @@ import com.shatteredpixel.pixeldungeonunleashed.items.weapon.missiles.MissileWea
 import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
 import com.shatteredpixel.pixeldungeonunleashed.levels.Terrain;
 import com.shatteredpixel.pixeldungeonunleashed.levels.features.AlchemyPot;
+import com.shatteredpixel.pixeldungeonunleashed.levels.features.Bookshelf;
 import com.shatteredpixel.pixeldungeonunleashed.levels.features.Chasm;
 import com.shatteredpixel.pixeldungeonunleashed.levels.features.HolyAltar;
 import com.shatteredpixel.pixeldungeonunleashed.levels.features.Sign;
@@ -159,6 +160,7 @@ public class Hero extends Char {
 	
 	private static final float TIME_TO_REST		= 1f;
 	private static final float TIME_TO_SEARCH	= 2f;
+    private static final float TIME_TO_PICKUP	= 1f;
 	
 	public HeroClass heroClass = HeroClass.FUMBLES;
 	public HeroSubClass subClass = HeroSubClass.NONE;
@@ -522,6 +524,11 @@ public class Hero extends Char {
 				return actUnlock((HeroAction.Unlock) curAction);
 				
 			} else
+			if (curAction instanceof HeroAction.Rummage) {
+
+				return actExamine( (HeroAction.Rummage)curAction );
+
+			} else
 			if (curAction instanceof HeroAction.Descend) {
 
 				return actDescend( (HeroAction.Descend)curAction );
@@ -795,7 +802,27 @@ public class Hero extends Char {
 			return false;
 		}
 	}
-	
+
+	private boolean actExamine( HeroAction.Rummage action ) {
+
+		int dest = action.dst;
+		if (Level.adjacent( pos, dest )) {
+
+			spend(Hero.TIME_TO_PICKUP);
+			sprite.operate(dest);
+
+			return false;
+
+		} else if (getCloser( dest )) {
+
+			return true;
+
+		} else {
+			ready();
+			return false;
+		}
+	}
+
 	private boolean actUnlock( HeroAction.Unlock action ) {
 		int doorCell = action.dst;
 		if (Level.adjacent( pos, doorCell )) {
@@ -1179,6 +1206,10 @@ public class Hero extends Char {
 			
 			curAction = new HeroAction.Unlock( cell );
 			
+		} else if (Dungeon.level.map[cell] == Terrain.BOOKSHELF) {
+
+			curAction = new HeroAction.Rummage( cell );
+
 		} else if (cell == Dungeon.level.exit &&
 				((Dungeon.depth < Level.MAX_DEPTH) || (Dungeon.difficultyLevel == Dungeon.DIFF_ENDLESS))) {
 			
@@ -1554,6 +1585,12 @@ public class Hero extends Char {
 			Level.set( doorCell, door == Terrain.LOCKED_DOOR ? Terrain.DOOR : Terrain.UNLOCKED_EXIT );
 			GameScene.updateMap( doorCell );
 			
+		} else if (curAction instanceof HeroAction.Rummage) {
+
+			int cell = ((HeroAction.Rummage)curAction).dst;
+
+			Bookshelf.rummage(cell);
+
 		} else if (curAction instanceof HeroAction.OpenChest) {
 			
 			if (theKey != null) {

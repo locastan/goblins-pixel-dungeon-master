@@ -62,6 +62,12 @@ public class HeroAction {
 			this.npc = npc;
 		}
 	}
+
+	public static class Rummage extends HeroAction {
+		public Rummage( int cell ) {
+			this.dst = cell;
+		}
+	}
 	
 	public static class Unlock extends HeroAction {
 		public Unlock( int door ) {

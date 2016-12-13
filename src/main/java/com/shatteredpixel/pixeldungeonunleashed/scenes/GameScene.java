@@ -324,7 +324,7 @@ public class GameScene extends PixelScene {
 							WndStory.showChapter(WndStory.ID_TUTOR_1);
 						} else {
 							final Calendar calendar = Calendar.getInstance();
-							if (calendar.get(Calendar.MONTH) == 11 && calendar.get(Calendar.WEEK_OF_MONTH) > 2) { // DSM-xxxx
+							if (calendar.get(Calendar.MONTH) == Calendar.DECEMBER && calendar.get(Calendar.WEEK_OF_MONTH) > 2) { // DSM-xxxx
 								WndStory.showChapter(WndStory.ID_SPECIAL_1);
 							} else {
 								WndStory.showChapter(WndStory.ID_SEWERS);

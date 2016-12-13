@@ -35,6 +35,7 @@ import com.shatteredpixel.pixeldungeonunleashed.effects.particles.LeafParticle;
 import com.shatteredpixel.pixeldungeonunleashed.items.Dewdrop;
 import com.shatteredpixel.pixeldungeonunleashed.items.Generator;
 import com.shatteredpixel.pixeldungeonunleashed.items.Item;
+import com.shatteredpixel.pixeldungeonunleashed.items.Torch;
 import com.shatteredpixel.pixeldungeonunleashed.items.artifacts.SandalsOfNature;
 import com.shatteredpixel.pixeldungeonunleashed.items.bags.ScrollHolder;
 import com.shatteredpixel.pixeldungeonunleashed.items.bags.SeedPouch;
@@ -145,6 +146,10 @@ public class HighGrass {
 
 		if ((Dungeon.difficultyLevel <= Dungeon.DIFF_NORM) && Random.Int(25) == 0) {
 			level.drop(new Dart(Random.Int(3)+1), pos).sprite.drop();
+		}
+
+		if ((Dungeon.difficultyLevel <= Dungeon.DIFF_NORM) && Random.Int(30) == 0) {
+			level.drop(new Torch(), pos).sprite.drop();
 		}
 
 		if (!Dungeon.isChallenged( Challenges.NO_SCROLLS )) {

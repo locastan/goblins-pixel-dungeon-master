@@ -35,7 +35,7 @@ public class WelcomeScene extends PixelScene {
 
 	private static final String TTL_Welcome = "Welcome!";
 
-	private static final String TTL_Update = "v0.1.2: Open Beta Release";
+	private static final String TTL_Update = "v0.1.3: Beta Release";
 
 	private static final String TTL_Future = "Wait What?";
 
@@ -52,8 +52,11 @@ public class WelcomeScene extends PixelScene {
 					"- Ankh chain now holds your keys.\n"+
 					"- Fixed amulet endless button option.\n"+
 					"- Artifacts should spawn unique now.\n"+
+                    "- Fixed Altar donation freeze.\n"+
+                    "- Bookshelves can be rummaged through now.\n"+
 					"- Hotfix for Shield of Wonder disappear.\n"+
 					"- Completely rewritten Necromancer summon.\n"+
+					"- UI changes to make Goblins PD more unique.\n"+
 					"- Other small bugfixes and typo fixes.\n"+
 			"v0.1.2: Open Beta release\n"+
 					"- reworked Prismweed effect and reduced duration.\n"+
@@ -171,7 +174,7 @@ public class WelcomeScene extends PixelScene {
 		add(okay);*/
 
 		Archs archs = new Archs();
-		archs.setSize( Camera.main.width, Camera.main.height );
+		archs.setSize( w, h );
 		addToBack( archs );
 
 		fadeIn();

@@ -173,15 +173,16 @@ public class Blacksmith extends NPC {
 		if (item1 == item2) {
 			return "Select 2 different items, not the same item twice!";
 		}
-
-		if (item1.getClass() != item2.getClass()) {
-			return "Select 2 items of the same type!";
-		}
-		
+/*
+		// Removed to make forging more interesting to upgrade any good item with something else.
 		if (!item1.isIdentified() || !item2.isIdentified()) {
 			return "I need to know what I'm working with, identify dat first!";
 		}
-		
+*/
+		if (item1.level+item2.level > item1.levelCap) {
+            return "Dat item would be too powerful!";
+        }
+
 		if (item1.cursed || item2.cursed) {
 			return "I ain't workin' on cursed items!";
 		}
@@ -215,7 +216,7 @@ public class Blacksmith extends NPC {
 		if (first.isEquipped( Dungeon.hero )) {
 			((EquipableItem)first).doUnequip( Dungeon.hero, true );
 		}
-		first.upgrade();
+		first.upgrade(first.level+second.level+1);
 		GLog.p( TXT_LOOKS_BETTER, first.name() );
 		Dungeon.hero.spendAndNext( 2f );
 		Badges.validateItemLevelAquired( first );

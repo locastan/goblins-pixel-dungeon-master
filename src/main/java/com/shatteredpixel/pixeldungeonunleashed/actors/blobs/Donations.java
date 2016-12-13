@@ -33,6 +33,7 @@ import com.shatteredpixel.pixeldungeonunleashed.items.Generator;
 import com.shatteredpixel.pixeldungeonunleashed.items.Gold;
 import com.shatteredpixel.pixeldungeonunleashed.items.Heap;
 import com.shatteredpixel.pixeldungeonunleashed.items.Item;
+import com.shatteredpixel.pixeldungeonunleashed.items.artifacts.Artifact;
 import com.shatteredpixel.pixeldungeonunleashed.items.potions.PotionOfHealing;
 import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.Scroll;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.Weapon;
@@ -47,6 +48,8 @@ import com.shatteredpixel.pixeldungeonunleashed.utils.GLog;
 import com.shatteredpixel.pixeldungeonunleashed.windows.WndMessage;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
+
+import java.util.Arrays;
 
 public class Donations extends Blob {
     protected int pos;
@@ -72,7 +75,7 @@ public class Donations extends Blob {
             if (Dungeon.difficultyLevel == Dungeon.DIFF_TUTOR && !Dungeon.tutorial_altar_seen) {
                 Dungeon.tutorial_altar_seen = true;
                 GameScene.show(new WndMessage("An Altar room allows you to donate items to the DM in the hopes of " +
-                    "divine interention.  More expensive donations provide better rewards, including some difficult " +
+                    "divine intervention.  More expensive donations provide better rewards, including some difficult " +
                     "to obtain enchanted weapons, artifacts and instant level-ups.  Your donated loot is cumulative."));
             }
         }
@@ -100,7 +103,7 @@ public class Donations extends Blob {
         Hero hero = Dungeon.hero;
         Heap heap = Dungeon.level.heaps.get( cell );
 
-        if (heap != null) {
+        if (heap != null && hero.donatedLoot != -1) {
             // don't allow accidental donations of important items such as keys or quest items
             // and don't insult the gods with insignificant donations
             if (heap.peek().unique || heap.peek().price() < 5 || (heap.peek() instanceof MissileWeapon)) {
@@ -125,28 +128,29 @@ public class Donations extends Blob {
                 Buff.prolong(hero, Vertigo.class, 5f);
                 GLog.w("Herbert is displeased with your donation!");
 
-                // the hero may not use this altar again during this run
-                hero.donatedLoot = 0;
+                // the hero may not use an altar again during this run until amended
+                hero.donatedLoot = -1;
             } else if (hero.donatedLoot >= 350) {
                 // in order to get here you either have to donate a lot of goods all at once,
                 // or you have been doing a lot of donations and collecting the lower rewards
                 GLog.p("Herbert is very pleased and rewards you!");
                 if (Random.Int(3) == 0) {
                     GLog.p("Herbert floods your mind with visions of battles past.");
-                    hero.earnExp(hero.maxExp());
+                    hero.earnExp( hero.maxExp() );
                     hero.donatedLoot = 0;
                 } else {
                     try {
-                        Item item = Generator.random(Generator.Category.ARTIFACT);
-                        if (!Generator.spawnedArtifacts.contains(item.getClass().getSimpleName())) {
-                            GLog.p("You are rewarded with an ancient Artifact!");
-                            throwItem(cell, item);
-                            hero.donatedLoot = 0;
-                        } else {
-                            Item newitem = new Gold(item.price()*4);
-                            throwItem(cell, newitem);
+                        GLog.p("You are rewarded with an ancient Artifact!");
+                        Item item = Generator.randomArtifact();
+                        //if we're out of artifacts, return a ring instead.
+                        if (item == null) {
+                            GLog.p("Oops..there are none left of those...here have a ring!");
+                            item : Generator.random(Generator.Category.RING);
                         }
+                        throwItem(cell, item);
+                        hero.donatedLoot = 0;
                     } catch (Exception ex) {
+                        GLog.n(Arrays.toString(ex.getStackTrace()));
                     }
                 }
             } else if (hero.donatedLoot >= 150) {
@@ -154,7 +158,7 @@ public class Donations extends Blob {
                     // upgrade an item
                     Weapon wpn = (Weapon) Generator.random(Generator.Category.MELEE);
                     try {
-                        switch (Random.Int(4)) {
+                        switch (Random.Int(5)) {
                             case 0:
                                 wpn.enchant(Glowing.class.newInstance());
                                 break;
@@ -164,20 +168,23 @@ public class Donations extends Blob {
                             case 2:
                                 wpn.enchant(Holy.class.newInstance());
                                 break;
-                            default:
+                            case 3:
                                 wpn.enchant(Luck.class.newInstance());
+                                break;
+                            case 4:
+                                wpn.enchant();
                                 break;
                         }
                         throwItem(cell, wpn);
                         hero.donatedLoot -= 150;
-                        GLog.i("you are rewarded with a magical weapon.");
+                        GLog.p("you are rewarded with a magical weapon.");
                     } catch (NullPointerException e) {
                     } catch (InstantiationException e) {
                     } catch (IllegalAccessException e) {
                     }
-                    GLog.i("you feel very close to Herbert.");
+                    GLog.p("you feel very close to Herbert.");
                 } else {
-                    GLog.i("you feel very close to Herbert.");
+                    GLog.p("Herbert smiles upon you.");
                 }
             } else if (hero.donatedLoot >= 50) {
                 // some type of reward may be given to the hero, if so reduce the total donation value
@@ -202,8 +209,17 @@ public class Donations extends Blob {
             } else {
                 GLog.p("Herbert accepts your donation...");
             }
-
             heap.donate();
+        } else if (heap != null) {
+            if ((heap.peek() instanceof Artifact || heap.peek().level >= 5)) {
+                GLog.p("Herbert grumbles, but accepts your donation and allows you to donate more.");
+                hero.donatedLoot = 0;
+                heap.donate();
+            } else {
+                GLog.n("Herbert holds a grudge. You need to donate a very powerful item to please him now...");
+                throwItem(cell, heap.pickUp());
+                return;
+            }
         }
     }
 

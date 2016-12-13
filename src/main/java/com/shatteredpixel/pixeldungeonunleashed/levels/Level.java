@@ -252,11 +252,12 @@ public abstract class Level implements Bundlable {
 					break;
 				case 3:
 					feeling = Feeling.DARK;
-					addItemToSpawn(new Torch());
+					addItemToSpawn(new Torch().quantity(Random.Int(2)+1));
 					viewDistance = (int)Math.ceil(viewDistance/3f);
 					break;
 				case 4:
 					feeling = Feeling.BURNT;
+					addItemToSpawn(new Torch().quantity(Random.Int(2)+1));
 					break;
 				}
 			}
@@ -1045,6 +1046,8 @@ public abstract class Level implements Bundlable {
 			return "Triggered trap";
 		case Terrain.BOOKSHELF:
 			return "Bookshelf";
+		case Terrain.EMPTY_SHELF:
+			return "Empty Bookshelf";
 		case Terrain.ALCHEMY:
 			return "Alchemy pot";
 		case Terrain.ALTAR:

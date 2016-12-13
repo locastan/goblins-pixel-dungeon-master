@@ -322,7 +322,7 @@ public class Dungeon {
 					case 1:
 						final Calendar calendar = Calendar.getInstance();
 						GLog.i("Date: " + calendar.get(Calendar.MONTH));
-						if (calendar.get(Calendar.MONTH) == 11 && calendar.get(Calendar.WEEK_OF_MONTH) > 2) { // DSM-xxxx
+						if (calendar.get(Calendar.MONTH) == Calendar.DECEMBER && calendar.get(Calendar.WEEK_OF_MONTH) > 2) { // DSM-xxxx
 							level = new FrozenLevel();
 						} else {
 							level = new SewerLevel();

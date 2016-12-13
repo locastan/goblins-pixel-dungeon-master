@@ -167,7 +167,6 @@ public enum HeroClass {
 		hero.HT = 80;
 		hero.HP = 80;
 		new ShieldOfWonders().identify().collect();
-		new Torch().identify().collect();
 		new AnkhChain().collect();
         new PlateArmor().identify().upgrade(10).collect();
         new BattleAxe().identify().upgrade(10).collect();
@@ -182,6 +181,7 @@ public enum HeroClass {
 		}
 		// things we want a bunch of...
 		for (int i = 0; i < 8; i++) {
+			new Torch().identify().collect();
 			new Food().collect();
 			new ScrollOfIdentify().identify().collect();
 			new ScrollOfUpgrade().collect();

@@ -35,9 +35,9 @@ public class Midas  extends Weapon.Enchantment  {
 
     @Override
     public boolean proc( Weapon weapon, Char attacker, Char defender, int damage ) {
-        int level = weapon.level;
+        int level = weapon.level+1;
         if (damage >= defender.HP) {
-            if (level >= 0) {
+            if (level > 0) {
                 int goldValue = Random.IntRange(level, level * 5);
                 Dungeon.level.drop(new Gold(goldValue), defender.pos);
                 defender.sprite.showStatus(CharSprite.GOLDEN, Integer.toString(goldValue));

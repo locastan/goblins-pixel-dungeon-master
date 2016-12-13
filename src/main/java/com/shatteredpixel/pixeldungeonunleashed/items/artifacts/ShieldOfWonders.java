@@ -24,6 +24,7 @@
 package com.shatteredpixel.pixeldungeonunleashed.items.artifacts;
 
 import com.shatteredpixel.pixeldungeonunleashed.Assets;
+import com.shatteredpixel.pixeldungeonunleashed.Badges;
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.ResultDescriptions;
 import com.shatteredpixel.pixeldungeonunleashed.actors.Actor;
@@ -175,6 +176,7 @@ public class ShieldOfWonders extends Artifact{
 							}
 						}
 					});
+				GLog.s("Your shield transferred some heat.");
 				break;
 
 			//spawns some regrowth
@@ -187,17 +189,39 @@ public class ShieldOfWonders extends Artifact{
 								c == Terrain.EMPTY_DECO ||
 								c == Terrain.GRASS ||
 								c == Terrain.HIGH_GRASS) {
-							GameScene.add( Blob.seed(pos, 30, Regrowth.class));
+							GameScene.add( Blob.seed(pos, 30+level, Regrowth.class));
 						}
 					}
 				});
+                GLog.s("Look at all that grass...");
 				break;
 
 			//random teleportation
 			case 2:
 				switch(Random.Int(2)){
 					case 0:
-						ScrollOfTeleportation.teleportHero(user);
+                        int count = 10;
+                        int tpos;
+                        do {
+                            tpos = Dungeon.level.randomRespawnCell();
+                            if (count-- <= 0) {
+                                break;
+                            }
+                        } while (tpos == -1);
+
+                        if (tpos == -1) {
+
+                            GLog.s("A strong magic aura prevents teleporting.");
+
+                        } else {
+
+                            ScrollOfTeleportation.appear( user, pos );
+                            Dungeon.level.press( pos, user );
+                            Dungeon.observe();
+
+                            GLog.s("Do you like this new place?");
+
+                        }
 						break;
 					case 1:
 						cursedFX(user, pos, new Callback() {
@@ -213,12 +237,12 @@ public class ShieldOfWonders extends Artifact{
 										}
 									} while (rpos == -1);
 									if (rpos == -1) {
-										GLog.w(ScrollOfTeleportation.TXT_NO_TELEPORT);
+										GLog.s(ScrollOfTeleportation.TXT_NO_TELEPORT);
 									} else {
 										ch.pos = rpos;
 										ch.sprite.place(ch.pos);
 										ch.sprite.visible = Dungeon.visible[rpos];
-                                        GLog.i("An enemy has been teleported somwhere else.");
+                                        GLog.s("An enemy has been teleported somwhere else.");
 									}
 								}
 							}
@@ -232,7 +256,7 @@ public class ShieldOfWonders extends Artifact{
 				cursedFX(user, pos, new Callback() {
 					public void call() {
                         if (level > 0) {
-                            GLog.i("Your shield emits gas.");
+                            GLog.s("Your shield emits gas.");
                             switch (Random.Int(3)) {
                                 case 0:
                                     GameScene.add(Blob.seed(pos, 80 * level, ConfusionGas.class));
@@ -245,7 +269,7 @@ public class ShieldOfWonders extends Artifact{
                                     break;
                             }
                         } else {
-                            GLog.i("Your shield makes flatulent farting noises.");
+                            GLog.s("Your shield makes flatulent farting noises.");
                         }
 					}
 				});
@@ -274,7 +298,7 @@ public class ShieldOfWonders extends Artifact{
                                     }
                                 }
 
-                                GLog.w( "Your shield emits an enraging roar that echoes throughout the dungeon!" );
+                                GLog.s( "Your shield emits an enraging roar that echoes throughout the dungeon!" );
 
                                 user.sprite.centerEmitter().start( Speck.factory( Speck.SCREAM ), 0.3f, 3 );
                                 Sample.INSTANCE.play( Assets.SND_CHALLENGE );
@@ -295,7 +319,7 @@ public class ShieldOfWonders extends Artifact{
 
                                 Buff.affect( user, Drowsy.class );
 
-                                GLog.i( "Your shield sings a soothing melody. You feel very sleepy." );
+                                GLog.s( "Your shield sings a soothing melody. You feel very sleepy." );
                                 break;
                             case 2:
                                 // terror scroll copy
@@ -318,13 +342,13 @@ public class ShieldOfWonders extends Artifact{
 
                                 switch (count) {
                                     case 0:
-                                        GLog.i( "Your shield emits a brilliant flash of red light" );
+                                        GLog.s( "Your shield emits a brilliant flash of red light" );
                                         break;
                                     case 1:
-                                        GLog.i( "Your shield smites " + affected.name + " with terror!" );
+                                        GLog.s( "Your shield smites " + affected.name + " with terror!" );
                                         break;
                                     default:
-                                        GLog.i( "Your shield emits a brilliant flash of red light and the monsters flee!" );
+                                        GLog.s( "Your shield emits a brilliant flash of red light and the monsters flee!" );
                                 }
                                 break;
                             case 3:
@@ -340,15 +364,16 @@ public class ShieldOfWonders extends Artifact{
                                     }
                                 }
 
-                                user.damage(Math.max(user.HT/5, user.HP/2), this);
-                                Buff.affect( user, Paralysis.class, Random.Int( 4, 6 ) );
-                                Buff.affect( user, Blindness.class, Random.Int( 6, 9 ) );
+                                user.damage(2 * level + Math.max(user.HT/5, user.HP/2), this);
+                                Buff.prolong( user, Paralysis.class, Random.Int( 4, (4+level) ) );
+                                Buff.prolong( user, Blindness.class, Random.Int( 6, (6+level) ) );
                                 Dungeon.observe();
-                                GLog.i( "Your shield emits a psionic blast!" );
+                                GLog.s( "Your shield emits a psionic blast!" );
 
                                 if (!user.isAlive()) {
                                     Dungeon.fail( Utils.format(ResultDescriptions.ITEM, name ));
                                     GLog.n("Your shield tears your mind apart...");
+                                    Badges.validateDeathBySoW();
                                 }
                                 break;
                         }
@@ -373,7 +398,7 @@ public class ShieldOfWonders extends Artifact{
 								Dungeon.level.plant((Plant.Seed) Generator.random(Generator.Category.SEED), cell);
 							}
 						}
-                        GLog.i( "Various interesting plants sprout around your enemy!" );
+                        GLog.s( "Various interesting plants sprout around your enemy!" );
 					}
 				});
 				break;
@@ -391,6 +416,7 @@ public class ShieldOfWonders extends Artifact{
 									user.sprite.emitter().burst(Speck.factory(Speck.HEALING), 3);
 									target.damage(damage, this);
 									target.sprite.emitter().start(ShadowParticle.UP, 0.05f, 10);
+                                    GLog.s("Your shield transferred some health to you.");
 									break;
 								case 1:
 									user.damage( damage, this );
@@ -400,21 +426,24 @@ public class ShieldOfWonders extends Artifact{
 									Sample.INSTANCE.play(Assets.SND_CURSED);
 									if (!user.isAlive()) {
 										Dungeon.fail(Utils.format(ResultDescriptions.ITEM, name));
-										GLog.n("You were killed by your Shield of Wonders.");
-									}
+										GLog.n("You were killed by your Shield of Wonder.");
+                                        Badges.validateDeathBySoW();
+									} else {
+                                        GLog.s("Your shield transferred some of your health away.");
+                                    }
 									break;
 							}
 						}
 					});
 				} else {
-					GLog.p("Your shield smells like flowers...amazing!");
+					GLog.s("Your shield smells like flowers...amazing!");
 				}
 				break;
 
 			//Traps and bombs for hero or enemy
 			case 2:
                 int targetpos = (Random.Int(2) == 0 ? user.pos : pos);
-                GLog.i("Your shield summoned a trap.");
+                GLog.s("Your shield summoned a trap.");
                 switch(Random.Int(7)) {
                     case 0:
                         cursedFX(user, pos, new Callback() {
@@ -449,15 +478,16 @@ public class ShieldOfWonders extends Artifact{
 				Buff.prolong(user, ScrollOfRecharging.Recharging.class, 20f);
 				ScrollOfRecharging.charge(user);
 				SpellSprite.show(user, SpellSprite.CHARGE);
+                GLog.s("Was that too much juice?");
 				break;
             // shield level up!
             case 4:
                 if (level < levelCap) {
                     level++;
-                    charge = (int) Math.round((0.1f + (level/2*0.06f)+(1/(level+1)*0.04))*100);
-                    GLog.p("Your shield grows in strength and danger!");
+                    charge = (int) Math.round((0.1f + (level/2*0.06f)+(1/(level+1)*0.04f))*100);
+                    GLog.s("Your shield grows in strength and danger!");
                 } else {
-                    GLog.i("Your shield instills knowledge of a most useless factoid...");
+                    GLog.s("Your shield instills knowledge of a most useless factoid...");
                 }
                 break;
 		}
@@ -483,7 +513,7 @@ public class ShieldOfWonders extends Artifact{
 							GameScene.add(sheep);
 							CellEmitter.get(sheep.pos).burst(Speck.factory(Speck.WOOL), 4);
 						} else {
-							GLog.p("Your shield talks...well mainly it says \"BAAH\" a lot...");
+							GLog.s("Your shield talks...well mainly it says \"BAAH\" a lot...");
 						}
 					}
 				});
@@ -500,22 +530,22 @@ public class ShieldOfWonders extends Artifact{
 				if (misc1 != null)  misc1.cursed = misc1.cursedKnown = true;
 				if (misc2 != null)  misc2.cursed = misc2.cursedKnown = true;
 				EquipableItem.equipCursed(user);
-				GLog.n("Your worn equipment becomes cursed!");
+				GLog.s("Your worn equipment becomes cursed!");
 				break;
 
 			//Frozen Carpaccio copy
 			case 2:
-                switch (Random.Int( 5 )) {
+                switch (Random.Int( 4 )) {
                     case 0:
-                        GLog.i( "You see your hands turn invisible!" );
+                        GLog.s( "You see your hands turn invisible!" );
                         Buff.affect( user, Invisibility.class, Invisibility.DURATION );
                         break;
                     case 1:
-                        GLog.i( "You feel your skin harden!" );
+                        GLog.s( "You feel your skin harden!" );
                         Buff.affect( user, Barkskin.class ).level( user.HT / 4 );
                         break;
                     case 2:
-                        GLog.i( "Your shield emits refreshing energy!" );
+                        GLog.s( "Your shield emits refreshing energy!" );
                         Buff.detach( user, Poison.class );
                         Buff.detach( user, Cripple.class );
                         Buff.detach( user, Weakness.class );
@@ -526,9 +556,9 @@ public class ShieldOfWonders extends Artifact{
                         Buff.detach( user, Euphoria.class);
                         break;
                     case 3:
-                        GLog.i( "Your shield heals you!" );
+                        GLog.s( "Your shield heals you!" );
                         if (user.HP < user.HT) {
-                            user.HP = Math.min( user.HP + user.HT / 4, user.HT );
+                            user.HP = Math.min( user.HT * (int)(0.1f * (float)level), user.HT );
                             user.sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
                         }
                         break;
@@ -536,7 +566,7 @@ public class ShieldOfWonders extends Artifact{
 
 			//summon monsters
 			case 3:
-                GLog.n("Your shield found you some friends!");
+                GLog.s("Your shield found you some friends!");
 				new SummoningTrap().set( user.pos ).activate();
 				break;
 		}
@@ -559,11 +589,11 @@ public class ShieldOfWonders extends Artifact{
 				}
 				do {
 					GameScene.add(Blob.seed(Dungeon.level.randomDestination(), 10, Fire.class));
-				} while (Random.Int(5) != 0);
+				} while (Random.Int(6) != 0);
 				new Flare(8, 32).color(0xFFFF66, true).show(user.sprite, 2f);
 				Sample.INSTANCE.play(Assets.SND_TELEPORT);
-				GLog.p("Grass explodes around you!");
-				GLog.w("You smell burning...");
+				GLog.s("Grass explodes around you!");
+				GLog.s("You smell burning...");
 				break;
 
 			//superpowered mimic
@@ -583,6 +613,7 @@ public class ShieldOfWonders extends Artifact{
 						mimic.items.add(reward);
 					}
 				});
+                GLog.s("Come get some treasure!");
 				break;
 
 			//random transmogrification
@@ -594,7 +625,7 @@ public class ShieldOfWonders extends Artifact{
 				} while (result.level < 0 && !(result instanceof MissileWeapon) && (Generator.spawnedArtifacts.contains(result.getClass().getSimpleName())));
 				if (result.isUpgradable()) result.upgrade(Random.Int(level)+1);
 				result.cursed = result.cursedKnown = true;
-                GLog.w("Your shield spat out a random item!");
+                GLog.s("Your shield spat out a random item!");
                 Dungeon.level.drop(result, user.pos).sprite.drop();
 				break;
 		}
@@ -610,7 +641,7 @@ public class ShieldOfWonders extends Artifact{
 
         if (hero.belongings.misc1 != null && hero.belongings.misc2 != null) {
 
-            GLog.w( "you can only wear 2 misc items at a time" );
+            GLog.s( "You can only wear 2 misc items at a time" );
             return false;
 
         } else {
@@ -628,7 +659,7 @@ public class ShieldOfWonders extends Artifact{
             cursedKnown = true;
             if (cursed) {
                 equipCursed( hero );
-                GLog.n( "The " + this + " tightens around your arm painfully" );
+                GLog.s( "The " + this + " tightens around your arm painfully" );
             }
 
             hero.spendAndNext( TIME_TO_EQUIP );
@@ -645,7 +676,7 @@ public class ShieldOfWonders extends Artifact{
     @Override
     public boolean doUnequip( Hero hero, boolean collect, boolean single ) {
         if (cursed) {
-            GLog.w("You can't remove cursed %s!", name());
+            GLog.s("You can't remove cursed %s!", name());
             return false;
         }
 

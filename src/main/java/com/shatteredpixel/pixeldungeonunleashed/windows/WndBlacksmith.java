@@ -53,8 +53,8 @@ public class WndBlacksmith extends Window {
 	private RedButton btnReforge;
 	
 	private static final String TXT_PROMPT =
-		"Ok, a deal is a deal, dat's what I can do for you: I can reforge " +
-		"2 items and turn them into one of a better quality.";
+		"Ok, a deal is a deal, dat's what I can do for you: I can weld " +
+		"two items together and improve the better of the two.";
 	private static final String TXT_SELECT =
 		"Select an item to reforge";
 	private static final String TXT_REFORGE =

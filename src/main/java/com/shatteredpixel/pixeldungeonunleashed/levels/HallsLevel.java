@@ -55,7 +55,7 @@ public class HallsLevel extends RegularLevel {
 	
 	@Override
 	public void create() {
-		addItemToSpawn( new Torch() );
+		addItemToSpawn( new Torch().quantity(Random.Int(2)+1) );
 		super.create();
 	}
 	

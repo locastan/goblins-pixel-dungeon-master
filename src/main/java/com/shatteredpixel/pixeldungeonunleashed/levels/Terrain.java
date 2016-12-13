@@ -63,6 +63,7 @@ public class Terrain {
 	public static final int CHASM_WATER		= 32;
 	public static final int ALTAR           = 33;
 	public static final int ARCHWAY         = 34;
+	public static final int EMPTY_SHELF     = 35;
 
 	public static final int WATER_TILES	    = 48;
 	public static final int WATER		    = 63;
@@ -111,6 +112,7 @@ public class Terrain {
 		flags[STATUE]		= SOLID;
 		flags[STATUE_SP]	= flags[STATUE] 								| UNSTITCHABLE;
 		flags[BOOKSHELF]	= flags[BARRICADE]								| UNSTITCHABLE;
+		flags[EMPTY_SHELF]	= flags[BARRICADE]								| UNSTITCHABLE;
 		flags[ALCHEMY]		= PASSABLE;
 		
 		flags[CHASM_WALL]		= flags[CHASM];

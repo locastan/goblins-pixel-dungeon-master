@@ -91,7 +91,7 @@ public class Torch extends Item {
     private static CellSelector.Listener burnee = new CellSelector.Listener() {
         @Override
         public void onSelect( Integer target ) {
-            if (target != null && Level.passable[target]) {
+            if (target != null && (Level.passable[target] || Level.flamable[target])) {
                 boolean found = false;
                 for (int i : Level.NEIGHBOURS8) {
                     if (target == Dungeon.hero.pos + i) {
