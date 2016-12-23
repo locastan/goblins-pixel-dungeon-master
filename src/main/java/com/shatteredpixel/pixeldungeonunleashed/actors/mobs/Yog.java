@@ -56,7 +56,7 @@ import com.watabou.utils.Random;
 public class Yog extends Mob {
 	
 	{
-		name = "Yog-Dzewa";
+		name = "The Sacreds Eye";
 		spriteClass = YogSprite.class;
 		
 		HP = HT = 300;
@@ -68,9 +68,10 @@ public class Yog extends Mob {
 	}
 	
 	private static final String TXT_DESC =
-		"Yog-Dzewa is an Old God, a powerful entity from the realms of chaos. A century ago, the ancient dwarves " +
+		"The Sacred is an Old God, a powerful entity from the realms of chaos. A century ago, the dwarves of greyhill " +
 		"barely won the war against its army of demons, but were unable to kill the god itself. Instead, they then " +
-		"imprisoned it in the halls below their city, believing it to be too weak to rise ever again.";
+		"imprisoned it in the axe of prissan. A single eye and two hands, severed from the body during the fierce battle "+
+		"is all that remains of his corporeal body. The dwarfs left them here, believing them to be too weak to do any harm.";
 	
 	public Yog() {
 		super();

@@ -17,13 +17,19 @@
 
 package com.watabou.noosa.audio;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Objects;
 
+import com.shatteredpixel.pixeldungeonunleashed.Assets;
 import com.watabou.noosa.Game;
 
+import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.util.Log;
 
 public enum Music implements MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener {
 	
@@ -35,10 +41,12 @@ public enum Music implements MediaPlayer.OnPreparedListener, MediaPlayer.OnError
 	private boolean lastLooping;
 	
 	private boolean enabled = true;
+    private AssetFileDescriptor afd;
+    private FileInputStream fi;
 	
 	public void play( String assetName, boolean looping ) {
 		
-		if (isPlaying() && lastPlayed.equals( assetName )) {
+		if (isPlaying() && lastPlayed.equals( assetName ) && !assetName.equals(Assets.PROCEDURAL)) {
 			return;
 		}
 		
@@ -52,19 +60,24 @@ public enum Music implements MediaPlayer.OnPreparedListener, MediaPlayer.OnError
 		}
 		
 		try {
-			
-			AssetFileDescriptor afd = Game.instance.getAssets().openFd( assetName );
-			
 			player = new MediaPlayer();
 			player.setAudioStreamType( AudioManager.STREAM_MUSIC );
-			player.setDataSource( afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength() );
+            if (assetName != Assets.PROCEDURAL) {
+                afd = Game.instance.getAssets().openFd( assetName );
+                player.setDataSource( afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength() );
+            } else {
+                fi = Game.instance.openFileInput(assetName);
+				player.setDataSource(fi.getFD());
+            }
 			player.setOnPreparedListener( this );
 			player.setOnErrorListener( this );
 			player.setLooping( looping );
 			player.prepareAsync();
 			
 		} catch (IOException e) {
-			
+
+            Log.e("GPD", "exception: " + e.getMessage());
+            Log.e("GPD", "exception: " + e.toString());
 			player.release();
 			player = null;
 			

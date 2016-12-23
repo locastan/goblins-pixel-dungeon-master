@@ -22,7 +22,7 @@ import com.shatteredpixel.pixeldungeonunleashed.sprites.LarvaSprite;
 public class Larva extends Mob {
 
     {
-        name = "god's larva";
+        name = "Sacred larva";
         spriteClass = LarvaSprite.class;
 
         HP = HT = 25;
@@ -38,7 +38,7 @@ public class Larva extends Mob {
         TYPE_EVIL = true;
         state = HUNTING;
     }
-    private String TXT_DESC = "The Larva is the offspring of an ancient god.";
+    private String TXT_DESC = "Larvae of some kind of fly, that feasted on the festering bodyparts of the sacred. They became imbued with demonic power themselves.";
 
     @Override
     public String description() {

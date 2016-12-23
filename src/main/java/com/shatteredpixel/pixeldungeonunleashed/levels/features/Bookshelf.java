@@ -66,43 +66,32 @@ public class Bookshelf {
             "The common cave troll (Magnimata sillicata stupidus) is intellectually challenged at best, but once in a while a troll comes to be intelligent enough to be a trader, blacksmith, or suited for some other lowly profession."+
             " These creatures are as reclusive in their daily life as they are ferocious when threatened. I examined the brain of one of these \"smart\" trolls, and found impurities in his sillcon brain as well as a advanced cooling system. Such abominations should not be allowed to live!\n\n - Allaster Spagirus (Wizard, Dr.Dct.Magn.Thau.)",
 
-            "some old booklet about the glorious technological achievements of dwarven blacksmiths and artificers. There is a blot of something what looks like dried blood on it.",
+            "The dwarfs of greyhill achieved glorious technological advances in blacksmithing and cunning artifices. It is a shame it all literally went to hell upon that wretched Kore business. \n\n - Sephira Crumbell, Historian.",
 
             "Horrible demonic creatures inhabit the bowels of this world, one of the most powerful of which is only referred to by other demons as \"The Sacred\"."+
             "It's essence is rumored to be contained in some kind of holy weapon, but other rumors say some bodyparts left behind when the Sacred was contained still corrupt the realm around them today.\n\n"+
             "I call poppycock on all this nonsense of course! It's no more true than the bedtime stories told by our ancient dribbling elders of the rat king and his treasure room.\n\n - Allaster Spagirus (Wizard, Dr.Dct.Magn.Thau.)",
 
-            "a mouldy tome which, it seems, told about the rituals to summon different creatures of magical origin - undead, golems, elementals... It is too worn to be of any use.",
+            "*crumbling parchment* ... and verily I say, you can trap such an entity. Not with gilt or steel or magic, but with your steely MinD!!! *blotches* I have DONE SO!!!"+
+            "And to all you other Idiots hammering at MY DOOR right now because I killed a few worthless SOULS in THE PrOCESSsss: I say to the BLAZES with you...ARGlsbrbbllblub...*handwriting stops in a scrawly line*",
 
             // CHARACTERS
 
-            "a history book which tells stories of the ill-tempered, but brave and honourable people of the Thule. No other land is as famous for its warriors and sea traders.",
+            "Mysterious Organisms are the Kliks. They resemble spheres with arms and mouth and seem to inherit properties of materials they are made of. Each of them has a substance that is good for them, and one that is very, very fatal."+
+            "The positive and negative are often linked in a specific manner, but since there is apparently an unlimited number of Klik subspecies, it is very hard to find out what can be done to eradicate"+
+            "troublesome Kliks that got too powerful by consuming their positive substance. \n\n - Eargreave Drumroll, master trapper.",
 
-            "a geography book which contains description of somewhat wild and barbaric, but cunning and mischievous tribes inhabiting Southlands.",
-
-            "a philosophy book which was written by one of the many sorcerers of the Eastern Empire, which is famous for valuing knowledge above everything else.",
-
-            "an autobiography book which describes lives of the people of the West - simple, but capable folk who live by the will and blessing of their numerous gods.",
+            "The outer planes are an assortment of sheer agony paired with normal worlds and paradise ones. I'd say the paradise worlds are the most dangerous, because it is so easy to become lost in there to never return.",
 
             // CREDITS
 
-            "an old book about Inevielle, a flame sorceress. She was also renowned for her linguistic prowess and a knack for funny animals.",
-
-            "the biography of Logodum, a famous artist whose masterful paintings made this world a much more beautiful place. His works are known even until these days.",
-
-            "some storybook which tells a fragment of the tale of a weary adventurer. With his trusty knuckleduster and net, he was able to hack through any problem.",
-
-            "old notes about B'gnu-Thun, a hunter and a craftsman. Beautiful belts, mighty shields and lot of other wondrous things were created thanks to his talent.",
-
-            "a story about R'byj, a cunning troll warlord who, with his knowledge of tactics and strategies, made a huge impact on the current state of this world.",
-
-            "a tome which was written by Evan the Shattered, a great sage who worked tirelessly to improve his world. His deeds inspired many, and were adored by even more.",
+            "This is a tome which was written by Evan the Shattered, a great sage who worked tirelessly to improve his world. His deeds inspired many, and were adored by even more.",
 
             // MISC
 
-            "scribbles of some ancient philosopher which are filled with thoughts about how this world is off its balance because it is not in its completed state yet.",
+            "This appears to be a book of jokes...heavily worn and ripped, but some words can be read: \"..hat sound does a dwarven god make falling down the stairs? - CLANGGEDIN clanggedin clangg\"...",
 
-            "a list of bizarre prophecies, which mentions dead men blowing into a horns, arrival of demons in blood-red raiments, and giant crabs in formal dresses.",
+            "This is a list of bizarre prophecies, which mentions dead men blowing into a horns, arrival of demons in blood-red raiments, and giant crabs in formal dresses.",
 
     };
 

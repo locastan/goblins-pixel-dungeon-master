@@ -56,7 +56,7 @@ public class RottingFist extends Mob {
         state = WANDERING;
     }
 
-    private String TXT_DESC = "The Rotting Fist is an extension of an ancient god into our dimension.";
+    private String TXT_DESC = "This Rotting Fist was once the right hand of the Sacred.";
 
     @Override
     public int attackProc( Char enemy, int damage ) {

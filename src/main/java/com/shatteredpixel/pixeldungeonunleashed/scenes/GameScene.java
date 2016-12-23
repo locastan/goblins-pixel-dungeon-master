@@ -23,6 +23,7 @@
  */
 package com.shatteredpixel.pixeldungeonunleashed.scenes;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -276,6 +277,11 @@ public class GameScene extends PixelScene {
 		else
 			GLog.i( TXT_WELCOME, Dungeon.depth );
 		Sample.INSTANCE.play( Assets.SND_DESCEND );
+
+        //TODO Make this call music fitting to level depth. :)
+        //MusiGen.createMusic(null);
+        //Music.INSTANCE.volume( 1f );
+
 		switch (Dungeon.level.feeling) {
 		case CHASM:
 			GLog.w( TXT_CHASM );

@@ -59,7 +59,7 @@ public class BurningFist extends Mob {
         state = WANDERING;
     }
 
-    private String TXT_DESC = "The Burning Fist is an extension of an ancient god into our dimension.";
+    private String TXT_DESC = "This Burning Fist was once the left hand of the Sacred.";
 
     @Override
     protected boolean canAttack( Char enemy ) {

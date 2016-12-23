@@ -47,7 +47,7 @@ public class WelcomeScene extends PixelScene {
 			"Enjoy";
 
 	private static final String TXT_Update =
-			"v0.1.3: Beta Hotfix release\n"+
+			"v0.1.3: Beta release\n"+
 					"- Torches can burn stuff now.\n"+
 					"- Ankh chain now holds your keys.\n"+
 					"- Fixed amulet endless button option.\n"+
@@ -61,7 +61,6 @@ public class WelcomeScene extends PixelScene {
 			"v0.1.2: Open Beta release\n"+
 					"- reworked Prismweed effect and reduced duration.\n"+
 					"- added Shield of Wonder artifact.\n"+
-					"- reworked Necromancer summon.\n"+
                     "- fixed a freeze when getting a random artifact.\n"+
 					"- added amulet option to continue in endless mode.\n"+
 					"- bosses can't be turned into sheeps anymore.\n"+
@@ -75,8 +74,7 @@ public class WelcomeScene extends PixelScene {
 					"- added Complains, Chief, Fumbles, Thaco as player chars\n"+
 					"- adapted original skillsets of characters to suit goblins\n"+
 					"- changed story descriptions to fit thuntonian lore\n"+
-					"- changed tengu boss to goblinslayer\n"+
-					"- bug fixes";
+					"- changed tengu boss to goblinslayer\n";
 	private static final String TXT_Future =
 			"It seems that your current saves are from a future version of Goblins Pixel Dungeon!\n\n"+
 			"Either you're messing around with older versions of the app, or something has gone buggy.\n\n"+

@@ -64,6 +64,7 @@ public class TitleScene extends PixelScene {
 		}
 		
 		Music.INSTANCE.play( Assets.THEME, true );
+		//MusiGen.createMusic("GoblinsPixelDungeon");
 		Music.INSTANCE.volume( 1f );
 		
 		uiCamera.visible = false;
