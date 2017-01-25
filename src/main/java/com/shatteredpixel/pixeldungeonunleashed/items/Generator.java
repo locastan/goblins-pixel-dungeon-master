@@ -23,6 +23,9 @@
  */
 package com.shatteredpixel.pixeldungeonunleashed.items;
 
+import android.util.Log;
+import android.view.ViewDebug;
+
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.actors.hero.Hero;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.npcs.Ghost;
@@ -123,9 +126,10 @@ public class Generator {
 			PotionOfSpeed.class,          // 10
 			PotionOfExperience.class,     //  4
 			PotionOfStrength.class,       //  0 - uses special drop table
-			PotionOfMight.class           //  0 - need special circumstances to get
+			PotionOfMight.class,           //  0 - need special circumstances to get
+			Egg.class
 		};
-		Category.POTION.probs = new float[]{ 36, 20, 15, 15, 12, 10, 10, 10, 10, 10, 10, 4, 0, 0 };
+		Category.POTION.probs = new float[]{ 36, 20, 15, 15, 12, 10, 10, 10, 10, 10, 10, 4, 0, 0, 10 };
 
 		//TODO: add last ones when implemented
 		Category.WAND.classes = new Class<?>[]{
@@ -224,7 +228,6 @@ public class Generator {
 			LloydsBeacon.class,      // set to 0 - special drop
 			EtherealChains.class,
 			ShieldOfWonders.class
-			//BagOfDevouring.class
 			};
 
 		Category.ARTIFACT.probs = INITIAL_ARTIFACT_PROBS;
@@ -370,6 +373,7 @@ public class Generator {
 		try {
 			Category cat = Category.ARTIFACT;
 			int i = Random.chances( cat.probs );
+            Log.e("PD", "Prob: "+i);
 
 			//if no artifacts are left, return null
 			if (i == -1){
@@ -378,6 +382,7 @@ public class Generator {
 
 			// after creation, ensure the spawn rate for this entry is 0 and that we added the name to the load/save drop list
 			Artifact artifact = (Artifact)cat.classes[i].newInstance();
+            Log.e("PD", "Artifact: " + artifact.name());
 			if ((cat.probs[i] > 0) && (!spawnedArtifacts.contains(cat.classes[i].getSimpleName()))) {
 				//remove the chance of spawning this artifact.
 				cat.probs[i] = 0;
@@ -385,10 +390,12 @@ public class Generator {
 			}
 
 			artifact.random(); // is this artifact cursed?
+            Log.e("PD", "Cursed?: "+artifact.cursed);
 
 			return artifact;
 
 		} catch (Exception e) {
+			Log.e("PD", Log.getStackTraceString(e));
 			return null;
 		}
 	}

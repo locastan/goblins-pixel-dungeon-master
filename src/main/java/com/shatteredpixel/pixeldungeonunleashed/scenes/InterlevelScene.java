@@ -29,6 +29,8 @@ import com.shatteredpixel.pixeldungeonunleashed.Assets;
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.Statistics;
 import com.shatteredpixel.pixeldungeonunleashed.actors.Actor;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Mob;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.PET;
 import com.shatteredpixel.pixeldungeonunleashed.items.Generator;
 import com.shatteredpixel.pixeldungeonunleashed.levels.LastLevel;
 import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
@@ -278,7 +280,7 @@ public class InterlevelScene extends PixelScene {
 	}
 	
 	private void returnTo() throws IOException {
-		
+		checkPetPort();
 		Actor.fixTime();
 		
 		Dungeon.saveLevel();
@@ -314,6 +316,45 @@ public class InterlevelScene extends PixelScene {
 			Dungeon.hero.resurrect( -1 );
 			Dungeon.resetLevel();
 		}
+	}
+
+	private PET checkpet(){
+		for (Mob mob : Dungeon.level.mobs) {
+			if(mob instanceof PET) {
+				return (PET) mob;
+			}
+		}
+		return null;
+	}
+
+	private boolean checkpetNear(){
+		for (int n : Level.NEIGHBOURS8) {
+			int c =  Dungeon.hero.pos + n;
+			if (Actor.findChar(c) instanceof PET) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private void checkPetPort(){
+		PET pet = checkpet();
+		if(pet!=null && checkpetNear()){
+			//GLog.i("I see pet");
+			Dungeon.hero.petType=pet.type;
+			Dungeon.hero.petLevel=pet.level;
+			Dungeon.hero.petKills=pet.kills;
+			Dungeon.hero.petHP=pet.HP;
+			Dungeon.hero.petExperience=pet.experience;
+			Dungeon.hero.petCooldown=pet.cooldown;
+			pet.destroy();
+			Dungeon.hero.petfollow=true;
+		} else if (Dungeon.hero.haspet && Dungeon.hero.petfollow) {
+			Dungeon.hero.petfollow=true;
+		} else {
+			Dungeon.hero.petfollow=false;
+		}
+
 	}
 	
 	@Override

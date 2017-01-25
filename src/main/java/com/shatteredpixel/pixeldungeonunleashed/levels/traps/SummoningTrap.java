@@ -29,6 +29,7 @@ import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.actors.Actor;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Bestiary;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Mob;
+import com.shatteredpixel.pixeldungeonunleashed.items.Heap;
 import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
 import com.shatteredpixel.pixeldungeonunleashed.scenes.GameScene;
@@ -91,6 +92,9 @@ public class SummoningTrap extends Trap {
 			GameScene.add( mob, DELAY );
 			ScrollOfTeleportation.appear( mob, point );
 		}
+
+		Heap heap = Dungeon.level.heaps.get(pos);
+		if (heap != null) {heap.summon();}
 
 	}
 }

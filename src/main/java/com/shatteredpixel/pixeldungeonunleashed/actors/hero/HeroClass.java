@@ -30,6 +30,7 @@ import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.GoblinsPixelDungeon;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Fury;
 import com.shatteredpixel.pixeldungeonunleashed.items.Amulet;
+import com.shatteredpixel.pixeldungeonunleashed.items.Egg;
 import com.shatteredpixel.pixeldungeonunleashed.items.Generator;
 import com.shatteredpixel.pixeldungeonunleashed.items.TomeOfMastery;
 // import com.shatteredpixel.pixeldungeonunleashed.items.armor.ClothArmor;
@@ -59,6 +60,7 @@ import com.shatteredpixel.pixeldungeonunleashed.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.pixeldungeonunleashed.items.wands.WandOfMagicMissile;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.melee.Dagger;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.melee.ShortSword;
+import com.shatteredpixel.pixeldungeonunleashed.items.weapon.melee.WarHammer;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.missiles.Dart;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.missiles.Boomerang;
 import com.shatteredpixel.pixeldungeonunleashed.plants.Prismweed;
@@ -167,9 +169,10 @@ public enum HeroClass {
 		hero.HT = 80;
 		hero.HP = 80;
 		new ShieldOfWonders().identify().collect();
+		new Egg().collect();
 		new AnkhChain().collect();
         new PlateArmor().identify().upgrade(10).collect();
-        new BattleAxe().identify().upgrade(10).collect();
+        new WarHammer().identify().upgrade(10).collect();
 		// things we only want a few of..
 		for (int i = 0; i < 4; i++) {
 			new PotionOfMight().collect();

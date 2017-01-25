@@ -26,6 +26,7 @@ package com.shatteredpixel.pixeldungeonunleashed.actors.hero;
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.actors.Char;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.npcs.NPC;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.PET;
 
 
 public class HeroAction {
@@ -60,6 +61,13 @@ public class HeroAction {
 		public NPC npc;
 		public Interact( NPC npc ) {
 			this.npc = npc;
+		}
+	}
+
+	public static class InteractPet extends HeroAction {
+		public PET pet;
+		public InteractPet(PET pet) {
+			this.pet = pet;
 		}
 	}
 

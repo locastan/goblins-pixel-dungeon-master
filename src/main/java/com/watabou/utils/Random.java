@@ -49,26 +49,27 @@ public class Random {
 	public static int NormalIntRange( int min, int max ) {
 		return min + (int)((Math.random() + Math.random()) * (max - min + 1) / 2f);
 	}
-	
+
+	//returns an index from chances, the probability of each index is the weight values in changes
 	public static int chances( float[] chances ) {
-		
+
 		int length = chances.length;
-		
-		float sum = chances[0];
-		for (int i=1; i < length; i++) {
+
+		float sum = 0;
+		for (int i=0; i < length; i++) {
 			sum += chances[i];
 		}
-		
+
 		float value = Float( sum );
-		sum = chances[0];
+		sum = 0;
 		for (int i=0; i < length; i++) {
-			if (value <= sum) {
+			sum += chances[i];
+			if (value < sum) {
 				return i;
 			}
-			sum += chances[i + 1];
 		}
-		
-		return 0;
+
+		return -1;
 	}
 	
 	@SuppressWarnings("unchecked")

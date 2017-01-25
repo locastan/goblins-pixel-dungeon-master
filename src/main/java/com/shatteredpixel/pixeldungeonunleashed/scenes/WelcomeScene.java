@@ -35,46 +35,34 @@ public class WelcomeScene extends PixelScene {
 
 	private static final String TTL_Welcome = "Welcome!";
 
-	private static final String TTL_Update = "v0.1.3: Beta Release";
+	private static final String TTL_Update = "v0.1.4: Release";
 
 	private static final String TTL_Future = "Wait What?";
 
 	private static final String TXT_Welcome =
 			"Goblins Pixel Dungeon is a rework/expansion of Unleashed Pixel Dungeon.\n\n"+
-			"The current version is intended as open beta test!\n"+
-			"To change difficulty levels click on the Out-of-Game Settings (little gears) in"+
+			"The game is a work in progress, so bear with me in case of bugs. :3\n"+
+			"To change difficulty levels click on the Out-of-Game Settings (little gears) in "+
 			"the top left corner, difficulty will also change when you load games.\n\n"+
 			"Enjoy";
 
 	private static final String TXT_Update =
+			"v0.1.4: Release\n"+
+					"- Added Kliks as pets! :D\n"+
+					"- Added special healthbar for pet.\n"+
+					"- Changed healing mechanic of feeding the pet.\n"+
+					"- Pets follow to another level if in line of sight.\n"+
+					"- Finally fixed the donation freeze. :)\n"+
 			"v0.1.3: Beta release\n"+
 					"- Torches can burn stuff now.\n"+
 					"- Ankh chain now holds your keys.\n"+
 					"- Fixed amulet endless button option.\n"+
 					"- Artifacts should spawn unique now.\n"+
-                    "- Fixed Altar donation freeze.\n"+
                     "- Bookshelves can be rummaged through now.\n"+
 					"- Hotfix for Shield of Wonder disappear.\n"+
 					"- Completely rewritten Necromancer summon.\n"+
 					"- UI changes to make Goblins PD more unique.\n"+
-					"- Other small bugfixes and typo fixes.\n"+
-			"v0.1.2: Open Beta release\n"+
-					"- reworked Prismweed effect and reduced duration.\n"+
-					"- added Shield of Wonder artifact.\n"+
-                    "- fixed a freeze when getting a random artifact.\n"+
-					"- added amulet option to continue in endless mode.\n"+
-					"- bosses can't be turned into sheeps anymore.\n"+
-					"- Other small bugfixes and typo fixes.\n"+
-			"v0.1.1: 2nd Beta release\n"+
-					"- fixed some visuals on player chars.\n"+
-					"- changed the deep dweller to something more scary.\n"+
-					"- fixed Prismweed behaviour and spawn in open dungeons.\n"+
-					"- Small bugfixes.\n"+
-			"v0.1.0: Beta release\n"+
-					"- added Complains, Chief, Fumbles, Thaco as player chars\n"+
-					"- adapted original skillsets of characters to suit goblins\n"+
-					"- changed story descriptions to fit thuntonian lore\n"+
-					"- changed tengu boss to goblinslayer\n";
+					"- Other small bugfixes and typo fixes.\n";
 	private static final String TXT_Future =
 			"It seems that your current saves are from a future version of Goblins Pixel Dungeon!\n\n"+
 			"Either you're messing around with older versions of the app, or something has gone buggy.\n\n"+

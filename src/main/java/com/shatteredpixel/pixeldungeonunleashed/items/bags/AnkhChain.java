@@ -30,7 +30,7 @@ public class AnkhChain extends Bag {
 		name = "chain";
 		image = ItemSpriteSheet.CHAIN;
 
-		size = 24;
+		size = 20;
 	}
 
 	

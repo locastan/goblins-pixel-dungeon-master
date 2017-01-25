@@ -26,6 +26,7 @@ package com.shatteredpixel.pixeldungeonunleashed.levels.painters;
 import com.shatteredpixel.pixeldungeonunleashed.Challenges;
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.Foliage;
+import com.shatteredpixel.pixeldungeonunleashed.items.EasterEgg;
 import com.shatteredpixel.pixeldungeonunleashed.items.wands.WandOfRegrowth;
 import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
 import com.shatteredpixel.pixeldungeonunleashed.levels.Room;
@@ -36,6 +37,8 @@ import com.shatteredpixel.pixeldungeonunleashed.plants.Firebloom;
 import com.shatteredpixel.pixeldungeonunleashed.plants.Stormvine;
 import com.shatteredpixel.pixeldungeonunleashed.plants.Sungrass;
 import com.watabou.utils.Random;
+
+import java.util.Calendar;
 
 public class GardenPainter extends Painter {
 
@@ -71,6 +74,13 @@ public class GardenPainter extends Painter {
 				level.plant(new Prismweed.Seed(), room.random());
 				level.plant(new YumyuckMoss.Seed(), room.random());
 			}
+		}
+
+		if (Random.Int(10)==0 && (Calendar.getInstance().get(Calendar.MONTH)==4 || Calendar.getInstance().get(Calendar.MONTH)==5)){
+			int pos;
+			do {pos = room.random();}
+			while (level.heaps.get(pos) != null);
+			level.drop(new EasterEgg(), pos);
 		}
 
 		Foliage light = (Foliage)level.blobs.get( Foliage.class );

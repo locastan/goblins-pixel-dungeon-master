@@ -92,16 +92,11 @@ public class Torch extends Item {
         @Override
         public void onSelect( Integer target ) {
             if (target != null && (Level.passable[target] || Level.flamable[target])) {
-                boolean found = false;
-                for (int i : Level.NEIGHBOURS8) {
-                    if (target == Dungeon.hero.pos + i) {
-						Item torch = Dungeon.hero.belongings.getItem(Torch.class);
-                        torch.detach(Dungeon.hero.belongings.backpack);
-                        GameScene.add( Blob.seed( target, 1, Fire.class ) );
-                        found = true;
-                    }
-                }
-                if (!found) {
+				if (Level.adjacent(Dungeon.hero.pos, target)) {
+					Item torch = Dungeon.hero.belongings.getItem(Torch.class);
+					torch.detach(Dungeon.hero.belongings.backpack);
+					GameScene.add(Blob.seed(target, 1, Fire.class));
+				} else {
                     GLog.w( "You can only burn stuff next to you." );
                 }
             }

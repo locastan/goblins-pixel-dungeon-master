@@ -24,6 +24,7 @@
 package com.shatteredpixel.pixeldungeonunleashed.levels.traps;
 
 import com.shatteredpixel.pixeldungeonunleashed.actors.Actor;
+import com.shatteredpixel.pixeldungeonunleashed.items.Heap;
 import com.watabou.noosa.Camera;
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.ResultDescriptions;
@@ -70,6 +71,9 @@ public class LightningTrap extends Trap {
 		}
 
 		CellEmitter.center( pos ).burst( SparkParticle.FACTORY, Random.IntRange( 3, 4 ) );
+
+		Heap heap = Dungeon.level.heaps.get(pos);
+		if (heap != null) {heap.lit();}
 	}
 
 	//FIXME: this is bad, handle when you rework resistances, make into a category

@@ -52,7 +52,7 @@ public class Chasm {
 	private static final String TXT_YES		= "Yes, I know what I'm doing";
 	private static final String TXT_NO		= "No, I changed my mind";
 	private static final String TXT_JUMP 	=
-		"Do you really want to jump into the chasm? You can probably die.";
+		"Do you really want to jump into the chasm? It will hurt and pets can't follow.";
 	
 	public static boolean jumpConfirmed = false;
 	

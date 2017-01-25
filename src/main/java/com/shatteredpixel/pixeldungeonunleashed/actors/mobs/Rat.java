@@ -23,6 +23,7 @@
  */
 package com.shatteredpixel.pixeldungeonunleashed.actors.mobs;
 
+import com.shatteredpixel.pixeldungeonunleashed.items.food.MysteryMeat;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.RatSprite;
 import com.watabou.utils.Random;
 
@@ -41,12 +42,16 @@ public class Rat extends Mob {
 
 		maxLvl = 6;
 		TYPE_ANIMAL = true;
+
+		loot = MysteryMeat.class;
+		lootChance = 0.5f;
 	}
 	
 	@Override
 	public String description() {
 		return
 			"Marsupial rats are aggressive but rather weak denizens " +
-			"of the sewers. They have a nasty bite, but are only life threatening in large numbers.";
+			"of the sewers. They have a nasty bite, but are only life threatening in large numbers.\n\n" +
+			"Some say there is good eating on a rat, but you probably need to cook it.";
 	}
 }

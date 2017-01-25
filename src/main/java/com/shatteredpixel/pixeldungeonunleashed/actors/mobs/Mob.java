@@ -93,6 +93,10 @@ public abstract class Mob extends Char {
 	public int dmgMin = 1;
 	public int dmgMax = 3;
 	public int mobType = MOBTYPE_NORMAL;
+
+	public int getExp(){
+		return EXP;
+	}
 	
 	protected int EXP = 1;
 	protected int maxLvl = Hero.MAX_LEVEL;

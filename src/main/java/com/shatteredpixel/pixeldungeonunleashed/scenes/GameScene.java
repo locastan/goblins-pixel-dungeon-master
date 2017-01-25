@@ -39,6 +39,7 @@ import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.ScrollOfTeleportat
 import com.shatteredpixel.pixeldungeonunleashed.levels.traps.Trap;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.TrapSprite;
 import com.shatteredpixel.pixeldungeonunleashed.ui.LootIndicator;
+import com.shatteredpixel.pixeldungeonunleashed.ui.PetHealthIndicator;
 import com.shatteredpixel.pixeldungeonunleashed.ui.ResumeIndicator;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.Game;
@@ -136,6 +137,7 @@ public class GameScene extends PixelScene {
 	private ResumeIndicator resume;
 
 	private boolean sceneCreated = false;
+	public static PetHealthIndicator pethealth;
 	
 	@Override
 	public void create() {
@@ -237,6 +239,7 @@ public class GameScene extends PixelScene {
 
 		
 		add( new HealthIndicator() );
+		add(pethealth = new PetHealthIndicator());
 		
 		add( cellSelector = new CellSelector( tiles ) );
 		

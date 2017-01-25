@@ -147,6 +147,7 @@ public class Donations extends Blob {
                             GLog.p("Oops..there are none left of those...here have a ring!");
                             item : Generator.random(Generator.Category.RING);
                         }
+                        GLog.p("You are rewarded with: " + item.name());
                         throwItem(cell, item);
                         hero.donatedLoot = 0;
                     } catch (Exception ex) {

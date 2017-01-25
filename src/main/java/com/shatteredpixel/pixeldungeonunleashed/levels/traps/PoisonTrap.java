@@ -30,6 +30,7 @@ import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Buff;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Poison;
 import com.shatteredpixel.pixeldungeonunleashed.effects.CellEmitter;
 import com.shatteredpixel.pixeldungeonunleashed.effects.particles.PoisonParticle;
+import com.shatteredpixel.pixeldungeonunleashed.items.Heap;
 
 public class PoisonTrap extends Trap{
 
@@ -49,6 +50,9 @@ public class PoisonTrap extends Trap{
 		}
 
 		CellEmitter.center( pos ).burst( PoisonParticle.SPLASH, 3 );
+
+		Heap heap = Dungeon.level.heaps.get(pos);
+		if (heap != null) {heap.poison();}
 
 	}
 }

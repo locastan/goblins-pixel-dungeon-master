@@ -254,6 +254,8 @@ public class ItemSpriteSheet {
 	public static final int HOLSTER	    = ROW15+4;
 	public static final int CHAIN = ROW15 + 5;
 
-	//Row Sixteen: Unused
+	//Row Sixteen: Misc
+	public static final int EGG	    	= ROW16;
+	public static final int EASTEREGG	= ROW16+1;
 
 }

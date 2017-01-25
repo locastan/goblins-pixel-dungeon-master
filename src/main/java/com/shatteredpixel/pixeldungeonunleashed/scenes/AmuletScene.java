@@ -52,7 +52,7 @@ public class AmuletScene extends PixelScene {
 		"You finally hold it in your hands, the Amulet of Yendor. Using its power " +
 		"you can take over the world or bring peace and prosperity to people or whatever. " +
 		"Anyway, your life will change forever and this game will end here. " +
-		"Or you can stay a mere mortal a little longer." +
+		"Or you can stay and fight your way back to the surface." +
 		"Or you could go deeper and deeper forever...";
 	
 	public static boolean noText = false;

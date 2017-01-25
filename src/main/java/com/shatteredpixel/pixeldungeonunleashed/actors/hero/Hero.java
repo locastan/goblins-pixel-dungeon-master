@@ -56,6 +56,7 @@ import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Weakness;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Euphoria;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Mob;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.npcs.NPC;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.PET;
 import com.shatteredpixel.pixeldungeonunleashed.effects.CellEmitter;
 import com.shatteredpixel.pixeldungeonunleashed.effects.CheckedCell;
 import com.shatteredpixel.pixeldungeonunleashed.effects.Flare;
@@ -63,6 +64,8 @@ import com.shatteredpixel.pixeldungeonunleashed.effects.Speck;
 import com.shatteredpixel.pixeldungeonunleashed.items.Amulet;
 import com.shatteredpixel.pixeldungeonunleashed.items.Ankh;
 import com.shatteredpixel.pixeldungeonunleashed.items.Dewdrop;
+import com.shatteredpixel.pixeldungeonunleashed.items.EasterEgg;
+import com.shatteredpixel.pixeldungeonunleashed.items.Egg;
 import com.shatteredpixel.pixeldungeonunleashed.items.Heap;
 import com.shatteredpixel.pixeldungeonunleashed.items.Heap.Type;
 import com.shatteredpixel.pixeldungeonunleashed.items.Item;
@@ -92,6 +95,7 @@ import com.shatteredpixel.pixeldungeonunleashed.items.rings.RingOfSearching;
 import com.shatteredpixel.pixeldungeonunleashed.items.rings.RingOfTenacity;
 import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.Scroll;
 import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.ScrollOfMagicMapping;
+import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.ScrollOfPsionicBlast;
 import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.ScrollOfMagicalInfusion;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.melee.MeleeWeapon;
@@ -169,6 +173,18 @@ public class Hero extends Char {
 	private int defenseSkill = 5;
 
 	public boolean ready = false;
+
+	public boolean haspet = false;
+	public boolean petfollow = false;
+	public int petType = 0;
+	public int petLevel = 0;
+	public int petKills = 0;
+	public int petHP = 0;
+	public int petExperience = 0;
+	public int petCooldown = 0;
+
+	public int petCount = 0;
+
 	private boolean damageInterrupt = true;
 	public HeroAction curAction = null;
 	public HeroAction lastAction = null;
@@ -245,6 +261,15 @@ public class Hero extends Char {
 	private static final String LEVEL		= "lvl";
 	private static final String EXPERIENCE	= "exp";
 	private static final String DONATE      = "donation";
+	private static final String HASPET = "haspet";
+	private static final String PETFOLLOW = "petfollow";
+	private static final String PETTYPE = "petType";
+	private static final String PETLEVEL = "petLevel";
+	private static final String PETKILLS = "petKills";
+	private static final String PETHP = "petHP";
+	private static final String PETEXP = "petExperience";
+	private static final String PETCOOLDOWN = "petCooldown";
+	private static final String PETCOUNT = "petCount";
 
 	@Override
 	public void storeInBundle( Bundle bundle ) {
@@ -262,6 +287,15 @@ public class Hero extends Char {
 		bundle.put( LEVEL, lvl );
 		bundle.put( EXPERIENCE, exp );
 		bundle.put( DONATE, donatedLoot );
+		bundle.put(HASPET, haspet);
+		bundle.put(PETFOLLOW, petfollow);
+		bundle.put(PETTYPE, petType);
+		bundle.put(PETLEVEL, petLevel);
+		bundle.put(PETKILLS, petKills);
+		bundle.put(PETHP, petHP);
+		bundle.put(PETEXP, petExperience);
+		bundle.put(PETCOOLDOWN, petCooldown);
+		bundle.put(PETCOUNT, petCount);
 
 		belongings.storeInBundle(bundle);
 	}
@@ -282,6 +316,15 @@ public class Hero extends Char {
 		lvl = bundle.getInt( LEVEL );
 		exp = bundle.getInt( EXPERIENCE );
 		donatedLoot = bundle.getInt( DONATE );
+		haspet = bundle.getBoolean(HASPET);
+		petfollow = bundle.getBoolean(PETFOLLOW);
+		petType = bundle.getInt(PETTYPE);
+		petLevel = bundle.getInt(PETLEVEL);
+		petKills = bundle.getInt(PETKILLS);
+		petHP = bundle.getInt(PETHP);
+		petExperience = bundle.getInt(PETEXP);
+		petCooldown = bundle.getInt(PETCOOLDOWN);
+		petCount = bundle.getInt(PETCOUNT);
 		
 		belongings.restoreFromBundle(bundle);
 	}
@@ -412,6 +455,16 @@ public class Hero extends Char {
 			hasteLevel += ((RingOfHaste.Haste)buff).level;
 		}
 
+		if(haspet){
+			int pethaste=Dungeon.petHasteLevel;
+			PET heropet = checkpet();
+
+			if(pethaste>0 && hasteLevel>10 && heropet!=null){
+				hasteLevel=10;
+			}
+
+		}
+
 		if (hasteLevel != 0)
 			speed *= Math.pow(1.2, hasteLevel);
 		
@@ -474,6 +527,16 @@ public class Hero extends Char {
 			spendAndNext( TICK );
 			return false;
 		}
+
+		Egg egg = belongings.getItem(Egg.class);
+		if (egg!=null){
+			egg.moves++;
+		}
+
+		EasterEgg egg2 = belongings.getItem(EasterEgg.class);
+		if (egg2!=null){
+			egg2.moves++;
+		}
 		
 		checkVisibleMobs();
 
@@ -503,6 +566,11 @@ public class Hero extends Char {
 
 				return actInteract( (HeroAction.Interact)curAction );
 				
+			} else
+			if (curAction instanceof HeroAction.InteractPet) {
+
+				return actInteractPet((HeroAction.InteractPet) curAction);
+
 			} else
 			if (curAction instanceof HeroAction.Buy) {
 
@@ -627,6 +695,31 @@ public class Hero extends Char {
 				return false;
 			}
 			
+		}
+	}
+
+	private boolean actInteractPet(HeroAction.InteractPet action) {
+
+		PET pet = action.pet;
+
+		if (Level.adjacent(pos, pet.pos)) {
+
+			ready();
+			sprite.turnTo(pos, pet.pos);
+			pet.interact();
+			return false;
+
+		} else {
+
+			if (Level.fieldOfView[pet.pos] && getCloser(pet.pos)) {
+
+				return true;
+
+			} else {
+				ready();
+				return false;
+			}
+
 		}
 	}
 	
@@ -863,6 +956,23 @@ public class Hero extends Char {
 			return false;
 		}
 	}
+
+	private PET checkpet(){
+		for (Mob mob : Dungeon.level.mobs) {
+			if(mob instanceof PET) {
+				return (PET) mob;
+			}
+		}
+		return null;
+	}
+
+	private boolean checkpetNear(){
+		// Changed to not have the pet be right by your side when going up/down. Field of view is enough.
+		if (Level.fieldOfView[checkpet().pos]) {
+			return true;
+		}
+		return false;
+	}
 	
 	private boolean actDescend( HeroAction.Descend action ) {
 		int stairs = action.dst;
@@ -885,6 +995,22 @@ public class Hero extends Char {
 				case Dungeon.DIFF_HARD:
 					hunger.reduceHunger( Hunger.STARVING / 40 );
 					break;
+			}
+
+			PET pet = checkpet();
+			if(pet!=null && checkpetNear()){
+				Dungeon.hero.petType=pet.type;
+				Dungeon.hero.petLevel=pet.level;
+				Dungeon.hero.petKills=pet.kills;
+				Dungeon.hero.petHP=pet.HP;
+				Dungeon.hero.petExperience=pet.experience;
+				Dungeon.hero.petCooldown=pet.cooldown;
+				pet.destroy();
+				petfollow=true;
+			} else if (Dungeon.hero.haspet && Dungeon.hero.petfollow) {
+				petfollow=true;
+			} else {
+				petfollow=false;
 			}
 
 			Buff buff = buff(TimekeepersHourglass.timeFreeze.class);
@@ -930,6 +1056,23 @@ public class Hero extends Char {
 				Hunger hunger = buff( Hunger.class );
 				if (hunger != null && !hunger.isStarving()) {
 					hunger.reduceHunger( -Hunger.STARVING / 10 );
+				}
+
+				PET pet = checkpet();
+				if(pet!=null && checkpetNear()){
+					Dungeon.hero.petType=pet.type;
+					Dungeon.hero.petLevel=pet.level;
+					Dungeon.hero.petKills=pet.kills;
+					Dungeon.hero.petHP=pet.HP;
+					Dungeon.hero.petExperience=pet.experience;
+					Dungeon.hero.petCooldown=pet.cooldown;
+					pet.destroy();
+					petfollow=true;
+				} else if (Dungeon.hero.haspet && Dungeon.hero.petfollow) {
+					petfollow=true;
+				} else if (pet!=null) {
+					petfollow=false;
+                    GLog.w("Your " + pet.name + " is too far away to follow you to the next level.");
 				}
 
 				Buff buff = buff(TimekeepersHourglass.timeFreeze.class);
@@ -1047,7 +1190,7 @@ public class Hero extends Char {
 		}
 
         ShieldOfWonders sow = Dungeon.hero.belongings.getItem(ShieldOfWonders.class);
-		if (sow != null && sow.isEquipped(this) && src instanceof Char) {
+		if (sow != null && sow.isEquipped(this) && src instanceof Char && !(src instanceof Hero.Doom) && !(src instanceof Scroll)) {
             float sowchance = max((sow.level * 0.04f), 0.06f);
             float rest = 1f - sowchance;
 			switch (Random.chances(new float[]{rest, sowchance})){
@@ -1183,6 +1326,8 @@ public class Hero extends Char {
 
 			if (ch instanceof NPC) {
 				curAction = new HeroAction.Interact( (NPC)ch );
+			} else if (ch instanceof PET) {
+				curAction = new HeroAction.InteractPet((PET) ch);
 			} else {
 				curAction = new HeroAction.Attack( ch );
 			}

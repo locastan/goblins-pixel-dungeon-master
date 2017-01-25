@@ -25,8 +25,47 @@ package com.shatteredpixel.pixeldungeonunleashed.windows;
 
 import java.util.Locale;
 
+import com.shatteredpixel.pixeldungeonunleashed.actors.Actor;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Mob;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.PET;
+import com.shatteredpixel.pixeldungeonunleashed.effects.Speck;
+import com.shatteredpixel.pixeldungeonunleashed.items.Item;
+import com.shatteredpixel.pixeldungeonunleashed.items.Torch;
+import com.shatteredpixel.pixeldungeonunleashed.items.armor.ClothArmor;
+import com.shatteredpixel.pixeldungeonunleashed.items.armor.MailArmor;
+import com.shatteredpixel.pixeldungeonunleashed.items.armor.PlateArmor;
+import com.shatteredpixel.pixeldungeonunleashed.items.food.ChargrilledMeat;
+import com.shatteredpixel.pixeldungeonunleashed.items.food.Food;
+import com.shatteredpixel.pixeldungeonunleashed.items.food.FrozenCarpaccio;
+import com.shatteredpixel.pixeldungeonunleashed.items.food.MysteryMeat;
+import com.shatteredpixel.pixeldungeonunleashed.items.food.Yumyuck;
+import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.Scroll;
+import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.ScrollOfTeleportation;
+import com.shatteredpixel.pixeldungeonunleashed.items.wands.Wand;
+import com.shatteredpixel.pixeldungeonunleashed.items.weapon.melee.Dagger;
+import com.shatteredpixel.pixeldungeonunleashed.items.weapon.melee.Knuckles;
+import com.shatteredpixel.pixeldungeonunleashed.items.weapon.melee.Longsword;
+import com.shatteredpixel.pixeldungeonunleashed.items.weapon.melee.Quarterstaff;
+import com.shatteredpixel.pixeldungeonunleashed.items.weapon.melee.ShortSword;
+import com.shatteredpixel.pixeldungeonunleashed.items.weapon.melee.Sword;
+import com.shatteredpixel.pixeldungeonunleashed.items.weapon.missiles.CurareDart;
+import com.shatteredpixel.pixeldungeonunleashed.items.weapon.missiles.Dart;
+import com.shatteredpixel.pixeldungeonunleashed.items.weapon.missiles.IncendiaryDart;
+import com.shatteredpixel.pixeldungeonunleashed.items.weapon.missiles.Javelin;
+import com.shatteredpixel.pixeldungeonunleashed.items.weapon.missiles.Shuriken;
+import com.shatteredpixel.pixeldungeonunleashed.items.weapon.missiles.Tamahawk;
+import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
+import com.shatteredpixel.pixeldungeonunleashed.plants.Fadeleaf;
+import com.shatteredpixel.pixeldungeonunleashed.plants.Icecap;
+import com.shatteredpixel.pixeldungeonunleashed.plants.Plant;
+import com.shatteredpixel.pixeldungeonunleashed.plants.Sorrowmoss;
+import com.shatteredpixel.pixeldungeonunleashed.plants.Stormvine;
+import com.shatteredpixel.pixeldungeonunleashed.plants.YumyuckMoss;
+import com.shatteredpixel.pixeldungeonunleashed.sprites.CharSprite;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.HeroSprite;
+import com.shatteredpixel.pixeldungeonunleashed.ui.HealthBar;
 import com.shatteredpixel.pixeldungeonunleashed.ui.Window;
+import com.shatteredpixel.pixeldungeonunleashed.utils.GLog;
 import com.watabou.gltextures.SmartTexture;
 import com.watabou.gltextures.TextureCache;
 import com.watabou.noosa.BitmapText;
@@ -45,25 +84,50 @@ import com.shatteredpixel.pixeldungeonunleashed.ui.RedButton;
 import com.shatteredpixel.pixeldungeonunleashed.utils.Utils;
 import com.watabou.noosa.ui.Button;
 
+import static com.shatteredpixel.pixeldungeonunleashed.ui.Window.TITLE_COLOR;
+
 public class WndHero extends WndTabbed {
 	
 	private static final String TXT_STATS	= "Stats";
 	private static final String TXT_BUFFS	= "Buffs";
+	private static final String TXT_PET = "Pet";
+
+	private static final String TXT_HEALS = "%+dHP";
 	
 	private static final String TXT_EXP		= "Experience";
 	private static final String TXT_STR		= "Strength";
 	private static final String TXT_HEALTH	= "Health";
 	private static final String TXT_GOLD	= "Gold Collected";
 	private static final String TXT_DEPTH	= "Maximum Depth";
+	private static final String TXT_KILLS = "Kills";
+	private static final String TXT_BREATH = "Pet Ability";
+	private static final String TXT_SPIN = "Web";
+	private static final String TXT_STING = "Stinger";
+	private static final String TXT_FEATHERS = "Feathers";
+	private static final String TXT_SPARKLE = "Wand Attack";
+	private static final String TXT_FANGS = "Fangs";
+	private static final String TXT_ATTACK = "Attack Skill";
+	private static final String TXT_PETS = "Pets Lost";
+
 	
 	private static final int WIDTH		= 100;
 	private static final int TAB_WIDTH	= 40;
 	
 	private StatsTab stats;
+	private PetTab pet;
 	private BuffsTab buffs;
 	
 	private SmartTexture icons;
 	private TextureFilm film;
+
+	private PET checkpet(){
+		for (Mob mob : Dungeon.level.mobs) {
+			if(mob instanceof PET) {
+				return (PET) mob;
+			}
+		}
+		return null;
+	}
 	
 	public WndHero() {
 		
@@ -74,6 +138,13 @@ public class WndHero extends WndTabbed {
 		
 		stats = new StatsTab();
 		add( stats );
+
+		PET heropet = checkpet();
+
+		if (heropet!=null){
+			pet = new PetTab(heropet);
+			add(pet);
+		}
 		
 		buffs = new BuffsTab();
 		add( buffs );
@@ -90,6 +161,15 @@ public class WndHero extends WndTabbed {
 				buffs.visible = buffs.active = selected;
 			};
 		} );
+		if (heropet!=null){
+			add(new LabeledTab(TXT_PET) {
+				@Override
+				protected void select(boolean value) {
+					super.select(value);
+					pet.visible = pet.active = selected;
+				};
+			});
+		}
 
 		resize( WIDTH, (int)Math.max( stats.height(), buffs.height() ) );
 
@@ -179,6 +259,10 @@ public class WndHero extends WndTabbed {
 			statSlot( TXT_DEPTH, Statistics.deepestFloor );
 
 			pos += GAP;
+
+			statSlot(TXT_PETS, Dungeon.hero.petCount);
+
+			pos += GAP;
 		}
 
 		private void statSlot( String label, String value ) {
@@ -264,4 +348,317 @@ public class WndHero extends WndTabbed {
 			}
 		}
 	}
+	private class PetTab extends Group {
+
+		private static final String TXT_TITLE = "Level %d %s";
+		private static final String TXT_FEED = "Feed";
+		private static final String TXT_CALL = "Call";
+		private static final String TXT_STAY = "Stay";
+		private static final String TXT_RELEASE = "Release";
+		private static final String TXT_SELECT = "What do you want to feed your pet?";
+
+		private CharSprite image;
+		private BitmapText name;
+		private HealthBar health;
+		private BuffIndicator buffs;
+
+		private static final int GAP = 5;
+
+		private float pos;
+
+
+		public PetTab(final PET heropet) {
+
+			name = PixelScene.createText(Utils.capitalize(heropet.name), 9);
+			name.hardlight(TITLE_COLOR);
+			name.measure();
+			//add(name);
+
+			image = heropet.sprite();
+			add(image);
+
+			health = new HealthBar();
+			health.level((float) heropet.HP / heropet.HT);
+			add(health);
+
+			buffs = new BuffIndicator(heropet);
+			add(buffs);
+
+
+
+			IconTitle title = new IconTitle();
+			title.icon(image);
+			title.label(Utils.format(TXT_TITLE, heropet.level, heropet.name).toUpperCase(Locale.ENGLISH), 9);
+			title.color(Window.SHPX_COLOR);
+			title.setRect(0, 0, WIDTH, 0);
+			add(title);
+
+			RedButton btnFeed = new RedButton(TXT_FEED) {
+				@Override
+				protected void onClick() {
+					hide();
+					GameScene.selectItem(itemSelector, WndBag.Mode.ALL, TXT_SELECT);
+				}
+			};
+			btnFeed.setRect(0, title.height(),
+					btnFeed.reqWidth() + 2, btnFeed.reqHeight() + 2);
+			add(btnFeed);
+
+			RedButton btnCall = new RedButton(TXT_CALL) {
+				@Override
+				protected void onClick() {
+					hide();
+					heropet.callback = true;
+					heropet.stay = false;
+				}
+			};
+			btnCall.setRect(btnFeed.right() + 1, btnFeed.top(),
+					btnCall.reqWidth() + 2, btnCall.reqHeight() + 2);
+			add(btnCall);
+
+			RedButton btnStay = new RedButton(heropet.stay ? TXT_RELEASE : TXT_STAY) {
+				@Override
+				protected void onClick() {
+					hide();
+					if (heropet.stay){
+						heropet.stay = false;
+					} else {
+						heropet.stay = true;
+					}
+				}
+			};
+			btnStay.setRect(btnCall.right() + 1, btnCall.top(),
+					btnStay.reqWidth() + 2, btnStay.reqHeight() + 2);
+
+			add(btnStay);
+
+
+			pos = btnStay.bottom() + GAP;
+
+			statSlot(TXT_ATTACK, heropet.attackSkill(null));
+			statSlot(TXT_HEALTH, heropet.HP + "/" + heropet.HT);
+			statSlot(TXT_KILLS, heropet.kills);
+			statSlot(TXT_EXP, heropet.level<20 ? heropet.experience + "/" + (heropet.level*heropet.level*heropet.level) : "Max");
+			if (heropet.type==4 || heropet.type==5 || heropet.type==6 || heropet.type==7 || heropet.type==12){
+				statSlot(TXT_BREATH, heropet.cooldown==0 ? "Ready" : heropet.cooldown + " Turns");
+			} else if (heropet.type==1){
+				statSlot(TXT_SPIN, heropet.cooldown==0 ? "Armed" : heropet.cooldown + " Turns");
+			} else if (heropet.type==3){
+				statSlot(TXT_FEATHERS, heropet.cooldown==0 ? "Ruffled" : heropet.cooldown + " Turns");
+			} else if (heropet.type==8){
+				statSlot(TXT_STING, heropet.cooldown==0 ? "Ready" : heropet.cooldown + " Turns");
+			} else if (heropet.type==10 || heropet.type==11){
+				statSlot(TXT_SPARKLE, heropet.cooldown==0 ? "Sparkling" : heropet.cooldown + " Turns");
+			} else if (heropet.type==9){
+				statSlot(TXT_FANGS, heropet.cooldown==0 ? "Fangs" : heropet.cooldown + " Turns");
+			}
+
+			pos += GAP;
+
+
+		}
+
+		private void statSlot(String label, String value) {
+
+			BitmapText txt = PixelScene.createText(label, 8);
+			txt.y = pos;
+			add(txt);
+
+			txt = PixelScene.createText(value, 8);
+			txt.measure();
+			txt.x = PixelScene.align(WIDTH * 0.65f);
+			txt.y = pos;
+			add(txt);
+
+			pos += GAP + txt.baseLine();
+		}
+
+		private void statSlot(String label, int value) {
+			statSlot(label, Integer.toString(value));
+		}
+
+		public float height() {
+			return pos;
+		}
+	}
+
+	private final WndBag.Listener itemSelector = new WndBag.Listener() {
+		@Override
+		public void onSelect(Item item) {
+			if (item != null) {
+				feed(item);
+			}
+		}
+	};
+
+	private boolean checkpetNear(){
+		for (int n : Level.NEIGHBOURS8) {
+			int c = Dungeon.hero.pos + n;
+			if (Actor.findChar(c) instanceof PET) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private void feed(Item item) {
+
+		PET heropet = checkpet();
+		boolean nomnom = checkFood(heropet.type, item);
+		boolean nearby = checkpetNear();
+
+		if (nomnom && nearby){
+            // Items that stack return the price for the whole stack. Single items div by 1 so we are golden.
+			int effect = item.price()/item.quantity();
+			if (effect > 0){
+                // Prevent overhealing.
+                if (effect+heropet.HP >= heropet.HT) {
+                    heropet.HP = heropet.HT;
+                } else { heropet.HP+=effect;}
+				heropet.sprite.emitter().burst(Speck.factory(Speck.HEALING),2);
+				heropet.sprite.showStatus(CharSprite.POSITIVE, TXT_HEALS, effect);
+				GameScene.pethealth.target(null);
+			}
+			heropet.cooldown=1;
+			item.detach(Dungeon.hero.belongings.backpack);
+			GLog.n("Your pet eats the %s.",item.name());
+		}else if (!nearby){
+			GLog.n("Your pet is too far away!");
+		} else {
+			GLog.n("Your pet rejects the %s.",item.name());
+
+		}
+	}
+
+	private boolean checkFood(Integer petType, Item item){
+		boolean nomnom = false;
+// TODO: Sort out food types for the KLIKs.
+		if (petType==1){ //Spidersilk klik
+			if (item instanceof Food
+					|| item instanceof ChargrilledMeat
+					|| item instanceof FrozenCarpaccio
+					|| item instanceof MysteryMeat
+					|| item instanceof ClothArmor
+					){
+				nomnom=true;
+			}
+		}
+
+		if (petType==2){ //steel bee
+			if (item instanceof Food
+					|| item instanceof ChargrilledMeat
+					|| item instanceof FrozenCarpaccio
+					|| item instanceof MysteryMeat
+					){
+				nomnom=true;
+			}
+		}
+		if (petType==3){//Velocirooster
+			if (item instanceof Plant.Seed
+					|| item instanceof Yumyuck
+					|| item instanceof YumyuckMoss.Seed
+					){
+				nomnom=true;
+			}
+		}
+		if (petType==4){//red klik - fire
+			if (item instanceof Torch
+					|| item instanceof Plant.Seed
+					|| item instanceof Wand
+					|| item instanceof Scroll
+					|| item instanceof IncendiaryDart
+					|| item instanceof Tamahawk
+					|| item instanceof Quarterstaff
+					|| item instanceof ClothArmor
+					){
+				nomnom=true;
+			}
+		}
+
+		if (petType==5){//phase klik - lit
+			if (item instanceof Fadeleaf.Seed
+					|| item instanceof FrozenCarpaccio
+					|| item instanceof Stormvine.Seed
+					|| item instanceof ScrollOfTeleportation
+					|| item instanceof Icecap.Seed
+					){
+				nomnom=true;
+			}
+		}
+
+		if (petType==6){//green klik - poison
+			if (item instanceof CurareDart
+					|| item instanceof MysteryMeat
+					|| item instanceof Sorrowmoss.Seed
+					|| item instanceof Yumyuck
+					){
+				nomnom=true;
+			}
+		}
+		if (petType==7){//frost klik - ice
+			if (item instanceof Food
+					|| item instanceof FrozenCarpaccio
+					|| item instanceof Icecap.Seed
+					){
+				nomnom=true;
+			}
+		}
+
+		if (petType==8){ //scorpion
+			if (item instanceof Food
+					|| item instanceof ChargrilledMeat
+					|| item instanceof FrozenCarpaccio
+					|| item instanceof MysteryMeat
+					){
+				nomnom=true;
+			}
+		}
+
+		if (petType==9){//Vorpal Bunny
+			if (item instanceof Food
+					|| item instanceof ChargrilledMeat
+					|| item instanceof FrozenCarpaccio
+					|| item instanceof MysteryMeat
+					){
+				nomnom=true;
+			}
+		}
+		if (petType==10){//Fairy
+			if (item instanceof Food
+					|| item instanceof ChargrilledMeat
+					|| item instanceof FrozenCarpaccio
+					|| item instanceof MysteryMeat
+					){
+				nomnom=true;
+			}
+		}
+		if (petType==11){//Sugarplum Fairy
+			if (item instanceof Food
+					|| item instanceof ChargrilledMeat
+					|| item instanceof FrozenCarpaccio
+					|| item instanceof MysteryMeat
+					){
+				nomnom=true;
+			}
+		}
+		if (petType==12){//normal klik - metal
+			if (item instanceof PlateArmor
+					|| item instanceof MailArmor
+					|| item instanceof Dart
+					|| item instanceof Shuriken
+					|| item instanceof Dagger
+					|| item instanceof ShortSword
+					|| item instanceof Sword
+					|| item instanceof Longsword
+					|| item instanceof Knuckles
+					|| item instanceof Javelin
+					){
+				nomnom=true;
+			}
+		}
+		return nomnom;
+	}
 }
+
+
+

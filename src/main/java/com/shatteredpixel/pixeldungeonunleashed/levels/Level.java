@@ -43,6 +43,20 @@ import com.shatteredpixel.pixeldungeonunleashed.actors.hero.Hero;
 import com.shatteredpixel.pixeldungeonunleashed.actors.hero.HeroClass;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Bestiary;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Mob;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.FrostKlik;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.Bunny;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.Fairy;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.PhaseKlik;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.PET;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.FireKlik;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.Scorpion;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.MetalKlik;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.SpiderKlik;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.SugarplumFairy;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.Velocirooster;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.PoisonKlik;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.bee;
+import com.shatteredpixel.pixeldungeonunleashed.effects.Pushing;
 import com.shatteredpixel.pixeldungeonunleashed.effects.particles.FlowParticle;
 import com.shatteredpixel.pixeldungeonunleashed.effects.particles.WindParticle;
 import com.shatteredpixel.pixeldungeonunleashed.items.Dewdrop;
@@ -125,6 +139,7 @@ public abstract class Level implements Bundlable {
 
 	
 	protected static final float TIME_TO_RESPAWN	= 50;
+	protected static final int PET_TICK = 1;
 	
 	private static final String TXT_HIDDEN_PLATE_CLICKS = "A hidden pressure plate clicks!";
 	
@@ -476,6 +491,113 @@ public abstract class Level implements Bundlable {
 				return true;
 			}
 		};
+	}
+
+	public Actor respawnerPet() {
+		return new Actor() {
+			@Override
+			protected boolean act() {
+				//GLog.i("Check Pet");
+				int petpos = -1;
+				int heropos = Dungeon.hero.pos;
+				if (Actor.findChar(heropos) != null && Dungeon.hero.petfollow) {
+					//GLog.i("Check Pet 2");
+					ArrayList<Integer> candidates = new ArrayList<Integer>();
+					boolean[] passable = Level.passable;
+
+					for (int n : Level.NEIGHBOURS8) {
+						int c = heropos + n;
+						if (passable[c] && Actor.findChar(c) == null) {
+							candidates.add(c);
+						}
+					}
+
+					petpos = candidates.size() > 0 ? Random.element(candidates) : -1;
+				}
+
+				if (petpos != -1 && Dungeon.hero.haspet && Dungeon.hero.petfollow) {
+
+					PET petCheck = checkpet();
+					if(petCheck!=null){petCheck.destroy();petCheck.sprite.killAndErase();}
+
+					if (Dungeon.hero.petType==1){
+						SpiderKlik pet = new SpiderKlik();
+						spawnPet(pet,petpos,heropos);
+					}
+					if (Dungeon.hero.petType==2){
+						bee pet = new bee();
+						spawnPet(pet,petpos,heropos);
+					}
+					if (Dungeon.hero.petType==3){
+						Velocirooster pet = new Velocirooster();
+						spawnPet(pet,petpos,heropos);
+					}
+					if (Dungeon.hero.petType==4){
+						FireKlik pet = new FireKlik();
+						spawnPet(pet,petpos,heropos);
+					}
+					if (Dungeon.hero.petType==5){
+						PhaseKlik pet = new PhaseKlik();
+						spawnPet(pet,petpos,heropos);
+					}
+					if (Dungeon.hero.petType==6){
+						PoisonKlik pet = new PoisonKlik();
+						spawnPet(pet,petpos,heropos);
+					}
+					if (Dungeon.hero.petType==7){
+						FrostKlik pet = new FrostKlik();
+						spawnPet(pet,petpos,heropos);
+					}
+					if (Dungeon.hero.petType==8){
+						Scorpion pet = new Scorpion();
+						spawnPet(pet,petpos,heropos);
+					}
+					if (Dungeon.hero.petType==9){
+						Bunny pet = new Bunny();
+						spawnPet(pet,petpos,heropos);
+					}
+					if (Dungeon.hero.petType==10){
+						Fairy pet = new Fairy();
+						spawnPet(pet,petpos,heropos);
+					}
+					if (Dungeon.hero.petType==11){
+						SugarplumFairy pet = new SugarplumFairy();
+						spawnPet(pet,petpos,heropos);
+					}
+					if (Dungeon.hero.petType==12){
+						MetalKlik pet = new MetalKlik();
+						spawnPet(pet,petpos,heropos);
+					}
+
+				}
+
+				spend(PET_TICK);
+				return true;
+			}
+		};
+	}
+
+	private PET checkpet(){
+		for (Mob mob : Dungeon.level.mobs) {
+			if(mob instanceof PET) {
+				return (PET) mob;
+			}
+		}
+		return null;
+	}
+
+	public void spawnPet(PET pet, Integer petpos, Integer heropos){
+		pet.spawn(Dungeon.hero.petLevel);
+		pet.HP = Dungeon.hero.petHP;
+		pet.pos = petpos;
+		pet.state = pet.HUNTING;
+		pet.kills = Dungeon.hero.petKills;
+		pet.experience = Dungeon.hero.petExperience;
+		pet.cooldown = Dungeon.hero.petCooldown;
+
+		GameScene.add(pet);
+		Actor.addDelayed(new Pushing(pet, heropos, petpos), -1f);
+		Dungeon.hero.petfollow = false;
 	}
 	
 	public int randomRespawnCell() {

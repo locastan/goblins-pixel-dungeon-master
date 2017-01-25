@@ -136,6 +136,7 @@ public class Dungeon {
 	}
 
 	public static int challenges;
+	public static int petHasteLevel = 0;
 
 	public static Hero hero;
 	public static Level level;
@@ -198,6 +199,7 @@ public class Dungeon {
 		
 		depth = 0;
 		gold = 0;
+		petHasteLevel = 0;
 
 		if (difficultyLevel == DIFF_TUTOR) {
 			tutorial_mob_seen = false;
@@ -473,6 +475,12 @@ public class Dungeon {
 		
 		Light light = hero.buff(Light.class);
 		hero.viewDistance = light == null ? level.viewDistance : Math.max( Light.DISTANCE, level.viewDistance );
+
+		Actor respawnerPet = level.respawnerPet();
+		if (respawnerPet != null) {
+			Actor.add(level.respawnerPet());
+		}
+
 		observe();
 		try {
 			saveAll();
@@ -562,6 +570,7 @@ public class Dungeon {
 	private static final String QUESTS		= "quests";
 	private static final String BADGES		= "badges";
 	private static final String LVLTHEME    = "leveltheme";
+	private static final String PETHASTELEVEL = "petHasteLevel";
 
 	public static String gameFile( HeroClass cl ) {
 		switch (cl) {
@@ -600,6 +609,7 @@ public class Dungeon {
 			bundle.put( HERO, hero );
 			bundle.put( GOLD, gold );
 			bundle.put(DEPTH, depth);
+			bundle.put(PETHASTELEVEL, petHasteLevel);
 
 			if (difficultyLevel == DIFF_ENDLESS) {
 				bundle.put(LVLTHEME, InfiniteBestiary.currentTheme);
@@ -770,6 +780,7 @@ public class Dungeon {
 
 			gold = bundle.getInt(GOLD);
 			depth = bundle.getInt(DEPTH);
+			petHasteLevel = bundle.getInt(PETHASTELEVEL);
 
 			if (difficultyLevel == DIFF_ENDLESS) {
 				if (bundle.contains(LVLTHEME)) {

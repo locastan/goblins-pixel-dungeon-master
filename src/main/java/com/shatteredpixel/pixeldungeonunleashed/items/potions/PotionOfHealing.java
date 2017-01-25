@@ -48,7 +48,7 @@ public class PotionOfHealing extends Potion {
 		for (Mob mob : Dungeon.level.mobs) {
 			if (mob.pos == cell) {
 				mob.HP = mob.HT;
-				GLog.w("The " + mob.description() + " is healed!");
+				GLog.w("The " + mob.name + " is healed!");
 			}
 		}
 

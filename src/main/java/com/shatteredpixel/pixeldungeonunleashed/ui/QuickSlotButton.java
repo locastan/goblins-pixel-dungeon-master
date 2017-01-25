@@ -24,6 +24,7 @@
 package com.shatteredpixel.pixeldungeonunleashed.ui;
 
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Mob;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.PET;
 import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.ui.Button;
@@ -163,7 +164,7 @@ public class QuickSlotButton extends Button implements WndBag.Listener {
 	
 	private void useTargeting() {
 		targeting = Dungeon.hero.lastTarget != null && Dungeon.hero.lastTarget.isAlive()
-				&& Dungeon.visible[Dungeon.hero.lastTarget.pos];
+				&& Dungeon.visible[Dungeon.hero.lastTarget.pos] && !(Dungeon.hero.lastTarget instanceof PET);
 
 		if (!targeting) {
 			// we don't have a pre-selected target, try to choose a new one
@@ -181,7 +182,8 @@ public class QuickSlotButton extends Button implements WndBag.Listener {
 
 					// the following formula is good enough to determine which mob is closest
 					int thisDistance = ((mobX - myX) * (mobX - myX)) + ((mobY - myY) * (mobY - myY));
-					if (Dungeon.hero.lastTarget == null || (thisDistance < mobDistance)) {
+					if ((Dungeon.hero.lastTarget == null || (thisDistance < mobDistance)) && !(mob instanceof
+					PET)) {
 						Dungeon.hero.lastTarget = mob;
 						mobDistance = thisDistance;
 						active = true;
@@ -215,8 +217,11 @@ public class QuickSlotButton extends Button implements WndBag.Listener {
 	public static void target( Char target ) {
 		if (target != Dungeon.hero) {
 			Dungeon.hero.lastTarget = target;
-			
-			HealthIndicator.instance.target( target );
+			if (target instanceof PET) {
+				GameScene.pethealth.target(target);
+			} else {
+                HealthIndicator.instance.target(target);
+            }
 		}
 	}
 	

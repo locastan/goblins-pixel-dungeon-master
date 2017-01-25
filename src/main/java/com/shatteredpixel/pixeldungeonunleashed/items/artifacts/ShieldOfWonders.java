@@ -215,8 +215,8 @@ public class ShieldOfWonders extends Artifact{
 
                         } else {
 
-                            ScrollOfTeleportation.appear( user, pos );
-                            Dungeon.level.press( pos, user );
+                            ScrollOfTeleportation.appear( user, tpos );
+                            Dungeon.level.press( tpos, user );
                             Dungeon.observe();
 
                             GLog.s("Do you like this new place?");
@@ -442,7 +442,7 @@ public class ShieldOfWonders extends Artifact{
 
 			//Traps and bombs for hero or enemy
 			case 2:
-                int targetpos = (Random.Int(2) == 0 ? user.pos : pos);
+                final int targetpos = (Random.Int(2) == 0 ? user.pos : pos);
                 GLog.s("Your shield summoned a trap.");
                 switch(Random.Int(7)) {
                     case 0:

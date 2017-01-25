@@ -233,6 +233,9 @@ public class Heap implements Bundlable {
 			} else if (item instanceof Dewdrop) {
 				items.remove( item );
 				evaporated = true;
+			} else if (item instanceof Egg) {
+				((Egg) item).burns++;
+				burnt = true;
 			} else if (item instanceof MysteryMeat) {
 				replace( item, ChargrilledMeat.cook( (MysteryMeat)item ) );
 				burnt = true;
@@ -302,6 +305,40 @@ public class Heap implements Bundlable {
 				destroy();
 		}
 	}
+
+	public void lit() {
+		if (type != Type.HEAP) {
+			return;
+		}
+		for (Item item : items.toArray(new Item[0])) {
+			if (item instanceof Egg) {
+				((Egg) item).lits++;
+			}
+		}
+	}
+
+
+	public void summon() {
+		if (type != Type.HEAP) {
+			return;
+		}
+		for (Item item : items.toArray(new Item[0])) {
+			if (item instanceof Egg) {
+				((Egg) item).summons++;
+			}
+		}
+	}
+
+	public void poison() {
+		if (type != Type.HEAP) {
+			return;
+		}
+		for (Item item : items.toArray(new Item[0])) {
+			if (item instanceof Egg) {
+				((Egg) item).poisons++;
+			}
+		}
+	}
 	
 	public void freeze() {
 
@@ -325,6 +362,9 @@ public class Heap implements Bundlable {
 			} else if (item instanceof Potion) {
 				items.remove(item);
 				((Potion) item).shatter(pos);
+				frozen = true;
+			}else if (item instanceof Egg) {
+				((Egg) item).freezes++;
 				frozen = true;
 			} else if (item instanceof Bomb){
 				((Bomb) item).fuse = null;

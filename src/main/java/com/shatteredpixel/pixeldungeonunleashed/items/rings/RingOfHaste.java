@@ -23,7 +23,14 @@
  */
 package com.shatteredpixel.pixeldungeonunleashed.items.rings;
 
+import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
+import com.shatteredpixel.pixeldungeonunleashed.actors.hero.Hero;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Mob;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.PET;
+import com.shatteredpixel.pixeldungeonunleashed.scenes.GameScene;
 import com.shatteredpixel.pixeldungeonunleashed.ui.BuffIndicator;
+import com.shatteredpixel.pixeldungeonunleashed.utils.GLog;
+import com.shatteredpixel.pixeldungeonunleashed.windows.WndPetHaste;
 
 public class RingOfHaste extends Ring {
 
@@ -34,6 +41,15 @@ public class RingOfHaste extends Ring {
 	@Override
 	protected RingBuff buff( ) {
 		return new Haste();
+	}
+
+	private PET checkpet(){
+		for (Mob mob : Dungeon.level.mobs) {
+			if(mob instanceof PET) {
+				return (PET) mob;
+			}
+		}
+		return null;
 	}
 	
 	@Override
@@ -64,5 +80,32 @@ public class RingOfHaste extends Ring {
 					"This haste is sustained by your Magic ring.";
 		}
 		*/
+	}
+
+	@Override
+	public boolean doEquip(Hero hero) {
+
+		PET heropet = checkpet();
+
+
+		if (Dungeon.hero.haspet && heropet!=null && isKnown()){
+			GameScene.show(new WndPetHaste(heropet,this));
+		}
+
+		return super.doEquip(hero);
+	}
+
+	@Override
+	public boolean doUnequip(Hero hero, boolean collect, boolean single) {
+
+		PET heropet = checkpet();
+
+		if (Dungeon.hero.haspet && heropet!=null&&Dungeon.petHasteLevel>0){
+			Dungeon.petHasteLevel=0;
+			GLog.w("Your "+heropet.name+" is moving slower." );
+		}
+
+		return super.doUnequip(hero, collect, single);
+
 	}
 }

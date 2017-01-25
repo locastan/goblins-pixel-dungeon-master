@@ -47,7 +47,6 @@ public class Assets {
 	public static final String ROGUE	= "rogue.png";
 	public static final String HUNTRESS	= "ranger.png";
 	public static final String AVATARS	= "avatars.png";
-	public static final String PET		= "pet.png";
 	
 	public static final String SURFACE	= "surface.png";
 	
@@ -107,6 +106,11 @@ public class Assets {
 	public static final String WOLF     = "wolf.png";
 	public static final String ICEDEMON = "icedemon.png";
 	public static final String EVILLORD = "demonlord.png";
+
+	public static final String BUNNY = "rabbit.png";
+	public static final String PET = "pet.png";
+	public static final String PETDRAGON = "petreddragon.png";
+	public static final String FAIRY = "fairy.png";
 
 	public static final String ITEMS	= "items.png";
 	public static final String PLANTS	= "plants.png";
