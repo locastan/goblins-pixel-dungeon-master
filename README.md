@@ -1,13 +1,32 @@
 # goblins-pixel-dungeon-master
 Goblins Pixel Dungeon
 
- It is a modifiacion based on Unleashed PD by David Mitchell. 
- It is currently available on amazon app store, simply because I could not persuade myself to 
- pay the 25$ fee to open a dev account on Google Play.
- 
- Amazon Apps: https://www.amazon.de/dp/B01M4O8OLZ/
+"Goblins Pixel Dungeon". It is a fandom modification based on Unleashed PD by David Mitchell with artwork, items, characters and lore from Tarol Hunt-Stephens www.goblinscomic.org. :)
 
-Changelog so far: 
+Google Play: https://play.google.com/store/apps/details?id=com.locastan.pixeldungeongoblins
+Amazon Apps: https://www.amazon.de/dp/B01M4O8OLZ/
+
+Changelog so far:
+
+v0.1.4: Release:
+- Added Kliks as pets! :D
+- Added special healthbar for pet.
+- Changed healing mechanic of feeding the pet.
+- Pets follow to another level if in line of sight.
+- Finally fixed the donation freeze. (Thank you Evan.) :)
+- BONUS: Reworked the succubus sprite. :3
+
+v0.1.3: Beta release:
+- Torches can burn stuff now.
+- Ankh chain now holds your keys.
+- Fixed amulet endless button option.
+- Artifacts should spawn unique now.
+- Bookshelves can be rummaged through now.
+- Fix for Shield of Wonder disappear.
+- Completely rewritten Necromancer summon.
+- UI changes to make Goblins PD more unique.
+- Other small bugfixes and typo fixes.
+
 v0.1.2: Open Beta release 
 - reworked Prismweed effect and reduced duration. 
 - added Shield of Wonder artifact. 
