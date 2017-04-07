@@ -23,6 +23,8 @@
  */
 package com.shatteredpixel.pixeldungeonunleashed.actors.hero;
 
+import android.util.Log;
+
 import com.shatteredpixel.pixeldungeonunleashed.Assets;
 import com.shatteredpixel.pixeldungeonunleashed.Badges;
 import com.shatteredpixel.pixeldungeonunleashed.Bones;
@@ -74,6 +76,7 @@ import com.shatteredpixel.pixeldungeonunleashed.items.armor.glyphs.Viscosity;
 import com.shatteredpixel.pixeldungeonunleashed.items.artifacts.CapeOfThorns;
 import com.shatteredpixel.pixeldungeonunleashed.items.artifacts.DriedRose;
 import com.shatteredpixel.pixeldungeonunleashed.items.artifacts.EtherealChains;
+import com.shatteredpixel.pixeldungeonunleashed.items.artifacts.HummingTool;
 import com.shatteredpixel.pixeldungeonunleashed.items.artifacts.ShieldOfWonders;
 import com.shatteredpixel.pixeldungeonunleashed.items.artifacts.TalismanOfForesight;
 import com.shatteredpixel.pixeldungeonunleashed.items.artifacts.TimekeepersHourglass;
@@ -95,7 +98,6 @@ import com.shatteredpixel.pixeldungeonunleashed.items.rings.RingOfSearching;
 import com.shatteredpixel.pixeldungeonunleashed.items.rings.RingOfTenacity;
 import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.Scroll;
 import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.ScrollOfMagicMapping;
-import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.ScrollOfPsionicBlast;
 import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.ScrollOfMagicalInfusion;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.melee.MeleeWeapon;
@@ -118,6 +120,7 @@ import com.shatteredpixel.pixeldungeonunleashed.ui.AttackIndicator;
 import com.shatteredpixel.pixeldungeonunleashed.ui.BuffIndicator;
 import com.shatteredpixel.pixeldungeonunleashed.ui.StatusPane;
 import com.shatteredpixel.pixeldungeonunleashed.utils.GLog;
+import com.shatteredpixel.pixeldungeonunleashed.windows.WndLockpick;
 import com.shatteredpixel.pixeldungeonunleashed.windows.WndMessage;
 import com.shatteredpixel.pixeldungeonunleashed.windows.WndResurrect;
 import com.shatteredpixel.pixeldungeonunleashed.windows.WndStory;
@@ -194,6 +197,7 @@ public class Hero extends Char {
 	private Char enemy;
 	
 	private Item theKey;
+    private HummingTool hummingtool;
 	
 	public boolean resting = false;
 
@@ -629,7 +633,7 @@ public class Hero extends Char {
 		ready = false;
 	}
 	
-	private void ready() {
+	public void ready() {
 		if(sprite != null){
 			sprite.idle();
 		}
@@ -859,9 +863,15 @@ public class Hero extends Char {
 					theKey = belongings.getKey( GoldenKey.class, Dungeon.depth );
 					
 					if (theKey == null) {
-						GLog.w( TXT_LOCKED_CHEST );
-						ready();
-						return false;
+                        hummingtool = belongings.getItem(HummingTool.class);
+                        if (hummingtool != null && (hummingtool.charge() > 0)) {
+                            GameScene.show( new WndLockpick(this, dst ) );
+                            return false;
+                        } else {
+                            GLog.w(TXT_LOCKED_CHEST);
+                            ready();
+                            return false;
+                        }
 					}
 				}
 				
@@ -921,6 +931,7 @@ public class Hero extends Char {
 		if (Level.adjacent( pos, doorCell )) {
 			
 			theKey = null;
+            hummingtool = null;
 			int door = Dungeon.level.map[doorCell];
 			
 			if (door == Terrain.LOCKED_DOOR) {
@@ -941,8 +952,14 @@ public class Hero extends Char {
 				Sample.INSTANCE.play( Assets.SND_UNLOCK );
 				
 			} else {
-				GLog.w( TXT_LOCKED_DOOR );
-				ready();
+                Log.e("Enter Window Cell: ", String.valueOf(doorCell));
+                hummingtool = belongings.getItem(HummingTool.class);
+				if (hummingtool != null && (hummingtool.charge() > 0) && (door == Terrain.LOCKED_DOOR)) {
+                    GameScene.show( new WndLockpick(this, doorCell ) );
+                } else {
+                    GLog.w(TXT_LOCKED_DOOR);
+                    ready();
+                }
 			}
 
 			return false;

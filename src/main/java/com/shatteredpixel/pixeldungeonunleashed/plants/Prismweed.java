@@ -26,7 +26,6 @@ package com.shatteredpixel.pixeldungeonunleashed.plants;
 import com.shatteredpixel.pixeldungeonunleashed.actors.Actor;
 import com.shatteredpixel.pixeldungeonunleashed.actors.Char;
 import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.Blob;
-import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.ConfusionGas;
 import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.EuphoriaGas;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Buff;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Euphoria;

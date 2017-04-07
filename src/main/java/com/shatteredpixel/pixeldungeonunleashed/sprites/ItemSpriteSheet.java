@@ -162,6 +162,7 @@ public class ItemSpriteSheet {
 	public static final int ARTIFACT_CHAINS     = ROW8+8;
 	public static final int ARTIFACT_DEVOUR     = ROW8+9;
 	public static final int ARTIFACT_SHIELD     = ROW8+10;
+	public static final int ARTIFACT_HUMMING     = ROW8+11;
 
 	//Row Nine: Artifacts with Dynamic Images
 	public static final int ARTIFACT_HORN1      = ROW9;

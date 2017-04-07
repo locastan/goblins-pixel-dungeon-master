@@ -22,7 +22,6 @@ import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Buff;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Burning;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Chill;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Frost;
-import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Poison;
 import com.shatteredpixel.pixeldungeonunleashed.effects.Speck;
 import com.shatteredpixel.pixeldungeonunleashed.items.wands.WandOfFireblast;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.enchantments.Fire;

@@ -24,7 +24,6 @@
 package com.shatteredpixel.pixeldungeonunleashed.items.wands;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.enchantments.Shock;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.melee.MagesStaff;

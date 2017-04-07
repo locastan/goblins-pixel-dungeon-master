@@ -24,7 +24,6 @@
 package com.shatteredpixel.pixeldungeonunleashed.items;
 
 import android.util.Log;
-import android.view.ViewDebug;
 
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.actors.hero.Hero;
@@ -88,7 +87,7 @@ public class Generator {
 	};
 	
 	private static HashMap<Category,Float> categoryProbs = new HashMap<Generator.Category, Float>();
-	private static final float[] INITIAL_ARTIFACT_PROBS = new float[]{ 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1 };
+	private static final float[] INITIAL_ARTIFACT_PROBS = new float[]{ 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1 };
 
 	static {
 		
@@ -227,7 +226,8 @@ public class Generator {
 			DriedRose.class, //starts with no chance of spawning, chance is set directly after beating ghost quest.
 			LloydsBeacon.class,      // set to 0 - special drop
 			EtherealChains.class,
-			ShieldOfWonders.class
+			ShieldOfWonders.class,
+			HummingTool.class
 			};
 
 		Category.ARTIFACT.probs = INITIAL_ARTIFACT_PROBS;
@@ -373,7 +373,7 @@ public class Generator {
 		try {
 			Category cat = Category.ARTIFACT;
 			int i = Random.chances( cat.probs );
-            Log.e("PD", "Prob: "+i);
+            //Log.e("PD", "Prob: "+i);
 
 			//if no artifacts are left, return null
 			if (i == -1){
@@ -382,7 +382,7 @@ public class Generator {
 
 			// after creation, ensure the spawn rate for this entry is 0 and that we added the name to the load/save drop list
 			Artifact artifact = (Artifact)cat.classes[i].newInstance();
-            Log.e("PD", "Artifact: " + artifact.name());
+            //Log.e("PD", "Artifact: " + artifact.name());
 			if ((cat.probs[i] > 0) && (!spawnedArtifacts.contains(cat.classes[i].getSimpleName()))) {
 				//remove the chance of spawning this artifact.
 				cat.probs[i] = 0;
@@ -390,7 +390,7 @@ public class Generator {
 			}
 
 			artifact.random(); // is this artifact cursed?
-            Log.e("PD", "Cursed?: "+artifact.cursed);
+            //Log.e("PD", "Cursed?: "+artifact.cursed);
 
 			return artifact;
 

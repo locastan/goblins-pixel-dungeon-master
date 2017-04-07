@@ -25,7 +25,6 @@ package com.shatteredpixel.pixeldungeonunleashed.actors.mobs;
 
 import com.shatteredpixel.pixeldungeonunleashed.Badges;
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
-import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Bleeding;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Blindness;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Buff;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Cripple;

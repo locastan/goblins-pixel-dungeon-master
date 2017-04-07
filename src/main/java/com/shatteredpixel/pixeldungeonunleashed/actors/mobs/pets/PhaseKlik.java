@@ -24,13 +24,17 @@ import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.Freezing;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Buff;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.MagicalSleep;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Paralysis;
-import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Terror;
+import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Slow;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.ChaosMage;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Eye;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Mob;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Warlock;
 import com.shatteredpixel.pixeldungeonunleashed.effects.particles.SparkParticle;
 import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
 import com.shatteredpixel.pixeldungeonunleashed.levels.traps.LightningTrap;
 import com.shatteredpixel.pixeldungeonunleashed.mechanics.Ballistica;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.CharSprite;
-import com.shatteredpixel.pixeldungeonunleashed.sprites.GreenDragonSprite;
+import com.shatteredpixel.pixeldungeonunleashed.sprites.PhaseKlikSprite;
 import com.shatteredpixel.pixeldungeonunleashed.utils.GLog;
 import com.shatteredpixel.pixeldungeonunleashed.utils.Utils;
 import com.watabou.noosa.Camera;
@@ -38,12 +42,13 @@ import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class PhaseKlik extends PET implements Callback{
 	
 	{
 		name = "phase shift klik";
-		spriteClass = GreenDragonSprite.class;       
+		spriteClass = PhaseKlikSprite.class;
 		flying=true;
 		state = HUNTING;
 		level = 1;
@@ -78,7 +83,7 @@ public class PhaseKlik extends PET implements Callback{
 	public void adjustStats(int level) {
 		this.level = level;
 		HT = (level) * 10;
-		defenseSkill = 5 + level*level;
+		defenseSkill = 2 + level*level;
 		cooldown = super.calccooldown(1000, this.level);
 	}
 	
@@ -90,7 +95,7 @@ public class PhaseKlik extends PET implements Callback{
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange(HT / 5, HT / 2);
+        return Random.NormalIntRange(HP / 5, HP / 2);
 	}
 
 	@Override
@@ -121,6 +126,8 @@ public class PhaseKlik extends PET implements Callback{
 	@Override
 	protected boolean doAttack(Char enemy) {
 
+        telefrag();
+
 		if (Level.adjacent(pos, enemy.pos)) {
 
 			return super.doAttack(enemy);
@@ -130,7 +137,7 @@ public class PhaseKlik extends PET implements Callback{
 			boolean visible = Level.fieldOfView[pos]
 					|| Level.fieldOfView[enemy.pos];
 			if (visible) {
-				((GreenDragonSprite) sprite).zap(enemy.pos);
+				sprite.zap(enemy.pos);
 			}
 
 			spend(TIME_TO_ZAP);
@@ -202,22 +209,52 @@ public class PhaseKlik extends PET implements Callback{
 		Dungeon.hero.busy();
 	}
 
+	public void telefrag() {
+        HashSet<Mob> enemies = new HashSet<Mob>();
+        for (Mob mob : Dungeon.level.mobs) {
+            if (mob.hostile && Level.fieldOfView[mob.pos]) {
+                enemies.add(mob);
+            }
+        }
+        Iterator it = enemies.iterator();
+        Mob enemy1 = enemies.size() > 2 ? (Mob) it.next() : null;
+        Mob enemy2 = enemies.size() > 2 ? (Mob) it.next() : null;
+        enemy1.pos = enemy2.pos;
+        enemy1.sprite.place(enemy2.pos);
+        enemy2.die(this);
+        GLog.p(enemy2.name + " has been telefragged.");
+    }
 
-@Override
-public String description() {
-	return "A feshly hatched phase shifting klik. It is quite hard to keep your eye on him!\n\n"+
-			"Quite hard to cater for. Likes cold stuff but also teleportation magic.";
-}
+
+	@Override
+	public String description() {
+		return "A feshly hatched phase shifting klik. It is quite hard to keep your eye on him!\n\n"+
+				"Quite hard to cater for. Likes cold stuff but also teleportation magic.";
+	}
 
 	private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
 	static {
 		IMMUNITIES.add( Freezing.class );
 		IMMUNITIES.add( LightningTrap.Electricity.class );
+        IMMUNITIES.add( Eye.class );
 	}
 
 	@Override
 	public HashSet<Class<?>> immunities() {
 		return IMMUNITIES;
+	}
+
+	private static final HashSet<Class<?>> VULNERABLE = new HashSet<Class<?>>();
+	static {
+		VULNERABLE.add( Paralysis.class );
+		VULNERABLE.add( Slow.class );
+        VULNERABLE.add( ChaosMage.class );
+        VULNERABLE.add( Warlock.class );
+	}
+
+	@Override
+	public HashSet<Class<?>> vulnerable() {
+		return VULNERABLE;
 	}
 
 }

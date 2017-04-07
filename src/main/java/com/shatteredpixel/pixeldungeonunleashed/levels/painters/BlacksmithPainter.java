@@ -23,14 +23,12 @@
  */
 package com.shatteredpixel.pixeldungeonunleashed.levels.painters;
 
-import com.shatteredpixel.pixeldungeonunleashed.actors.Actor;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.npcs.Blacksmith;
 import com.shatteredpixel.pixeldungeonunleashed.items.Generator;
 import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
 import com.shatteredpixel.pixeldungeonunleashed.levels.Room;
 import com.shatteredpixel.pixeldungeonunleashed.levels.Terrain;
 import com.shatteredpixel.pixeldungeonunleashed.levels.traps.FireTrap;
-import com.shatteredpixel.pixeldungeonunleashed.levels.traps.Trap;
 import com.watabou.utils.Random;
 
 public class BlacksmithPainter extends Painter {

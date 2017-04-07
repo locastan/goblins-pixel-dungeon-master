@@ -20,7 +20,6 @@ package com.shatteredpixel.pixeldungeonunleashed.actors.mobs;
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.items.food.MysteryMeat;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.BrownWolfSprite;
-import com.shatteredpixel.pixeldungeonunleashed.sprites.GrayWolfSprite;
 
 public class GrayWolf extends Mob {
 

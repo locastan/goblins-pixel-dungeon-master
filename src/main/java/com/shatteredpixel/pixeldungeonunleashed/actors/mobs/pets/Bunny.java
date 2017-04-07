@@ -18,23 +18,12 @@
 package com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets;
 
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
-import com.shatteredpixel.pixeldungeonunleashed.ResultDescriptions;
 import com.shatteredpixel.pixeldungeonunleashed.actors.Char;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Buff;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.MagicalSleep;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Paralysis;
-import com.shatteredpixel.pixeldungeonunleashed.effects.Speck;
-import com.shatteredpixel.pixeldungeonunleashed.effects.particles.SparkParticle;
-import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
-import com.shatteredpixel.pixeldungeonunleashed.levels.traps.LightningTrap;
-import com.shatteredpixel.pixeldungeonunleashed.mechanics.Ballistica;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.BunnySprite;
-import com.shatteredpixel.pixeldungeonunleashed.sprites.CharSprite;
-import com.shatteredpixel.pixeldungeonunleashed.sprites.FairySprite;
 import com.shatteredpixel.pixeldungeonunleashed.utils.GLog;
-import com.shatteredpixel.pixeldungeonunleashed.utils.Utils;
-import com.watabou.noosa.Camera;
-import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
 public class Bunny extends PET{

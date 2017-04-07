@@ -25,9 +25,6 @@ package com.shatteredpixel.pixeldungeonunleashed.levels.traps;
 
 import com.shatteredpixel.pixeldungeonunleashed.Assets;
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
-import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
-import com.shatteredpixel.pixeldungeonunleashed.levels.Terrain;
-import com.shatteredpixel.pixeldungeonunleashed.scenes.GameScene;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.TrapSprite;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.tweeners.AlphaTweener;

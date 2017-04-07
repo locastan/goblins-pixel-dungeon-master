@@ -27,11 +27,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
-import com.shatteredpixel.pixeldungeonunleashed.ResultDescriptions;
 import com.shatteredpixel.pixeldungeonunleashed.actors.Actor;
 import com.shatteredpixel.pixeldungeonunleashed.actors.Char;
-import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.Blob;
-import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.Fire;
 import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.ToxicGas;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Amok;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Burning;
@@ -44,13 +41,8 @@ import com.shatteredpixel.pixeldungeonunleashed.items.keys.SkeletonKey;
 import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.ScrollOfPsionicBlast;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.enchantments.Death;
 import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
-import com.shatteredpixel.pixeldungeonunleashed.mechanics.Ballistica;
 import com.shatteredpixel.pixeldungeonunleashed.scenes.GameScene;
-import com.shatteredpixel.pixeldungeonunleashed.sprites.BurningFistSprite;
-import com.shatteredpixel.pixeldungeonunleashed.sprites.CharSprite;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.YogSprite;
-import com.shatteredpixel.pixeldungeonunleashed.utils.GLog;
-import com.shatteredpixel.pixeldungeonunleashed.utils.Utils;
 import com.watabou.utils.Random;
 
 public class Yog extends Mob {

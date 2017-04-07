@@ -70,13 +70,11 @@ import com.shatteredpixel.pixeldungeonunleashed.scenes.InterlevelScene;
 import com.shatteredpixel.pixeldungeonunleashed.ui.HealthIndicator;
 import com.shatteredpixel.pixeldungeonunleashed.utils.GLog;
 import com.shatteredpixel.pixeldungeonunleashed.utils.Utils;
-import com.shatteredpixel.pixeldungeonunleashed.windows.WndOptions;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 //helper class to contain all the cursed wand zapping logic, so the main wand class doesn't get huge.

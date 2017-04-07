@@ -34,7 +34,6 @@ import com.shatteredpixel.pixeldungeonunleashed.effects.particles.ShaftParticle;
 import com.shatteredpixel.pixeldungeonunleashed.items.potions.PotionOfHealing;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.ItemSpriteSheet;
 import com.shatteredpixel.pixeldungeonunleashed.ui.BuffIndicator;
-import com.shatteredpixel.pixeldungeonunleashed.utils.Utils;
 import com.watabou.utils.Bundle;
 
 public class Sungrass extends Plant {

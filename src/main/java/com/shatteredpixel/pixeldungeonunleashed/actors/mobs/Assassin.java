@@ -24,9 +24,7 @@
 
 package com.shatteredpixel.pixeldungeonunleashed.actors.mobs;
 
-import com.shatteredpixel.pixeldungeonunleashed.actors.Char;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.AssassinSprite;
-import com.watabou.utils.Random;
 
 public class Assassin extends Mob {
 

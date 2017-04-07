@@ -17,35 +17,26 @@
  */
 package com.shatteredpixel.pixeldungeonunleashed.actors.mobs;
 
-import com.shatteredpixel.pixeldungeonunleashed.Assets;
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.actors.Char;
-import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Amok;
-import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Bleeding;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Blindness;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Buff;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Burning;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Charm;
-import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Cripple;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Light;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Poison;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Slow;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Terror;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Vertigo;
 import com.shatteredpixel.pixeldungeonunleashed.actors.hero.Hero;
-import com.shatteredpixel.pixeldungeonunleashed.effects.Speck;
 import com.shatteredpixel.pixeldungeonunleashed.effects.particles.ShadowParticle;
 import com.shatteredpixel.pixeldungeonunleashed.items.potions.PotionOfExperience;
-import com.shatteredpixel.pixeldungeonunleashed.items.potions.PotionOfMight;
 import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.ScrollOfPsionicBlast;
 import com.shatteredpixel.pixeldungeonunleashed.items.wands.WandOfDisintegration;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.enchantments.Death;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.enchantments.Leech;
-import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.ChaosMageSprite;
-import com.shatteredpixel.pixeldungeonunleashed.sprites.MinotaurSprite;
 import com.shatteredpixel.pixeldungeonunleashed.utils.GLog;
-import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
 import java.util.HashSet;

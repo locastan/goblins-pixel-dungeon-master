@@ -26,7 +26,6 @@ package com.shatteredpixel.pixeldungeonunleashed.levels.traps;
 import com.watabou.noosa.audio.Sample;
 import com.shatteredpixel.pixeldungeonunleashed.Assets;
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
-import com.shatteredpixel.pixeldungeonunleashed.actors.Char;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Mob;
 import com.shatteredpixel.pixeldungeonunleashed.effects.CellEmitter;
 import com.shatteredpixel.pixeldungeonunleashed.effects.Speck;

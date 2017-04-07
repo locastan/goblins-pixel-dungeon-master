@@ -32,7 +32,6 @@ import com.shatteredpixel.pixeldungeonunleashed.items.Item;
 import com.shatteredpixel.pixeldungeonunleashed.items.potions.PotionOfHealing;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.enchantments.Leech;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.BatSprite;
-import com.watabou.utils.Random;
 
 public class Bat extends Mob {
 

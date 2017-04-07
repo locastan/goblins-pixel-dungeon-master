@@ -25,7 +25,6 @@ package com.shatteredpixel.pixeldungeonunleashed.actors.mobs.npcs;
 
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Buff;
-import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Mob;
 import com.shatteredpixel.pixeldungeonunleashed.effects.CellEmitter;
 import com.shatteredpixel.pixeldungeonunleashed.effects.particles.ElmoParticle;
 import com.shatteredpixel.pixeldungeonunleashed.items.Heap;

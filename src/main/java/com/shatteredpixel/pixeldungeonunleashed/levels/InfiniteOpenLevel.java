@@ -376,6 +376,6 @@ public class InfiniteOpenLevel extends Level {
 
     @Override
     public int nMobs() {
-        return 7  + Dungeon.depth % 6 + Random.Int(4);
+        return 5  + Dungeon.depth % 6 + Random.Int(4);
     }
 }

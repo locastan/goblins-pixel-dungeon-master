@@ -29,22 +29,19 @@ import com.shatteredpixel.pixeldungeonunleashed.Challenges;
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.GoblinsPixelDungeon;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Fury;
-import com.shatteredpixel.pixeldungeonunleashed.items.Amulet;
 import com.shatteredpixel.pixeldungeonunleashed.items.Egg;
-import com.shatteredpixel.pixeldungeonunleashed.items.Generator;
 import com.shatteredpixel.pixeldungeonunleashed.items.TomeOfMastery;
 // import com.shatteredpixel.pixeldungeonunleashed.items.armor.ClothArmor;
 import com.shatteredpixel.pixeldungeonunleashed.items.Torch;
-import com.shatteredpixel.pixeldungeonunleashed.items.armor.HuntressArmor;
 import com.shatteredpixel.pixeldungeonunleashed.items.armor.PlateArmor;
 import com.shatteredpixel.pixeldungeonunleashed.items.artifacts.CloakOfShadows;
-import com.shatteredpixel.pixeldungeonunleashed.items.artifacts.SandalsOfNature;
+import com.shatteredpixel.pixeldungeonunleashed.items.artifacts.HummingTool;
 import com.shatteredpixel.pixeldungeonunleashed.items.artifacts.ShieldOfWonders;
 import com.shatteredpixel.pixeldungeonunleashed.items.bags.AnkhChain;
 import com.shatteredpixel.pixeldungeonunleashed.items.food.Food;
-import com.shatteredpixel.pixeldungeonunleashed.items.food.Yumyuck;
+import com.shatteredpixel.pixeldungeonunleashed.items.keys.GoldenKey;
+import com.shatteredpixel.pixeldungeonunleashed.items.keys.IronKey;
 import com.shatteredpixel.pixeldungeonunleashed.items.potions.PotionOfExperience;
-import com.shatteredpixel.pixeldungeonunleashed.items.potions.PotionOfHealing;
 import com.shatteredpixel.pixeldungeonunleashed.items.potions.PotionOfMight;
 import com.shatteredpixel.pixeldungeonunleashed.items.potions.PotionOfMindVision;
 import com.shatteredpixel.pixeldungeonunleashed.items.potions.PotionOfToxicGas;
@@ -52,19 +49,13 @@ import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.ScrollOfIdentify;
 import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.ScrollOfRemoveCurse;
 import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.ScrollOfUpgrade;
-import com.shatteredpixel.pixeldungeonunleashed.items.wands.WandOfPrismaticLight;
-import com.shatteredpixel.pixeldungeonunleashed.items.weapon.Weapon;
-import com.shatteredpixel.pixeldungeonunleashed.items.weapon.enchantments.Ancient;
-import com.shatteredpixel.pixeldungeonunleashed.items.weapon.melee.BattleAxe;
+import com.shatteredpixel.pixeldungeonunleashed.items.weapon.melee.Glaive;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.pixeldungeonunleashed.items.wands.WandOfMagicMissile;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.melee.Dagger;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.melee.ShortSword;
-import com.shatteredpixel.pixeldungeonunleashed.items.weapon.melee.WarHammer;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.missiles.Dart;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.missiles.Boomerang;
-import com.shatteredpixel.pixeldungeonunleashed.plants.Prismweed;
-import com.shatteredpixel.pixeldungeonunleashed.plants.YumyuckMoss;
 import com.watabou.utils.Bundle;
 
 public enum HeroClass {
@@ -172,7 +163,10 @@ public enum HeroClass {
 		new Egg().collect();
 		new AnkhChain().collect();
         new PlateArmor().identify().upgrade(10).collect();
-        new WarHammer().identify().upgrade(10).collect();
+        new Glaive().identify().upgrade(10).collect();
+		new HummingTool().identify().collect();
+        new GoldenKey().collect();
+        new IronKey().collect();
 		// things we only want a few of..
 		for (int i = 0; i < 4; i++) {
 			new PotionOfMight().collect();
@@ -188,12 +182,6 @@ public enum HeroClass {
 			new Food().collect();
 			new ScrollOfIdentify().identify().collect();
 			new ScrollOfUpgrade().collect();
-		}
-		try {
-			Generator.random(Generator.Category.WAND).collect();
-			Generator.random(Generator.Category.WAND).collect();
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 

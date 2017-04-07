@@ -23,7 +23,6 @@
  */
 package com.shatteredpixel.pixeldungeonunleashed.actors.hero;
 
-import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.actors.Char;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.npcs.NPC;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.PET;

@@ -109,7 +109,7 @@ public class Assets {
 
 	public static final String BUNNY = "rabbit.png";
 	public static final String PET = "pet.png";
-	public static final String PETDRAGON = "petreddragon.png";
+	public static final String KLIKS = "kliks.png";
 	public static final String FAIRY = "fairy.png";
 
 	public static final String ITEMS	= "items.png";
@@ -133,6 +133,9 @@ public class Assets {
 	public static final String BUFFS_SMALL	= "buffs.png";
 	public static final String BUFFS_LARGE	= "large_buffs.png";
 	public static final String SPELL_ICONS	= "spell_icons.png";
+
+	public static final String GEAR	= "gear.png";
+	public static final String HUMM	= "hummingtool_hq.png";
 	
 	public static final String FONTS1X	= "font1x.png";
 	public static final String FONTS15X	= "font15x.png";

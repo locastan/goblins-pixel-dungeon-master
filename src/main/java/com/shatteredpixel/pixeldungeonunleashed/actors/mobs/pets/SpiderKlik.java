@@ -22,12 +22,21 @@ import com.shatteredpixel.pixeldungeonunleashed.actors.Char;
 import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.Blob;
 import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.Web;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Buff;
+import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Burning;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.MagicalSleep;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Paralysis;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Poison;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Roots;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.BurningFist;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Elemental;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.LostSoul;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.SewerFly;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.SpiderBot;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Spinner;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Swarm;
+import com.shatteredpixel.pixeldungeonunleashed.items.wands.WandOfFireblast;
 import com.shatteredpixel.pixeldungeonunleashed.scenes.GameScene;
-import com.shatteredpixel.pixeldungeonunleashed.sprites.SpiderSprite;
+import com.shatteredpixel.pixeldungeonunleashed.sprites.SpiderKlikSprite;
 import com.shatteredpixel.pixeldungeonunleashed.utils.GLog;
 import com.watabou.utils.Random;
 
@@ -37,7 +46,7 @@ public class SpiderKlik extends PET {
 	
 	{
 		name = "spidersilk klik";
-		spriteClass = SpiderSprite.class;       
+		spriteClass = SpiderKlikSprite.class;
 		flying=false;
 		state = HUNTING;
 		level = 1;
@@ -53,7 +62,7 @@ public class SpiderKlik extends PET {
 	@Override
 	public void adjustStats(int level) {
 		this.level = level;
-		HT = (2 + level) * 5;
+		HT = (2 + level) * 8;
 		defenseSkill = 1 + level;
 		cooldown = super.calccooldown(1000, this.level);
 	}
@@ -65,8 +74,8 @@ public class SpiderKlik extends PET {
 	}
 
 	@Override
-	public int damageRoll() {		
-		return Random.NormalIntRange(HT/5, HT/2) ;		
+	public int damageRoll() {
+		return Random.NormalIntRange(HP / 5, HP / 2);
 	}
 
 	@Override
@@ -137,11 +146,29 @@ public void interact() {
 
 	static {
 		IMMUNITIES.add(Roots.class);
+        IMMUNITIES.add(Spinner.class);
+        IMMUNITIES.add(SpiderBot.class);
+        IMMUNITIES.add(Swarm.class);
+        IMMUNITIES.add(SewerFly.class);
 	}
 
 	@Override
 	public HashSet<Class<?>> immunities() {
 		return IMMUNITIES;
+	}
+
+	private static final HashSet<Class<?>> VULNERABLE = new HashSet<Class<?>>();
+	static {
+        VULNERABLE.add( Burning.class );
+        VULNERABLE.add( WandOfFireblast.class );
+        VULNERABLE.add( LostSoul.class );
+        VULNERABLE.add( BurningFist.class );
+        VULNERABLE.add( Elemental.class );
+	}
+
+	@Override
+	public HashSet<Class<?>> vulnerable() {
+		return VULNERABLE;
 	}
 
 

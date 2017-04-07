@@ -20,18 +20,19 @@ package com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets;
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.actors.Char;
 import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.ToxicGas;
+import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Bleeding;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Buff;
-import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Frost;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.MagicalSleep;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Paralysis;
+import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Poison;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Terror;
-import com.shatteredpixel.pixeldungeonunleashed.effects.CellEmitter;
-import com.shatteredpixel.pixeldungeonunleashed.effects.particles.SnowParticle;
-import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.ScrollOfPsionicBlast;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Acidic;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Tinkerer;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Warlock;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.enchantments.Death;
 import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
 import com.shatteredpixel.pixeldungeonunleashed.mechanics.Ballistica;
-import com.shatteredpixel.pixeldungeonunleashed.sprites.ShadowDragonSprite;
+import com.shatteredpixel.pixeldungeonunleashed.sprites.MetalKlikSprite;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.CharSprite;
 import com.shatteredpixel.pixeldungeonunleashed.utils.GLog;
 import com.watabou.utils.Callback;
@@ -43,12 +44,12 @@ public class MetalKlik extends PET implements Callback{
 	
 	{
 		name = "metal klik";
-		spriteClass = ShadowDragonSprite.class;       
+		spriteClass = MetalKlikSprite.class;
 		flying=true;
 		state = HUNTING;
 		level = 1;
 		type = 12;
-		cooldown=500;
+		cooldown=1500;
 
 	}
 	private static final float TIME_TO_ZAP = 1f;
@@ -62,7 +63,7 @@ public class MetalKlik extends PET implements Callback{
 
 	@Override
 	public int dr(){
-		return level*5;
+		return level*3;
 	}
 			
 	protected int regen = 1;	
@@ -72,9 +73,9 @@ public class MetalKlik extends PET implements Callback{
 	@Override
 	public void adjustStats(int level) {
 		this.level = level;
-		HT = (5 + level) * 14;
+		HT = (2 + level) * 12;
 		defenseSkill = 1 + level*level;
-		cooldown = super.calccooldown(500, this.level);
+		cooldown = super.calccooldown(1500, this.level);
 	}
 	
 
@@ -85,7 +86,7 @@ public class MetalKlik extends PET implements Callback{
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange(HT / 5, HT / 2);
+		return Random.NormalIntRange(HP / 5, HP / 2);
 	}
 
 	@Override
@@ -127,7 +128,7 @@ public class MetalKlik extends PET implements Callback{
 			boolean visible = Level.fieldOfView[pos]
 					|| Level.fieldOfView[enemy.pos];
 			if (visible) {
-				((ShadowDragonSprite) sprite).zap(enemy.pos);
+				((MetalKlikSprite) sprite).zap(enemy.pos);
 			} else {
 				zap();
 			}
@@ -140,7 +141,7 @@ public class MetalKlik extends PET implements Callback{
 	private void zap() {
 		spend(TIME_TO_ZAP);
 
-		cooldown = super.calccooldown(500, this.level);
+		cooldown = super.calccooldown(1500, this.level);
 		
 			yell("KLIK!");
 		
@@ -216,6 +217,7 @@ public String description() {
 	static {
 		IMMUNITIES.add( ToxicGas.class );
 		IMMUNITIES.add( Terror.class );
+		IMMUNITIES.add( Poison.class );
 	}
 
 	@Override
@@ -223,4 +225,16 @@ public String description() {
 		return IMMUNITIES;
 	}
 
+	private static final HashSet<Class<?>> VULNERABLE = new HashSet<Class<?>>();
+	static {
+		VULNERABLE.add( Bleeding.class );
+        VULNERABLE.add( Warlock.class );
+        VULNERABLE.add( Acidic.class );
+        VULNERABLE.add( Tinkerer.class );
+	}
+
+	@Override
+	public HashSet<Class<?>> vulnerable() {
+		return VULNERABLE;
+	}
 }

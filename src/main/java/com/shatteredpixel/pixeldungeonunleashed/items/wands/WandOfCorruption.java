@@ -39,7 +39,6 @@ import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.King;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.RottingFist;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Tengu;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Yog;
-import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.npcs.Ghost;
 import com.shatteredpixel.pixeldungeonunleashed.effects.MagicMissile;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.pixeldungeonunleashed.mechanics.Ballistica;

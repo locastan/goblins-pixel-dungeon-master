@@ -30,6 +30,7 @@ import java.util.Calendar;
 
 import com.shatteredpixel.pixeldungeonunleashed.*;
 import com.shatteredpixel.pixeldungeonunleashed.items.Honeypot;
+import com.shatteredpixel.pixeldungeonunleashed.items.bags.AnkhChain;
 import com.shatteredpixel.pixeldungeonunleashed.items.bags.PotionBandolier;
 import com.shatteredpixel.pixeldungeonunleashed.items.bags.ScrollHolder;
 import com.shatteredpixel.pixeldungeonunleashed.items.bags.SeedPouch;
@@ -363,7 +364,7 @@ public class GameScene extends PixelScene {
 						break;
 				}
 			}
-			if (Dungeon.hero.isAlive() && Dungeon.depth != Level.MAX_DEPTH) {
+			if ((Dungeon.hero.isAlive() && Dungeon.depth != Level.MAX_DEPTH) || (Dungeon.difficultyLevel == Dungeon.DIFF_ENDLESS))  {
 				Badges.validateNoKilling();
 			}
 			break;
@@ -726,6 +727,8 @@ public class GameScene extends PixelScene {
 					WndBag.getBag( PotionBandolier.class, listener, mode, title ) :
 				mode == Mode.WAND ?
 					WndBag.getBag( WandHolster.class, listener, mode, title ) :
+				mode == Mode.KEY ?
+						WndBag.getBag( AnkhChain.class, listener, mode, title ) :
 				WndBag.lastBag( listener, mode, title );
 
 		scene.add( wnd );

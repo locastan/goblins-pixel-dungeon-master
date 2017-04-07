@@ -244,7 +244,7 @@ public class Toolbar extends Component {
 				GameScene.show( new WndInfoTrap( trap ));
 				return;
 			}
-			
+
 			GameScene.show( new WndInfoCell( cell ) );
 		}
 		@Override

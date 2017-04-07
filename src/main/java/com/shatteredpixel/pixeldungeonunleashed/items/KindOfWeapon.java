@@ -25,7 +25,6 @@ package com.shatteredpixel.pixeldungeonunleashed.items;
 
 import java.util.ArrayList;
 
-import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.actors.Char;
 import com.shatteredpixel.pixeldungeonunleashed.actors.hero.Hero;
 import com.shatteredpixel.pixeldungeonunleashed.utils.GLog;

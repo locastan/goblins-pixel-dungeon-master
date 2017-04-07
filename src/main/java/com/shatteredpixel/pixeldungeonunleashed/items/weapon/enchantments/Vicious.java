@@ -23,7 +23,6 @@ import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Bleeding;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Buff;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Cripple;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.Weapon;
-import com.shatteredpixel.pixeldungeonunleashed.levels.traps.GrippingTrap;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.ItemSprite;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.ItemSprite.Glowing;
 import com.shatteredpixel.pixeldungeonunleashed.utils.GLog;

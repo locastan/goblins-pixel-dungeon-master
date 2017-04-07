@@ -24,7 +24,6 @@
 package com.shatteredpixel.pixeldungeonunleashed.levels.painters;
 
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
-import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Poison;
 import com.shatteredpixel.pixeldungeonunleashed.items.Generator;
 import com.shatteredpixel.pixeldungeonunleashed.items.Heap;
 import com.shatteredpixel.pixeldungeonunleashed.items.Item;
@@ -36,7 +35,6 @@ import com.shatteredpixel.pixeldungeonunleashed.levels.traps.ParalyticTrap;
 import com.shatteredpixel.pixeldungeonunleashed.levels.traps.SummoningTrap;
 import com.shatteredpixel.pixeldungeonunleashed.levels.traps.ToxicTrap;
 import com.shatteredpixel.pixeldungeonunleashed.levels.traps.Trap;
-import com.shatteredpixel.pixeldungeonunleashed.utils.GLog;
 import com.watabou.utils.Random;
 
 public class TrapsPainter extends Painter {

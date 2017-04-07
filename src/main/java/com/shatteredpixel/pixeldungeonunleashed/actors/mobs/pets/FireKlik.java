@@ -23,14 +23,20 @@ import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.Blob;
 import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.Fire;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Buff;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Burning;
+import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Frost;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.MagicalSleep;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Paralysis;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.BurningFist;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Elemental;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.IceDemon;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Yeti;
 import com.shatteredpixel.pixeldungeonunleashed.items.wands.WandOfFireblast;
+import com.shatteredpixel.pixeldungeonunleashed.items.wands.WandOfFrost;
 import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
 import com.shatteredpixel.pixeldungeonunleashed.mechanics.Ballistica;
 import com.shatteredpixel.pixeldungeonunleashed.scenes.GameScene;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.CharSprite;
-import com.shatteredpixel.pixeldungeonunleashed.sprites.RedDragonSprite;
+import com.shatteredpixel.pixeldungeonunleashed.sprites.FireKlikSprite;
 import com.shatteredpixel.pixeldungeonunleashed.utils.GLog;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
@@ -41,7 +47,7 @@ public class FireKlik extends PET implements Callback{
 	
 	{
 		name = "fire klik";
-		spriteClass = RedDragonSprite.class;       
+		spriteClass = FireKlikSprite.class;
 		flying=true;
 		state = HUNTING;
 		level = 1;
@@ -70,7 +76,7 @@ public class FireKlik extends PET implements Callback{
 	@Override
 	public void adjustStats(int level) {
 		this.level = level;
-		HT = (2 + level) * 15;
+		HT = (4 + level) * 10;
 		defenseSkill = 1 + level*level;
 		cooldown = super.calccooldown(1000, this.level);
 	}
@@ -83,7 +89,7 @@ public class FireKlik extends PET implements Callback{
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange(HT / 5, HT / 2);
+		return Random.NormalIntRange(HP / 5, HP / 2);
 	}
 
 	@Override
@@ -121,7 +127,7 @@ public class FireKlik extends PET implements Callback{
 			boolean visible = Level.fieldOfView[pos]
 					|| Level.fieldOfView[enemy.pos];
 			if (visible) {
-				((RedDragonSprite) sprite).zap(enemy.pos);
+				((FireKlikSprite) sprite).zap(enemy.pos);
 			} else {
 				zap();
 			}
@@ -201,11 +207,27 @@ public String description() {
 	static {
 		IMMUNITIES.add( Burning.class );
 		IMMUNITIES.add( WandOfFireblast.class );
+		IMMUNITIES.add( Fire.class );
+		IMMUNITIES.add( BurningFist.class );
+		IMMUNITIES.add( Elemental.class );
 	}
 
 	@Override
 	public HashSet<Class<?>> immunities() {
 		return IMMUNITIES;
+	}
+
+	private static final HashSet<Class<?>> VULNERABLE = new HashSet<Class<?>>();
+	static {
+		VULNERABLE.add( Frost.class );
+		VULNERABLE.add(WandOfFrost.class );
+		VULNERABLE.add( Yeti.class );
+		VULNERABLE.add( IceDemon.class );
+	}
+
+	@Override
+	public HashSet<Class<?>> vulnerable() {
+		return VULNERABLE;
 	}
 
 }

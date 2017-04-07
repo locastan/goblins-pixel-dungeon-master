@@ -25,7 +25,6 @@ package com.shatteredpixel.pixeldungeonunleashed.actors.mobs.npcs;
 
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.Journal;
-import com.shatteredpixel.pixeldungeonunleashed.actors.Actor;
 import com.shatteredpixel.pixeldungeonunleashed.actors.Char;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Buff;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Golem;
@@ -35,7 +34,6 @@ import com.shatteredpixel.pixeldungeonunleashed.items.Generator;
 import com.shatteredpixel.pixeldungeonunleashed.items.quest.DwarfToken;
 import com.shatteredpixel.pixeldungeonunleashed.items.rings.Ring;
 import com.shatteredpixel.pixeldungeonunleashed.levels.CityLevel;
-import com.shatteredpixel.pixeldungeonunleashed.levels.Room;
 import com.shatteredpixel.pixeldungeonunleashed.scenes.GameScene;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.ImpSprite;
 import com.shatteredpixel.pixeldungeonunleashed.utils.Utils;

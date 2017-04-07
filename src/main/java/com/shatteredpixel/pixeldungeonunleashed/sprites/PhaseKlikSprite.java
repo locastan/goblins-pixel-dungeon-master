@@ -18,53 +18,49 @@
 package com.shatteredpixel.pixeldungeonunleashed.sprites;
 
 import com.shatteredpixel.pixeldungeonunleashed.Assets;
-import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.FireKlik;
-import com.shatteredpixel.pixeldungeonunleashed.effects.MagicMissile;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.PhaseKlik;
+import com.shatteredpixel.pixeldungeonunleashed.effects.particles.Lightnings;
 import com.watabou.noosa.TextureFilm;
-import com.watabou.noosa.audio.Sample;
-import com.watabou.utils.Callback;
 
-public class RedDragonSprite extends MobSprite {
+public class PhaseKlikSprite extends MobSprite {
 	
-	//Frames 1-4 are idle, 5-8 are moving, 9-12 are attack and the last are for death 
+	//Frames 1-4 are idle, 5-8 are moving, 9-12 are attack and the last are for death RBVG
+	
+	private int[] points = new int[2];
 
-	public RedDragonSprite() {
+	public PhaseKlikSprite() {
 		super();
 
-		texture(Assets.PETDRAGON);
+		texture(Assets.KLIKS);
 
 		TextureFilm frames = new TextureFilm(texture, 16, 16);
 
 		idle = new Animation(2, true);
-		idle.frames(frames, 0, 1, 2, 3);
+		idle.frames(frames, 48, 49, 50, 51);
 
 		run = new Animation(4, true);
-		run.frames(frames, 4, 5, 6, 7);
+		run.frames(frames, 52, 53, 54, 55);
 
-		attack = new Animation(8, false);
-		attack.frames(frames, 8, 9, 10, 11);
+		attack = new Animation(4, false);
+		attack.frames(frames, 56, 57, 58, 59);
 
 		zap = attack.clone();
 		
-		die = new Animation(6, false);
-		die.frames(frames, 12, 13, 14, 15);
+		die = new Animation(8, false);
+		die.frames(frames, 60, 61, 62, 63);
 
 		play(idle);
 	}
 
 	@Override
-	public void zap(int cell) {
+	public void zap(int pos) {
 
-		turnTo(ch.pos, cell);
+		points[0] = ch.pos;
+		points[1] = pos;
+		parent.add(new Lightnings(points, 2, (PhaseKlik) ch));
+
+		turnTo(ch.pos, pos);
 		play(zap);
-
-		MagicMissile.fire(parent, ch.pos, cell, new Callback() {
-			@Override
-			public void call() {
-				((FireKlik) ch).onZapComplete();
-			}
-		});
-		Sample.INSTANCE.play(Assets.SND_ZAP);
 	}
 	
 	@Override

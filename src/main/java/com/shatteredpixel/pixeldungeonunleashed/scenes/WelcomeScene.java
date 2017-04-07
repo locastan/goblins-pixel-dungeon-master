@@ -35,7 +35,7 @@ public class WelcomeScene extends PixelScene {
 
 	private static final String TTL_Welcome = "Welcome!";
 
-	private static final String TTL_Update = "v0.1.4: Release";
+	private static final String TTL_Update = "v0.1.5: Release";
 
 	private static final String TTL_Future = "Wait What?";
 
@@ -47,22 +47,23 @@ public class WelcomeScene extends PixelScene {
 			"Enjoy";
 
 	private static final String TXT_Update =
+			"v0.1.5: Release\n"+
+					"- Added Lock Picking. :)\n"+
+					"- Added new Artifact: Hummingtool\n"+
+					"- Added Easter Eggs to be hatched.\n"+
+					"- Nerfed Metal Klik.\n"+
+					"- Revamped Klik immunities.\n"+
+					"- Added Klik vulnerabilities.\n"+
+					"- Klik damage declines with health.\n"+
+					"- Klik exp to level up increased.\n"+
+					"- Increased metal klik cooldown.\n"+
 			"v0.1.4: Release\n"+
 					"- Added Kliks as pets! :D\n"+
 					"- Added special healthbar for pet.\n"+
 					"- Changed healing mechanic of feeding the pet.\n"+
 					"- Pets follow to another level if in line of sight.\n"+
-					"- Finally fixed the donation freeze. :)\n"+
-			"v0.1.3: Beta release\n"+
-					"- Torches can burn stuff now.\n"+
-					"- Ankh chain now holds your keys.\n"+
-					"- Fixed amulet endless button option.\n"+
-					"- Artifacts should spawn unique now.\n"+
-                    "- Bookshelves can be rummaged through now.\n"+
-					"- Hotfix for Shield of Wonder disappear.\n"+
-					"- Completely rewritten Necromancer summon.\n"+
-					"- UI changes to make Goblins PD more unique.\n"+
-					"- Other small bugfixes and typo fixes.\n";
+					"- Finally fixed the donation freeze. :)\n";
+
 	private static final String TXT_Future =
 			"It seems that your current saves are from a future version of Goblins Pixel Dungeon!\n\n"+
 			"Either you're messing around with older versions of the app, or something has gone buggy.\n\n"+

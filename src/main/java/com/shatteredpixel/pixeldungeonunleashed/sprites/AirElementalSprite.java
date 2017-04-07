@@ -19,7 +19,6 @@ package com.shatteredpixel.pixeldungeonunleashed.sprites;
 
 import com.shatteredpixel.pixeldungeonunleashed.Assets;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.AirElemental;
-import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Shaman;
 import com.shatteredpixel.pixeldungeonunleashed.effects.Lightning;
 import com.watabou.noosa.TextureFilm;
 

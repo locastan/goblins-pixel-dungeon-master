@@ -18,36 +18,38 @@
 package com.shatteredpixel.pixeldungeonunleashed.sprites;
 
 import com.shatteredpixel.pixeldungeonunleashed.Assets;
-import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.FrostKlik;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.MetalKlik;
 import com.shatteredpixel.pixeldungeonunleashed.effects.MagicMissile;
 import com.watabou.noosa.TextureFilm;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Callback;
 
-public class BlueDragonSprite extends MobSprite {
+public class MetalKlikSprite extends MobSprite {
 	
 	//Frames 1-4 are idle, 5-8 are moving, 9-12 are attack and the last are for death RBVG
+	
+	private int[] points = new int[2];
 
-	public BlueDragonSprite() {
+	public MetalKlikSprite() {
 		super();
 
-		texture(Assets.PETDRAGON);
+		texture(Assets.KLIKS);
 
 		TextureFilm frames = new TextureFilm(texture, 16, 16);
 
 		idle = new Animation(2, true);
-		idle.frames(frames, 16, 17, 18, 19);
+		idle.frames(frames, 64, 65, 66, 67);
 
 		run = new Animation(8, true);
-		run.frames(frames, 20, 21, 22, 23);
+		run.frames(frames, 68, 69, 70, 71);
 
 		attack = new Animation(8, false);
-		attack.frames(frames, 24, 25, 26, 27);
+		attack.frames(frames, 72, 73, 74, 75);
 
 		zap = attack.clone();
 		
 		die = new Animation(8, false);
-		die.frames(frames, 28, 29, 30, 31);
+		die.frames(frames, 76, 77, 78, 79);
 
 		play(idle);
 	}
@@ -58,10 +60,10 @@ public class BlueDragonSprite extends MobSprite {
 		turnTo(ch.pos, cell);
 		play(zap);
 
-		MagicMissile.coldLight(parent, ch.pos, cell, new Callback() {
+		MagicMissile.shadow(parent, ch.pos, cell, new Callback() {
 			@Override
 			public void call() {
-				((FrostKlik) ch).onZapComplete();
+				((MetalKlik) ch).onZapComplete();
 			}
 		});
 		Sample.INSTANCE.play(Assets.SND_ZAP);

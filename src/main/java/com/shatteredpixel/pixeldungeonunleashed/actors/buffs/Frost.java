@@ -86,7 +86,13 @@ public class Frost extends FlavourBuff {
 					((Thief) target).item = null;
 				}
 			}
-
+            if (target.vulnerable().contains(this)) {
+                if (Level.water[target.pos]){
+                    target.damage(Math.round(DURATION *(Dungeon.depth/2)), this);
+                } else {
+                    target.damage(Math.round(DURATION * (Dungeon.depth / 4)), this);
+                }
+			}
 
 			return true;
 		} else {

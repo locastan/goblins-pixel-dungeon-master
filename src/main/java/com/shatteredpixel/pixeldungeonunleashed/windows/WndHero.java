@@ -84,8 +84,6 @@ import com.shatteredpixel.pixeldungeonunleashed.ui.RedButton;
 import com.shatteredpixel.pixeldungeonunleashed.utils.Utils;
 import com.watabou.noosa.ui.Button;
 
-import static com.shatteredpixel.pixeldungeonunleashed.ui.Window.TITLE_COLOR;
-
 public class WndHero extends WndTabbed {
 	
 	private static final String TXT_STATS	= "Stats";

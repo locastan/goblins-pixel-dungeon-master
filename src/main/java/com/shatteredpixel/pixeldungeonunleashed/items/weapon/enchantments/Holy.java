@@ -18,7 +18,6 @@
 package com.shatteredpixel.pixeldungeonunleashed.items.weapon.enchantments;
 
 import com.shatteredpixel.pixeldungeonunleashed.actors.Char;
-import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Mob;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.Weapon;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.ItemSprite;
 import com.watabou.utils.Random;

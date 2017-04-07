@@ -33,7 +33,6 @@ import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Buff;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Charm;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Corruption;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.*;
-import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.npcs.Ghost;
 import com.shatteredpixel.pixeldungeonunleashed.effects.Beam;
 import com.shatteredpixel.pixeldungeonunleashed.effects.CellEmitter;
 import com.shatteredpixel.pixeldungeonunleashed.effects.Speck;

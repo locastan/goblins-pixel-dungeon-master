@@ -25,14 +25,11 @@ package com.shatteredpixel.pixeldungeonunleashed.actors.mobs;
 
 import java.util.HashSet;
 
-import com.shatteredpixel.pixeldungeonunleashed.actors.Char;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Amok;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Sleep;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Terror;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.npcs.Imp;
-import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.ScrollOfPsionicBlast;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.GolemSprite;
-import com.watabou.utils.Random;
 
 public class Golem extends Mob {
 	

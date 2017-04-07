@@ -42,7 +42,6 @@ import com.shatteredpixel.pixeldungeonunleashed.scenes.GameScene;
 import com.shatteredpixel.pixeldungeonunleashed.scenes.InterlevelScene;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.MobSprite;
 import com.shatteredpixel.pixeldungeonunleashed.utils.GLog;
-import com.shatteredpixel.pixeldungeonunleashed.utils.Utils;
 import com.shatteredpixel.pixeldungeonunleashed.windows.WndOptions;
 import com.watabou.utils.Random;
 

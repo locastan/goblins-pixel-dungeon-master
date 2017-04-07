@@ -18,36 +18,57 @@
 package com.shatteredpixel.pixeldungeonunleashed.sprites;
 
 import com.shatteredpixel.pixeldungeonunleashed.Assets;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.PoisonKlik;
+import com.shatteredpixel.pixeldungeonunleashed.effects.MagicMissile;
 import com.watabou.noosa.TextureFilm;
+import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.Callback;
 
-public class SpiderSprite extends MobSprite {
+public class PoisonKlikSprite extends MobSprite {
+	
+	//Frames 1-4 are idle, 5-8 are moving, 9-12 are attack and the last are for death 
 
-	public SpiderSprite() {
+	public PoisonKlikSprite() {
 		super();
 
-		texture(Assets.PETDRAGON);
+		texture(Assets.KLIKS);
 
 		TextureFilm frames = new TextureFilm(texture, 16, 16);
 
 		idle = new Animation(2, true);
-		idle.frames(frames, 80, 81, 82, 83);
+		idle.frames(frames, 32, 33, 34, 35);
 
 		run = new Animation(8, true);
-		run.frames(frames, 84, 85, 86, 87);
+		run.frames(frames, 36, 37, 38, 39);
 
 		attack = new Animation(8, false);
-		attack.frames(frames, 88, 89, 90, 91);
+		attack.frames(frames, 40, 41, 42, 43);
 
 		zap = attack.clone();
-
+		
 		die = new Animation(8, false);
-		die.frames(frames, 92, 93, 94, 95);
+		die.frames(frames, 44, 45, 46, 47);
 
 		play(idle);
 	}
 
 	@Override
+	public void zap(int cell) {
+
+		turnTo(ch.pos, cell);
+		play(zap);
+
+		MagicMissile.poison(parent, ch.pos, cell, new Callback() {
+			@Override
+			public void call() {
+				((PoisonKlik) ch).onZapComplete();
+			}
+		});
+		Sample.INSTANCE.play(Assets.SND_ZAP);
+	}
+	
+	@Override
 	public int blood() {
-		return 0xFFBFE5B8;
+		return 0xFFcdcdb7;
 	}
 }

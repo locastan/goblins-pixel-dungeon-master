@@ -24,7 +24,6 @@
 package com.shatteredpixel.pixeldungeonunleashed.levels.painters;
 
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
-import com.shatteredpixel.pixeldungeonunleashed.actors.Actor;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Statue;
 import com.shatteredpixel.pixeldungeonunleashed.items.keys.IronKey;
 import com.shatteredpixel.pixeldungeonunleashed.levels.Level;

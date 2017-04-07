@@ -31,7 +31,6 @@ import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Poison;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.BurningFist;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Eye;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Warlock;
-import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Yog;
 import com.shatteredpixel.pixeldungeonunleashed.levels.traps.LightningTrap;
 import com.watabou.utils.Random;
 

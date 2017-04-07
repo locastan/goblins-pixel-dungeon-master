@@ -27,11 +27,9 @@ import com.watabou.noosa.BitmapTextMultiline;
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.items.Item;
 import com.shatteredpixel.pixeldungeonunleashed.scenes.PixelScene;
-import com.shatteredpixel.pixeldungeonunleashed.sprites.ItemSprite;
 import com.shatteredpixel.pixeldungeonunleashed.ui.ItemSlot;
 import com.shatteredpixel.pixeldungeonunleashed.ui.RedButton;
 import com.shatteredpixel.pixeldungeonunleashed.ui.Window;
-import com.shatteredpixel.pixeldungeonunleashed.utils.Utils;
 
 public class WndItem extends Window {
 

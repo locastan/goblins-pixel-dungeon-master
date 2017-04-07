@@ -24,7 +24,6 @@
 package com.shatteredpixel.pixeldungeonunleashed.items;
 
 import com.shatteredpixel.pixeldungeonunleashed.actors.Char;
-import com.shatteredpixel.pixeldungeonunleashed.items.EquipableItem;
 
 public abstract class KindofMisc extends EquipableItem {
 

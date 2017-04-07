@@ -19,22 +19,18 @@ package com.shatteredpixel.pixeldungeonunleashed.actors.mobs;
 
 import java.util.HashSet;
 
-import com.shatteredpixel.pixeldungeonunleashed.Badges;
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
-import com.shatteredpixel.pixeldungeonunleashed.Statistics;
 import com.shatteredpixel.pixeldungeonunleashed.actors.Char;
 import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.ToxicGas;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Buff;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Burning;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Cripple;
-import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Frost;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Paralysis;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Roots;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Weakness;
 import com.shatteredpixel.pixeldungeonunleashed.items.food.MysteryMeat;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.enchantments.Death;
 import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
-import com.shatteredpixel.pixeldungeonunleashed.mechanics.Ballistica;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.SquidSprite;
 import com.watabou.utils.Random;
 

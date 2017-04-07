@@ -23,17 +23,13 @@ import java.util.HashSet;
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.actors.Actor;
 import com.shatteredpixel.pixeldungeonunleashed.actors.Char;
-import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Buff;
 import com.shatteredpixel.pixeldungeonunleashed.actors.hero.Hero;
-import com.shatteredpixel.pixeldungeonunleashed.actors.hero.HeroSubClass;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Mob;
 import com.shatteredpixel.pixeldungeonunleashed.effects.CellEmitter;
 import com.shatteredpixel.pixeldungeonunleashed.effects.particles.ElmoParticle;
 import com.shatteredpixel.pixeldungeonunleashed.items.Heap;
-import com.shatteredpixel.pixeldungeonunleashed.items.rings.RingOfHaste;
 import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
 import com.shatteredpixel.pixeldungeonunleashed.scenes.GameScene;
-import com.shatteredpixel.pixeldungeonunleashed.sprites.HeroSprite;
 import com.shatteredpixel.pixeldungeonunleashed.utils.GLog;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
@@ -210,7 +206,7 @@ public abstract class PET extends Mob {
 			experience+=((Mob)enemy).getExp();
 		}
 		
-		if (experience >= level*(level+level) && level < 20){			
+		if (experience >= level*(level+level)*3 && level < 20){
 			level++;
 			GLog.p("Your pet %s gains a level!",name);
 			adjustStats(level);

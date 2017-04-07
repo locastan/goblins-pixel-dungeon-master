@@ -26,7 +26,6 @@ package com.shatteredpixel.pixeldungeonunleashed.actors.mobs;
 import java.util.HashSet;
 
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
-import com.shatteredpixel.pixeldungeonunleashed.actors.Char;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Terror;
 import com.shatteredpixel.pixeldungeonunleashed.items.Gold;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.BruteSprite;

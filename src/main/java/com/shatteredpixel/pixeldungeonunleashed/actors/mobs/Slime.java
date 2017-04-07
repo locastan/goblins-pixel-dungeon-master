@@ -26,7 +26,6 @@ package com.shatteredpixel.pixeldungeonunleashed.actors.mobs;
 
 import com.shatteredpixel.pixeldungeonunleashed.items.potions.PotionOfToxicGas;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.SlimeSprite;
-import com.watabou.utils.Random;
 
 public class Slime extends Mob {
 

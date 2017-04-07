@@ -30,6 +30,7 @@ import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.*;
 import com.shatteredpixel.pixeldungeonunleashed.actors.hero.Hero;
 import com.shatteredpixel.pixeldungeonunleashed.actors.hero.HeroSubClass;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Bestiary;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Mob;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Yog;
 import com.shatteredpixel.pixeldungeonunleashed.items.Generator;
 import com.shatteredpixel.pixeldungeonunleashed.items.Honeypot;
@@ -271,6 +272,11 @@ public abstract class Char extends Actor {
 			dmg = 0;
 		} else if (resistances().contains( srcClass )) {
 			dmg = Random.IntRange( 0, dmg );
+		} else if (vulnerable().contains( srcClass )) {
+			dmg += +dmg/2;
+            if (sprite != null) {
+                sprite.showStatus(CharSprite.NEGATIVE, "Vulnerable: "+ srcClass.getSimpleName());
+            }
 		}
 		
 		if (buff( Paralysis.class ) != null) {
@@ -503,6 +509,10 @@ public abstract class Char extends Actor {
 	private static final HashSet<Class<?>> EMPTY = new HashSet<Class<?>>();
 	
 	public HashSet<Class<?>> resistances() {
+		return EMPTY;
+	}
+
+	public HashSet<Class<?>> vulnerable() {
 		return EMPTY;
 	}
 	

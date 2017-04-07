@@ -28,7 +28,6 @@ import java.util.HashSet;
 import com.shatteredpixel.pixeldungeonunleashed.Badges;
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.Statistics;
-import com.shatteredpixel.pixeldungeonunleashed.actors.Char;
 import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.ToxicGas;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Burning;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Frost;
@@ -37,7 +36,6 @@ import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Roots;
 import com.shatteredpixel.pixeldungeonunleashed.items.food.MysteryMeat;
 import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.PiranhaSprite;
-import com.watabou.utils.Random;
 
 public class Piranha extends Mob {
 	

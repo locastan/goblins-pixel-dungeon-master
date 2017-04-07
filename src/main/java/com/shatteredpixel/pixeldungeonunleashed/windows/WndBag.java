@@ -40,6 +40,8 @@ import com.shatteredpixel.pixeldungeonunleashed.items.bags.ScrollHolder;
 import com.shatteredpixel.pixeldungeonunleashed.items.bags.SeedPouch;
 import com.shatteredpixel.pixeldungeonunleashed.items.bags.WandHolster;
 import com.shatteredpixel.pixeldungeonunleashed.items.food.Food;
+import com.shatteredpixel.pixeldungeonunleashed.items.keys.GoldenKey;
+import com.shatteredpixel.pixeldungeonunleashed.items.keys.IronKey;
 import com.shatteredpixel.pixeldungeonunleashed.items.potions.Potion;
 import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.Scroll;
 import com.shatteredpixel.pixeldungeonunleashed.items.wands.Wand;
@@ -75,6 +77,7 @@ public class WndBag extends WndTabbed {
 		FOOD,
 		POTION,
 		SCROLL,
+		KEY,
 		EQUIPMENT
 	}
 
@@ -385,6 +388,7 @@ public class WndBag extends WndTabbed {
 						mode == Mode.POTION && (item instanceof Potion) ||
 						mode == Mode.SCROLL && (item instanceof Scroll) ||
 						mode == Mode.EQUIPMENT && (item instanceof EquipableItem) ||
+						mode == Mode.KEY && (item instanceof IronKey || item instanceof GoldenKey) ||
 						mode == Mode.ALL
 					);
 				}

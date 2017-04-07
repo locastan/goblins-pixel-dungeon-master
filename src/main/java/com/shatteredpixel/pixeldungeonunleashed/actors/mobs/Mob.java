@@ -183,7 +183,7 @@ public abstract class Mob extends Char {
 	}
 
 	public void infiniteScaleMob(int depth) {
-		this.maxLvl = depth + 3;
+		this.maxLvl = depth + 2;
 		if (mobType == MOBTYPE_NORMAL) {
 			this.HT = (4 + (depth * 4));
 			this.HP = this.HT;

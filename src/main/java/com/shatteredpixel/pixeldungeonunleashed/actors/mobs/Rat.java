@@ -25,7 +25,6 @@ package com.shatteredpixel.pixeldungeonunleashed.actors.mobs;
 
 import com.shatteredpixel.pixeldungeonunleashed.items.food.MysteryMeat;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.RatSprite;
-import com.watabou.utils.Random;
 
 public class Rat extends Mob {
 

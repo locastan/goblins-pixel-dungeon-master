@@ -19,7 +19,6 @@ package com.shatteredpixel.pixeldungeonunleashed.actors.mobs;
 
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Light;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.SpiderBotSprite;
-import com.watabou.utils.Random;
 
 public class SpiderBot extends Mob {
 

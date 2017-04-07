@@ -21,15 +21,22 @@ import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.actors.Char;
 import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.Freezing;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Buff;
+import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Burning;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Frost;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.MagicalSleep;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Paralysis;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Terror;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.BurningFist;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Elemental;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.IceDemon;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.LostSoul;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Yeti;
 import com.shatteredpixel.pixeldungeonunleashed.effects.CellEmitter;
 import com.shatteredpixel.pixeldungeonunleashed.effects.particles.SnowParticle;
+import com.shatteredpixel.pixeldungeonunleashed.items.wands.WandOfFireblast;
 import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
 import com.shatteredpixel.pixeldungeonunleashed.mechanics.Ballistica;
-import com.shatteredpixel.pixeldungeonunleashed.sprites.BlueDragonSprite;
+import com.shatteredpixel.pixeldungeonunleashed.sprites.FrostKlikSprite;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.CharSprite;
 import com.shatteredpixel.pixeldungeonunleashed.utils.GLog;
 import com.watabou.utils.Callback;
@@ -42,7 +49,7 @@ public class FrostKlik extends PET implements Callback{
 	
 	{
 		name = "frost klik";
-		spriteClass = BlueDragonSprite.class;       
+		spriteClass = FrostKlikSprite.class;
 		flying=true;
 		state = HUNTING;
 		level = 1;
@@ -85,7 +92,7 @@ public class FrostKlik extends PET implements Callback{
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange(HT / 5, HT / 2);
+		return Random.NormalIntRange(HP / 5, HP / 2);
 	}
 
 	@Override
@@ -131,7 +138,7 @@ public class FrostKlik extends PET implements Callback{
 			boolean visible = Level.fieldOfView[pos]
 					|| Level.fieldOfView[enemy.pos];
 			if (visible) {
-				((BlueDragonSprite) sprite).zap(enemy.pos);
+				((FrostKlikSprite) sprite).zap(enemy.pos);
 			} else {
 				zap();
 			}
@@ -215,6 +222,8 @@ public String description() {
 	static {
 		IMMUNITIES.add( Freezing.class );
 		IMMUNITIES.add( Terror.class );
+        IMMUNITIES.add( Yeti.class );
+        IMMUNITIES.add( IceDemon.class );
 	}
 
 	@Override
@@ -222,4 +231,17 @@ public String description() {
 		return IMMUNITIES;
 	}
 
+	private static final HashSet<Class<?>> VULNERABLE = new HashSet<Class<?>>();
+	static {
+        VULNERABLE.add( Burning.class );
+        VULNERABLE.add( WandOfFireblast.class );
+        VULNERABLE.add( LostSoul.class );
+        VULNERABLE.add( BurningFist.class );
+        VULNERABLE.add( Elemental.class );
+	}
+
+	@Override
+	public HashSet<Class<?>> vulnerable() {
+		return VULNERABLE;
+	}
 }

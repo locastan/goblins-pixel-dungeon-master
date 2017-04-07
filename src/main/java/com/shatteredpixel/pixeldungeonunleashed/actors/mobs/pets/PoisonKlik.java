@@ -19,18 +19,26 @@ package com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets;
 
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.actors.Char;
-import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Amok;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Buff;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.MagicalSleep;
+import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Ooze;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Paralysis;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Poison;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Sleep;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Terror;
+import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Venom;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Vertigo;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Acidic;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.AirElemental;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.RottingFist;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.SlimeRed;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Statue;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Wraith;
 import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
+import com.shatteredpixel.pixeldungeonunleashed.levels.traps.LightningTrap;
 import com.shatteredpixel.pixeldungeonunleashed.mechanics.Ballistica;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.CharSprite;
-import com.shatteredpixel.pixeldungeonunleashed.sprites.VioletDragonSprite;
+import com.shatteredpixel.pixeldungeonunleashed.sprites.PoisonKlikSprite;
 import com.shatteredpixel.pixeldungeonunleashed.utils.GLog;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
@@ -41,7 +49,7 @@ public class PoisonKlik extends PET implements Callback{
 	
 	{
 		name = "poison klik";
-		spriteClass = VioletDragonSprite.class;       
+		spriteClass = PoisonKlikSprite.class;
 		flying=true;
 		state = HUNTING;
 		level = 1;
@@ -77,7 +85,7 @@ public class PoisonKlik extends PET implements Callback{
 	public void adjustStats(int level) {
 		this.level = level;
 		HT = (level) * 14;
-		defenseSkill = 5 + level*level;
+		defenseSkill = 3 + level*level;
 		cooldown = super.calccooldown(1000, this.level);
 	}
 	
@@ -90,7 +98,7 @@ public class PoisonKlik extends PET implements Callback{
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange(HT / 5, HT / 2);
+		return Random.NormalIntRange(HP / 5, HP / 2);
 	}
 
 	@Override
@@ -128,7 +136,7 @@ public class PoisonKlik extends PET implements Callback{
 			boolean visible = Level.fieldOfView[pos]
 					|| Level.fieldOfView[enemy.pos];
 			if (visible) {
-				((VioletDragonSprite) sprite).zap(enemy.pos);
+				((PoisonKlikSprite) sprite).zap(enemy.pos);
 			} else {
 				zap();
 			}
@@ -209,12 +217,30 @@ public String description() {
 		IMMUNITIES.add( Sleep.class );
 		IMMUNITIES.add( Terror.class );
 		IMMUNITIES.add( Poison.class );
+        IMMUNITIES.add( Venom.class );
+        IMMUNITIES.add( Ooze.class );
 		IMMUNITIES.add( Vertigo.class );
+		IMMUNITIES.add( Acidic.class );
+        IMMUNITIES.add( SlimeRed.class );
+        IMMUNITIES.add( RottingFist.class );
 	}
 
 	@Override
 	public HashSet<Class<?>> immunities() {
 		return IMMUNITIES;
 	}
+
+    private static final HashSet<Class<?>> VULNERABLE = new HashSet<Class<?>>();
+    static {
+        VULNERABLE.add( LightningTrap.Electricity.class );
+        VULNERABLE.add(AirElemental.class );
+        VULNERABLE.add( Statue.class );
+        VULNERABLE.add( Wraith.class );
+    }
+
+    @Override
+    public HashSet<Class<?>> vulnerable() {
+        return VULNERABLE;
+    }
 
 }

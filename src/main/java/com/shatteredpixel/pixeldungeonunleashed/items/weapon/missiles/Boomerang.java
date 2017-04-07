@@ -30,7 +30,6 @@ import com.shatteredpixel.pixeldungeonunleashed.items.Item;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.ItemSpriteSheet;
 import com.shatteredpixel.pixeldungeonunleashed.sprites.MissileSprite;
 import com.shatteredpixel.pixeldungeonunleashed.utils.GLog;
-import com.watabou.utils.Random;
 
 public class Boomerang extends MissileWeapon {
 

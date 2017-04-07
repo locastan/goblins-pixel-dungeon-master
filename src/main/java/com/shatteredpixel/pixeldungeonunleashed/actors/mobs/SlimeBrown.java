@@ -18,7 +18,6 @@
 package com.shatteredpixel.pixeldungeonunleashed.actors.mobs;
 
 import com.shatteredpixel.pixeldungeonunleashed.sprites.SlimeBrownSprite;
-import com.watabou.utils.Random;
 
 public class SlimeBrown extends Mob {
     {

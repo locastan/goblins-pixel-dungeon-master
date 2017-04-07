@@ -17,15 +17,12 @@
 
 package com.watabou.noosa.audio;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Objects;
 
 import com.shatteredpixel.pixeldungeonunleashed.Assets;
 import com.watabou.noosa.Game;
 
-import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
