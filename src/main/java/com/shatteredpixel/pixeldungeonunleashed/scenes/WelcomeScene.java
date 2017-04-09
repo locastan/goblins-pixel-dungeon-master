@@ -60,8 +60,8 @@ public class WelcomeScene extends PixelScene {
 			"v0.1.4: Release\n"+
 					"- Added Kliks as pets! :D\n"+
 					"- Added special healthbar for pet.\n"+
-					"- Changed healing mechanic of feeding the pet.\n"+
-					"- Pets follow to another level if in line of sight.\n"+
+					"- Changed healing when feeding the pet.\n"+
+					"- Pets follow the descend if in line of sight.\n"+
 					"- Finally fixed the donation freeze. :)\n";
 
 	private static final String TXT_Future =

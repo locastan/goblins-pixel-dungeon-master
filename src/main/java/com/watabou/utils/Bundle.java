@@ -101,7 +101,9 @@ public class Bundle {
 	public Bundle getBundle( String key ) {
 		return new Bundle( data.optJSONObject( key ) );
 	}
-	
+
+	// TODO: Add text replacement for file loading classnames in the get functions and then refactor com.shatteredpixel.pixeldungeonunleashed to com.locastan.goblinspixeldungeon.
+
 	private Bundlable get() {
 		try {
 			String clName = getString( CLASS_NAME );
