@@ -8,6 +8,17 @@ Amazon Apps: https://www.amazon.de/dp/B01M4O8OLZ/
 
 Changelog so far:
 
+v0.1.5: Release:
+- Added Lock Picking. :)
+- Added new Artifact: Hummingtool
+- Added Easter Eggs to be hatched.
+- Nerfed Metal Klik.
+- Revamped Klik immunities.
+- Added Klik vulnerabilities.
+- Klik damage declines with health.
+- Klik exp to level up increased.
+- Increased metal klik cooldown.
+
 v0.1.4: Release:
 - Added Kliks as pets! :D
 - Added special healthbar for pet.
