@@ -38,7 +38,7 @@ public class WndSettings extends Window {
 	
 	private static final String TXT_ZOOM_IN			= "+";
 	private static final String TXT_ZOOM_OUT		= "-";
-	private static final String TXT_ZOOM_DEFAULT	= "Default Zoom";
+	private static final String TXT_ZOOM_DEFAULT	= "Zoom";
 
 	private static final String TXT_EASIER          = "-";
 	private static final String TXT_HARDER          = "+";
@@ -65,6 +65,7 @@ public class WndSettings extends Window {
 
 	private RedButton btnZoomOut;
 	private RedButton btnZoomIn;
+    private RedButton btnResetZ;
 
 	private static int difficultLevel   = GoblinsPixelDungeon.getDifficulty();
 	private RedButton btnEasier;
@@ -90,7 +91,8 @@ public class WndSettings extends Window {
 			btnZoomOut = new RedButton( TXT_ZOOM_OUT ) {
 				@Override
 				protected void onClick() {
-					zoom( Camera.main.zoom - 1 );
+					zoom( Camera.main.zoom - 0.5f );
+                    btnResetZ.text(TXT_ZOOM_DEFAULT + " (" + Camera.main.zoom + ")");
 				}
 			};
 			add( btnZoomOut.setRect( 0, 0, w, BTN_HEIGHT) );
@@ -99,18 +101,21 @@ public class WndSettings extends Window {
 			btnZoomIn = new RedButton( TXT_ZOOM_IN ) {
 				@Override
 				protected void onClick() {
-					zoom( Camera.main.zoom + 1 );
+					zoom( Camera.main.zoom + 0.5f );
+                    btnResetZ.text(TXT_ZOOM_DEFAULT + " (" + Camera.main.zoom + ")");
 				}
 			};
 			add( btnZoomIn.setRect( WIDTH - w, 0, w, BTN_HEIGHT) );
 			
 			// Default zoom
-			add(new RedButton(TXT_ZOOM_DEFAULT) {
+			btnResetZ = new RedButton(TXT_ZOOM_DEFAULT + " (" + Camera.main.zoom + ")") {
 				@Override
 				protected void onClick() {
 					zoom(PixelScene.defaultZoom);
+					this.text(TXT_ZOOM_DEFAULT + " (" + Camera.main.zoom + ")");
 				}
-			}.setRect(btnZoomOut.right(), 0, WIDTH - btnZoomIn.width() - btnZoomOut.width(), BTN_HEIGHT));
+			};
+            add( btnResetZ.setRect(btnZoomOut.right(), 0, WIDTH - btnZoomIn.width() - btnZoomOut.width(), BTN_HEIGHT));
 			
 		} else {
 			int w = BTN_HEIGHT;

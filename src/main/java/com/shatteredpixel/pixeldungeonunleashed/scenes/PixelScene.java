@@ -133,8 +133,8 @@ public class PixelScene extends Scene {
 			
 			// 9x15 (18)
 			font3x = Font.colorMarked(
-				BitmapCache.get( Assets.FONTS3X ), 22, 0x00000000, BitmapText.Font.LATIN_FULL );
-			font3x.baseLine = 17;
+				BitmapCache.get( Assets.FONTS3X ), 22, 0x00000000, Font.LATIN_FULL );
+			font3x.baseLine = 20;
 			font3x.tracking = -2;
 		}
 	}
@@ -158,24 +158,25 @@ public class PixelScene extends Scene {
 
 		if (pt >= 19) {
 			
-			scale = pt / 19;
+			scale = pt / 24;
 			if (1.5 <= scale && scale < 2) {
-				font = font25x;
-				scale = (int)(pt / 14);
+				font = font3x;
+				scale = (pt / 26);
 			} else {
 				font = font3x;
-				scale = (int)scale;
+				// modified scale to fit the custom font3x.png...
+				//scale = (int)scale;
 			}
 			
 		} else if (pt >= 14) {
 			
-			scale = pt / 14;
+			scale = pt / 28;
 			if (1.8 <= scale && scale < 2) {
-				font = font2x;
-				scale = (int)(pt / 12);
+				font = font3x;
+				scale = (pt / 30);
 			} else {
-				font = font25x;
-				scale = (int)scale;
+				font = font3x;
+				//scale = (int)scale;
 			}
 			
 		} else if (pt >= 12) {

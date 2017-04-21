@@ -35,7 +35,7 @@ public class WelcomeScene extends PixelScene {
 
 	private static final String TTL_Welcome = "Welcome!";
 
-	private static final String TTL_Update = "v0.1.5: Release";
+	private static final String TTL_Update = "v0.1.5.1: Release";
 
 	private static final String TTL_Future = "Wait What?";
 
@@ -47,6 +47,15 @@ public class WelcomeScene extends PixelScene {
 			"Enjoy";
 
 	private static final String TXT_Update =
+			"v0.1.5.1: Release\n"+
+					"- Bugfix for Klik vulnerabilities.\n"+
+					"- Bugfix for phase shift Klik.\n"+
+					"- Reworked lock generation.\n"+
+					"- Fixed lock picking in hell.\n"+
+					"- Added resist and immune sprite info.\n"+
+                    "- Slightly nerfed wolves.\n"+
+					"- Bugfixed message log flooding.\n"+
+					"- Changed font.\n"+
 			"v0.1.5: Release\n"+
 					"- Added Lock Picking. :)\n"+
 					"- Added new Artifact: Hummingtool\n"+
@@ -81,8 +90,8 @@ public class WelcomeScene extends PixelScene {
 
 		if (gameversion == 0) {
 
-			text = createMultiline(TXT_Welcome, 8);
-			title = createMultiline(TTL_Welcome, 16);
+			text = createMultiline(TXT_Welcome, 9);
+			title = createMultiline(TTL_Welcome, 14);
 
 		} else if (gameversion <= Game.versionCode) {
 
@@ -91,8 +100,8 @@ public class WelcomeScene extends PixelScene {
 
 		} else {
 
-			text = createMultiline( TXT_Future, 8 );
-			title = createMultiline( TTL_Future, 16 );
+			text = createMultiline( TXT_Future, 9 );
+			title = createMultiline( TTL_Future, 14 );
 
 		}
 

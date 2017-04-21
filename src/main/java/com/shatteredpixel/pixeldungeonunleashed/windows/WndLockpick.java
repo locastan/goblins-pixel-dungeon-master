@@ -53,9 +53,8 @@ public class WndLockpick extends Window {
 	private final int HEIGHT_L    = 120;
 
     public Image[] gear = new Image[6];
-
     public Integer[] step = new Integer[6];
-
+    public Integer[][] affects = new Integer[6][6];
     protected TouchArea[] hotArea = new TouchArea[6];
 
     private boolean solved = false;
@@ -87,18 +86,18 @@ public class WndLockpick extends Window {
 		txtTitle.x = PixelScene.align(PixelScene.uiCamera, (WIDTH - txtTitle.width()) / 2);
 		add(txtTitle);
 
-        BitmapTextMultiline info = PixelScene.createMultiline( 6 );
+        BitmapTextMultiline info = PixelScene.createMultiline( 5 );
         add( info );
-        info.text( "Click the gears to align their gaps on top." );
+        info.text( "Click the gears to align the gaps on top." );
         info.maxWidth = WIDTH;
         info.measure();
         info.x = 2;
         info.y = 10;
 
-        txtCharge = PixelScene.createText("Tool Charge: " + hummingtool.charge(), 6);
+        txtCharge = PixelScene.createText("Tool Charge: " + hummingtool.charge(), 5);
         txtCharge.hardlight(Window.TITLE_COLOR);
         txtCharge.measure();
-        txtCharge.x = 46 - txtCharge.width();
+        txtCharge.x = 50 - txtCharge.width();
         txtCharge.y = 60;
         add(txtCharge);
 
@@ -107,7 +106,7 @@ public class WndLockpick extends Window {
         txtSeed.hardlight(0xFFCC00);
         txtSeed.measure();
         txtSeed.x = 2;
-        txtSeed.y = 120 - txtSeed.height();
+        txtSeed.y = 115 - txtSeed.height();
         add(txtSeed);
 
         Image Humm = new Image( Assets.HUMM );
@@ -124,7 +123,7 @@ public class WndLockpick extends Window {
             }
         };
         checkToolCharge();
-        autosolve.setRect( 4, 70, 45, 14 );
+        autosolve.setRect( 4, 70, 50, 14 );
         add( autosolve );
 
         int target = Dungeon.level.map[cell];
@@ -136,106 +135,101 @@ public class WndLockpick extends Window {
                 // Simple locks for Sewers
                 Log.e("Simple Locks", String.valueOf(crosssum(cell)));
                 if (cell % 2 == 0) {
-                    addGear(1, cell * -60, 30, 0x009933, new Integer[]{2});
-                    addGear(2, crosssum(cell) * 120, -60, 0xDD0000, new Integer[]{});
+                    addGear(1, 30, 0x009933, new Integer[]{2});
+                    addGear(2, -60, 0xDD0000, new Integer[]{});
+                    setPuzzle(new Integer[]{6, crosssum(cell)*3});
                 } else {
-                    addGear(1, crosssum(cell) * 90, 90, 0x009933, new Integer[]{});
-                    addGear(2, cell * 180, 180, 0xDD0000, new Integer[]{1});
-                }
-                if (checkSolved()) {
-                    gear[1].angle += step[1];
+                    addGear(1, 90, 0x009933, new Integer[]{});
+                    addGear(2, 180, 0xDD0000, new Integer[]{1});
+                    setPuzzle(new Integer[]{crosssum(cell)*5, Dungeon.depth});
                 }
             }
 
             if (isBetween(Dungeon.depth,7,12)) {
                 // Simple, but more diverse locks for Prison
                 if (cell % 3 == 0) {
-                    addGear(1, cell*-60, 30, 0x009933, new Integer[]{2});
-                    addGear(2, crosssum(cell)*120, -60, 0xDD0000, new Integer[]{});
+                    addGear(1, 30, 0x009933, new Integer[]{2});
+                    addGear(2, -60, 0xDD0000, new Integer[]{});
+                    setPuzzle(new Integer[]{5, crosssum(cell)*3});
                 } else if (cell % 2 == 0) {
-                    addGear(1, crosssum(cell)*90, 90, 0x009933, new Integer[]{2});
-                    addGear(2, cell*180, 180, 0xDD0000, new Integer[]{});
-                    addGear(3,cell*45,45,0x00CCFF, new Integer[]{1});
+                    addGear(1, 90, 0x009933, new Integer[]{2});
+                    addGear(2, 180, 0xDD0000, new Integer[]{});
+                    addGear(3, 45,0x00CCFF, new Integer[]{1,2});
+                    setPuzzle(new Integer[]{crosssum(cell)*7, 1, crosssum(cell)*3});
                 } else {
-                    addGear(1, crosssum(cell)*90, 90, 0x009933, new Integer[]{});
-                    addGear(2, cell*90, 30, 0xDD0000, new Integer[]{1});
-                }
-                if (checkSolved()) {
-                    gear[1].angle += step[1];
-                    gear[2].angle -= step[2];
+                    addGear(1, 90, 0x009933, new Integer[]{});
+                    addGear(2, 30, 0xDD0000, new Integer[]{1});
+                    setPuzzle(new Integer[]{crosssum(cell)*3, Dungeon.depth * 2});
                 }
             }
 
             if (isBetween(Dungeon.depth,13,18)) {
                 // More challenging locks for Caves
                 if (cell % 3 == 0) {
-                    addGear(1, cell*-60, 30, 0x009933, new Integer[]{2});
-                    addGear(2, crosssum(cell)*120, -60, 0xDD0000, new Integer[]{1});
-                    addGear(3,cell*45,-45,0x00CCFF, new Integer[]{2});
+                    addGear(1, 30, 0x009933, new Integer[]{2});
+                    addGear(2, -60, 0xDD0000, new Integer[]{1});
+                    addGear(3, -45, 0x00CCFF, new Integer[]{2});
+                    setPuzzle(new Integer[]{crosssum(crosssum(cell)*cell), Dungeon.depth, crosssum(cell)});
                 } else if (cell % 2 == 0) {
-                    addGear(1, crosssum(cell)*90, 90, 0x009933, new Integer[]{2});
-                    addGear(2, cell*180, 180, 0xDD0000, new Integer[]{3});
-                    addGear(3,cell*90,45,0x00CCFF, new Integer[]{2});
+                    addGear(1, 90, 0x009933, new Integer[]{2});
+                    addGear(2, 180, 0xDD0000, new Integer[]{3});
+                    addGear(3, 45, 0x00CCFF, new Integer[]{1,2});
+                    setPuzzle(new Integer[]{crosssum(cell)*2, 3, crosssum(cell)});
                 } else {
-                    addGear(1, crosssum(cell)*90, 90, 0x009933, new Integer[]{3});
-                    addGear(2, cell*90, 30, 0xDD0000, new Integer[]{1});
-                    addGear(3,crosssum(cell)*270,45,0x00CCFF, new Integer[]{1});
-                }
-                if (checkSolved()) {
-                    gear[1].angle += step[1];
-                    gear[3].angle -= step[3];
+                    addGear(1, 90, 0x009933, new Integer[]{3});
+                    addGear(2, 30, 0xDD0000, new Integer[]{1});
+                    addGear(3, 45, 0x00CCFF, new Integer[]{1});
+                    setPuzzle(new Integer[]{2, 1, crosssum(cell)});
                 }
             }
             if (isBetween(Dungeon.depth,19,24)) {
                 // More challenging locks for City
                 if (cell % 5 == 0) {
-                    addGear(1, cell*-60, 30, 0x009933, new Integer[]{3});
-                    addGear(2, crosssum(cell)*120, -60, 0xDD0000, new Integer[]{});
-                    addGear(3,cell*45,-45,0x00CCFF, new Integer[]{2});
-                    addGear(4,crosssum(cell)*90,-90,0x9933ff, new Integer[]{});
+                    addGear(1, 30, 0x009933, new Integer[]{3});
+                    addGear(2, -60, 0xDD0000, new Integer[]{});
+                    addGear(3, -45, 0x00CCFF, new Integer[]{2});
+                    addGear(4, -90, 0x9933ff, new Integer[]{});
+                    setPuzzle(new Integer[]{5, Dungeon.depth, crosssum(cell), crosssum(Dungeon.depth)});
                 } else if (cell % 2 == 0) {
-                    addGear(1, crosssum(cell)*90, 90, 0x009933, new Integer[]{3});
-                    addGear(2, cell*180, 180, 0xDD0000, new Integer[]{});
-                    addGear(3,cell*90,45,0x00CCFF, new Integer[]{2});
+                    addGear(1, 90, 0x009933, new Integer[]{3});
+                    addGear(2, 36, 0xDD0000, new Integer[]{});
+                    addGear(3, 45, 0x00CCFF, new Integer[]{2});
+                    setPuzzle(new Integer[]{crosssum(cell)*3, 7, Dungeon.depth % 10});
                 } else {
-                    addGear(1, crosssum(cell)*90, 90, 0x009933, new Integer[]{3,4});
-                    addGear(2, cell*90, 30, 0xDD0000, new Integer[]{1});
-                    addGear(3,crosssum(cell)*270,45,0x00CCFF, new Integer[]{1});
-                    addGear(4,cell*36,36,0x9933ff, new Integer[]{3});
-                }
-                if (checkSolved()) {
-                    gear[1].angle += step[1];
-                    gear[3].angle -= step[3];
+                    addGear(1, 90, 0x009933, new Integer[]{3,4});
+                    addGear(2, 30, 0xDD0000, new Integer[]{1});
+                    addGear(3, 45, 0x00CCFF, new Integer[]{1});
+                    addGear(4, 36, 0x9933ff, new Integer[]{3});
+                    setPuzzle(new Integer[]{crosssum(cell)*2, 4, crosssum(cell), crosssum(cell*Dungeon.depth)});
                 }
             }
             if (isBetween(Dungeon.depth,25,30)) {
                 // More challenging locks for Ice Plains
                 if (cell % 5 == 0) {
-                    addGear(1, cell*-60, -30, 0x009933, new Integer[]{3});
-                    addGear(2, crosssum(cell)*120, 60, 0xDD0000, new Integer[]{1});
-                    addGear(3,cell*45, 45,0x00CCFF, new Integer[]{});
-                    addGear(4,crosssum(cell)*90,90,0x9933ff, new Integer[]{1});
+                    addGear(1, -30, 0x009933, new Integer[]{3,4});
+                    addGear(2, 60, 0xDD0000, new Integer[]{1,4});
+                    addGear(3, 45, 0x00CCFF, new Integer[]{});
+                    addGear(4, 90, 0x9933ff, new Integer[]{1});
+                    setPuzzle(new Integer[]{0, 3, crosssum(cell+12), crosssum(cell+Dungeon.depth)});
                 } else if (cell % 2 == 0) {
-                    addGear(1, crosssum(cell)*90, 90, 0x009933, new Integer[]{});
-                    addGear(2, cell*180, 180, 0xDD0000, new Integer[]{1,3});
-                    addGear(3,cell*90,-45,0x00CCFF, new Integer[]{2});
-                    addGear(4,crosssum(cell)*90,90,0x9933ff, new Integer[]{2});
+                    addGear(1, 90, 0x009933, new Integer[]{4});
+                    addGear(2, 180, 0xDD0000, new Integer[]{1,3});
+                    addGear(3, -45, 0x00CCFF, new Integer[]{2});
+                    addGear(4, 90, 0x9933ff, new Integer[]{2});
+                    setPuzzle(new Integer[]{crosssum(cell*5), 0, 7, crosssum(15*Dungeon.depth)});
                 } else {
-                    addGear(1, crosssum(cell)*90, 90, 0x009933, new Integer[]{4});
-                    addGear(2, cell*90, 30, 0xDD0000, new Integer[]{1});
-                    addGear(3,crosssum(cell)*270,45,0x00CCFF, new Integer[]{});
-                    addGear(4,cell*36,-36,0x9933ff, new Integer[]{1,2,3});
-                }
-                if (checkSolved()) {
-                    gear[1].angle += step[1];
-                    gear[3].angle -= step[3];
-                    gear[4].angle += step[4];
+                    addGear(1, 90, 0x009933, new Integer[]{4});
+                    addGear(2, 30, 0xDD0000, new Integer[]{1,4});
+                    addGear(3, 45, 0x00CCFF, new Integer[]{});
+                    addGear(4, -36, 0x9933ff, new Integer[]{1,2,3});
+                    setPuzzle(new Integer[]{crosssum(cell), 3, crosssum(Dungeon.depth), 5});
                 }
             }
-            if (isBetween(Dungeon.depth,25,30)) {
+            if (isBetween(Dungeon.depth,31,36) || Dungeon.depth > 36) {
                 // Hell and beyond, this has serious locks and most likely you will use the Autosolve feature of a max level Hummingtool.
                 mostChallenging(cell);
             }
+
 
         } else if ((heap != null && (heap.type != Heap.Type.HEAP && heap.type != Heap.Type.FOR_SALE)) && heap.type == Heap.Type.CRYSTAL_CHEST) {
             mostChallenging(cell);
@@ -301,7 +295,7 @@ public class WndLockpick extends Window {
         }
     }
 
-    private void addGear(Integer ID, Integer Angle, Integer Step, Integer color, Integer[] affect) {
+    private void addGear(Integer ID, Integer Step, Integer color, Integer[] affect) {
         Log.e("Adding gear: ", String.valueOf(ID));
         gear[ID] = new Image( Assets.GEAR );
         gear[ID].color(0xFFCC00);
@@ -311,7 +305,7 @@ public class WndLockpick extends Window {
         gear[ID].x = 2+(2*(ID-1)+((ID-1)*gear[ID].width));
         gear[ID].y = 20;
         gear[ID].origin.set(gear[ID].width/2, gear[ID].height/2);
-        gear[ID].angle = Angle;
+        affects[ID] = affect;
         hotArea[ID] = new TouchArea( 0, 0, 0, 0 ) {
             @Override
             protected void onTouchDown(Touchscreen.Touch touch) {
@@ -322,8 +316,8 @@ public class WndLockpick extends Window {
             }
             @Override
             protected void onClick( Touchscreen.Touch touch ) {
-                // Check for Hummingtool charge and decrease it depending on tools level.
                 if (hummingtool.charge() > 0) {
+                    Sample.INSTANCE.play( Assets.SND_CLICK );
                     hummingtool.useCharge();
                     checkToolCharge();
                     gear[ID].angle += step[ID];
@@ -348,26 +342,53 @@ public class WndLockpick extends Window {
         add( hotArea[ID] );
     }
 
+    private void setPuzzle(Integer[] starts) {
+        for (int ID = 1; ID < starts.length; ID++) {
+            if (gear[ID] != null) {
+                for (int i = starts[ID]; i > 0; i--) {
+                    gear[ID].angle += step[ID];
+                    for (Integer afID : affects[ID]) {
+                        if (gear[afID] != null) {
+                            gear[afID].angle += step[afID];
+                        }
+                    }
+                }
+            }
+        }
+        if (checkSolved()) {
+            gear[1].angle += step[1];
+            for (Integer afID : affects[1]) {
+                if (gear[afID] != null) {
+                    gear[afID].angle += step[afID];
+                }
+            }
+        }
+
+    }
+
     private void mostChallenging(Integer cell) {
         // Most challenging locks for Hell and Crystal Chests
         if (cell % 5 == 0) {
-            addGear(1, cell*-60, -30, 0x009933, new Integer[]{4});
-            addGear(2, crosssum(cell)*120, 60, 0xDD0000, new Integer[]{3});
-            addGear(3,cell*45, 45,0x00CCFF, new Integer[]{1,2,5});
-            addGear(4,crosssum(cell)*45,-45,0x9933ff, new Integer[]{1});
-            addGear(5,crosssum(cell)*-30,30,0xFFFFFF, new Integer[]{});
+            addGear(1, -30, 0x009933, new Integer[]{4});
+            addGear(2, 60, 0xDD0000, new Integer[]{3});
+            addGear(3, 45, 0x00CCFF, new Integer[]{1,2,5});
+            addGear(4, -45, 0x9933ff, new Integer[]{1});
+            addGear(5, 30, 0xFFFFFF, new Integer[]{});
+            setPuzzle(new Integer[]{crosssum(cell)*6, 0, crosssum(cell*Dungeon.depth), 5, 3});
         } else if (cell % 2 == 0) {
-            addGear(1, crosssum(cell)*90, 90, 0x009933, new Integer[]{4});
-            addGear(2, cell*180, 180, 0xDD0000, new Integer[]{1,3});
-            addGear(3,cell*90,-45,0x00CCFF, new Integer[]{5});
-            addGear(4,crosssum(cell)*90,90,0x9933ff, new Integer[]{});
-            addGear(5,crosssum(cell)*90,90,0xFFFFFF, new Integer[]{1});
+            addGear(1, 90, 0x009933, new Integer[]{4});
+            addGear(2, 180, 0xDD0000, new Integer[]{1,3});
+            addGear(3, -45 ,0x00CCFF, new Integer[]{5});
+            addGear(4, 90, 0x9933ff, new Integer[]{});
+            addGear(5, 90, 0xFFFFFF, new Integer[]{1,3,4});
+            setPuzzle(new Integer[]{crosssum(cell*3), 2, crosssum(cell), crosssum(Dungeon.depth),3});
         } else {
-            addGear(1, crosssum(cell)*90, 90, 0x009933, new Integer[]{2,5});
-            addGear(2, cell*90, 30, 0xDD0000, new Integer[]{4,5});
-            addGear(3,crosssum(cell)*270,45,0x00CCFF, new Integer[]{});
-            addGear(4,cell*36,-36,0x9933ff, new Integer[]{2});
-            addGear(5,crosssum(cell)*120,-60,0xFFFFFF, new Integer[]{3});
+            addGear(1, 90, 0x009933, new Integer[]{2,5});
+            addGear(2, 30, 0xDD0000, new Integer[]{4,5});
+            addGear(3, 45, 0x00CCFF, new Integer[]{1});
+            addGear(4, -36, 0x9933ff, new Integer[]{2});
+            addGear(5, -60, 0xFFFFFF, new Integer[]{3});
+            setPuzzle(new Integer[]{crosssum(cell), crosssum(Dungeon.depth), Dungeon.depth, 1, 3});
         }
         if (checkSolved()) {
             gear[1].angle += step[1];

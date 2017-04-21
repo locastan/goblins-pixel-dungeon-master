@@ -27,12 +27,12 @@ public class GrayWolf extends Mob {
         name = "brown wolf";
         spriteClass = BrownWolfSprite.class;
 
-        HP = HT = 110;
+        HP = HT = 100;
         defenseSkill = 26;
-        atkSkill = 38;
+        atkSkill = 32;
         dmgRed = 18;
         dmgMin = 20;
-        dmgMax = 35;
+        dmgMax = 32;
         EXP = 12;
 
         loot = new MysteryMeat();

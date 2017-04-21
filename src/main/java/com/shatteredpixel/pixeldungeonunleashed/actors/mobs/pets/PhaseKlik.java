@@ -17,18 +17,23 @@
  */
 package com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets;
 
+import com.shatteredpixel.pixeldungeonunleashed.Assets;
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.ResultDescriptions;
 import com.shatteredpixel.pixeldungeonunleashed.actors.Char;
 import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.Freezing;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Buff;
+import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Chill;
+import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Frost;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.MagicalSleep;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Paralysis;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Slow;
+import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.AirElemental;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.ChaosMage;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Eye;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Mob;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Warlock;
+import com.shatteredpixel.pixeldungeonunleashed.effects.Splash;
 import com.shatteredpixel.pixeldungeonunleashed.effects.particles.SparkParticle;
 import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
 import com.shatteredpixel.pixeldungeonunleashed.levels.traps.LightningTrap;
@@ -38,6 +43,7 @@ import com.shatteredpixel.pixeldungeonunleashed.sprites.PhaseKlikSprite;
 import com.shatteredpixel.pixeldungeonunleashed.utils.GLog;
 import com.shatteredpixel.pixeldungeonunleashed.utils.Utils;
 import com.watabou.noosa.Camera;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
@@ -210,19 +216,26 @@ public class PhaseKlik extends PET implements Callback{
 	}
 
 	public void telefrag() {
-        HashSet<Mob> enemies = new HashSet<Mob>();
-        for (Mob mob : Dungeon.level.mobs) {
-            if (mob.hostile && Level.fieldOfView[mob.pos]) {
-                enemies.add(mob);
+        // 20% chance to telefragg on attack if more than one enemy is in sight.
+        if (Random.Int(5)==0) {
+            HashSet<Mob> enemies = new HashSet<Mob>();
+            for (Mob mob : Dungeon.level.mobs) {
+                if (mob.hostile && Level.fieldOfView[mob.pos]) {
+                    enemies.add(mob);
+                }
+            }
+            Iterator it = enemies.iterator();
+            Mob enemy1 = enemies.size() > 2 ? (Mob) it.next() : null;
+            Mob enemy2 = enemies.size() > 2 ? (Mob) it.next() : null;
+            if (enemy1 != null && enemy2 != null) {
+                enemy1.pos = enemy2.pos;
+                enemy1.sprite.place(enemy2.pos);
+                Splash.at(enemy2.sprite.center(), 0xFFFF00FF, 8);
+                Sample.INSTANCE.play(Assets.SND_RAY);
+                enemy2.die(this);
+                GLog.p(enemy2.name + " has been telefragged.");
             }
         }
-        Iterator it = enemies.iterator();
-        Mob enemy1 = enemies.size() > 2 ? (Mob) it.next() : null;
-        Mob enemy2 = enemies.size() > 2 ? (Mob) it.next() : null;
-        enemy1.pos = enemy2.pos;
-        enemy1.sprite.place(enemy2.pos);
-        enemy2.die(this);
-        GLog.p(enemy2.name + " has been telefragged.");
     }
 
 
@@ -235,8 +248,11 @@ public class PhaseKlik extends PET implements Callback{
 	private static final HashSet<Class<?>> IMMUNITIES = new HashSet<Class<?>>();
 	static {
 		IMMUNITIES.add( Freezing.class );
+        IMMUNITIES.add( Frost.class );
+        IMMUNITIES.add( Chill.class );
 		IMMUNITIES.add( LightningTrap.Electricity.class );
         IMMUNITIES.add( Eye.class );
+        IMMUNITIES.add( AirElemental.class );
 	}
 
 	@Override

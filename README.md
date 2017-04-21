@@ -8,6 +8,16 @@ Amazon Apps: https://www.amazon.de/dp/B01M4O8OLZ/
 
 Changelog so far:
 
+v0.1.5.1: Release:
+- Bugfix: Klik vulnerabilities.
+- Bugfix: Phase shift Klik.
+- Reworked lock generation.
+- Fixed lock picking in hell.
+- Added resist and immune sprite info.
+- Slightly nerfed wolves.
+- Bugfix: Message log flooding.
+- Changed font.
+
 v0.1.5: Release:
 - Added Lock Picking. :)
 - Added new Artifact: Hummingtool

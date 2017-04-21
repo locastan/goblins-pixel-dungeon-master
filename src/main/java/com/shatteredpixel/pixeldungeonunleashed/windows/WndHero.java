@@ -515,13 +515,13 @@ public class WndHero extends WndTabbed {
                 } else { heropet.HP+=effect;}
 				heropet.sprite.emitter().burst(Speck.factory(Speck.HEALING),2);
 				heropet.sprite.showStatus(CharSprite.POSITIVE, TXT_HEALS, effect);
-				GameScene.pethealth.target(null);
+				heropet.checkHP();
 			}
 			heropet.cooldown=1;
 			item.detach(Dungeon.hero.belongings.backpack);
-			GLog.n("Your pet eats the %s.",item.name());
+			GLog.p("Your pet eats the %s.",item.name());
 		}else if (!nearby){
-			GLog.n("Your pet is too far away!");
+			GLog.w("Your pet is too far away!");
 		} else {
 			GLog.n("Your pet rejects the %s.",item.name());
 
@@ -530,7 +530,7 @@ public class WndHero extends WndTabbed {
 
 	private boolean checkFood(Integer petType, Item item){
 		boolean nomnom = false;
-// TODO: Sort out food types for the KLIKs.
+
 		if (petType==1){ //Spidersilk klik
 			if (item instanceof Food
 					|| item instanceof ChargrilledMeat

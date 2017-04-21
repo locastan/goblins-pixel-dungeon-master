@@ -110,7 +110,7 @@ public class HummingTool extends Artifact {
 				  "It seems a bit weak and only moves slowly. Maybe I can feed it something?";
 		else if (level == 1)
 			desc += "The little thing seems more agile after eating that golden key. " +
-				"It zips around fast and now it takes less time to pick a lock.";
+				"It zips around fast and now it takes less charge to pick a lock.";
 		else if (level == 2)
 			desc += "The Hummingtool is getting quite fast. Picking locks with it is requiring " +
 					"less and less effort now. I wonder how fast it can go when fully improved?";
@@ -191,7 +191,7 @@ public class HummingTool extends Artifact {
                         charge += 25;
 						upgrade();
 						if (level >= 1 && level <= 3) {
-							GLog.p("The Hummingtool it is now " +level+ "!");
+							GLog.p("The Hummingtool it is now level " +level+ "!");
 						}
 
 					} else {

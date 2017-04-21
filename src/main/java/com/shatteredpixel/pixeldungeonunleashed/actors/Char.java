@@ -270,10 +270,21 @@ public abstract class Char extends Actor {
 		Class<?> srcClass = src.getClass();
 		if (immunities().contains( srcClass )) {
 			dmg = 0;
+			if (sprite != null) {
+				sprite.showStatus(CharSprite.WARNING, "Immune: "+ srcClass.getSimpleName());
+			}
 		} else if (resistances().contains( srcClass )) {
-			dmg = Random.IntRange( 0, dmg );
+			int odmg = dmg;
+            dmg = Random.IntRange( 0, dmg-1 );
+            if (sprite != null) {
+                sprite.showStatus(CharSprite.NEUTRAL, "Resisted: "+ srcClass.getSimpleName() + " ("+ Integer.toString(dmg-odmg)+")");
+            }
 		} else if (vulnerable().contains( srcClass )) {
-			dmg += +dmg/2;
+			if (dmg == 0) {
+				dmg = Random.Int(Dungeon.depth/3, Dungeon.depth);
+			} else {
+				dmg += +dmg / 2;
+			}
             if (sprite != null) {
                 sprite.showStatus(CharSprite.NEGATIVE, "Vulnerable: "+ srcClass.getSimpleName());
             }

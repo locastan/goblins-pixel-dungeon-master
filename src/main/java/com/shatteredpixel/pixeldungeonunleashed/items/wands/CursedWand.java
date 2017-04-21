@@ -282,7 +282,6 @@ public class CursedWand {
 		switch(Random.Int(4)){
 
 			//sheep transformation
-			// TODO: Prevent bosses from being transformed.
 			case 0:
 				cursedFX(user, bolt, new Callback() {
 					public void call() {

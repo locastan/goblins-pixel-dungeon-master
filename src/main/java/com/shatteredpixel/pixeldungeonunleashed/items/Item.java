@@ -59,8 +59,8 @@ public class Item implements Bundlable {
 	
 	private static final String TXT_TO_STRING		= "%s";
 	private static final String TXT_TO_STRING_X		= "%s x%d";
-	private static final String TXT_TO_STRING_LVL	= "%s%+d";
-	private static final String TXT_TO_STRING_LVL_X	= "%s%+d x%d";
+	private static final String TXT_TO_STRING_LVL	= "%s %+d";
+	private static final String TXT_TO_STRING_LVL_X	= "%s %+d x%d";
 	
 	protected static final float TIME_TO_THROW		= 1.0f;
 	protected static final float TIME_TO_PICK_UP	= 1.0f;

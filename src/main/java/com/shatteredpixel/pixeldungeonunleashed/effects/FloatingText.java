@@ -35,7 +35,7 @@ import com.watabou.utils.SparseArray;
 
 public class FloatingText extends BitmapText {
 
-	private static final float LIFESPAN	= 1f;
+	private static final float LIFESPAN	= 2f;
 	private static final float DISTANCE	= DungeonTilemap.SIZE;
 
 	private float timeLeft;

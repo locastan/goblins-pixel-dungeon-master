@@ -130,7 +130,6 @@ public class Generator {
 		};
 		Category.POTION.probs = new float[]{ 36, 20, 15, 15, 12, 10, 10, 10, 10, 10, 10, 4, 0, 0, 10 };
 
-		//TODO: add last ones when implemented
 		Category.WAND.classes = new Class<?>[]{
 			WandOfMagicMissile.class,
 			WandOfLightning.class,

@@ -387,7 +387,7 @@ public class StartScene extends PixelScene {
 		protected void createChildren() {
 			super.createChildren();
 
-			secondary = createText( 6 );
+			secondary = createText( 5 );
 			add( secondary );
 		}
 
@@ -470,7 +470,7 @@ public class StartScene extends PixelScene {
 			avatar = new Image( Assets.AVATARS );
 			add( avatar );
 
-			name = PixelScene.createText( 9 );
+			name = PixelScene.createText( 8 );
 			add( name );
 
 			emitter = new Emitter();

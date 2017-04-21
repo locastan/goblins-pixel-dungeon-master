@@ -35,7 +35,7 @@ import com.watabou.utils.Signal;
 
 public class GameLog extends Component implements Signal.Listener<String> {
 
-	private static final int MAX_MESSAGES = 3;
+	private static final int MAX_MESSAGES = 4;
 	
 	private static final Pattern PUNCTUATION = Pattern.compile( ".*[.,;?! ]$" );
 	
@@ -99,7 +99,7 @@ public class GameLog extends Component implements Signal.Listener<String> {
 		}
 		
 		if (length > MAX_MESSAGES) {
-			remove( members.get( 0 ) );
+            remove(members.get(0));
 		}
 		
 		layout();
@@ -114,6 +114,7 @@ public class GameLog extends Component implements Signal.Listener<String> {
 			entry.y = pos - entry.height();
 			pos -= entry.height();
 		}
+        newLine();
 	}
 	
 	@Override
