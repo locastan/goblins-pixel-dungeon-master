@@ -8,6 +8,12 @@ Amazon Apps: https://www.amazon.de/dp/B01M4O8OLZ/
 
 Changelog so far:
 
+v0.1.5.2: Release:
+- New font only for big texts.
+- Fixed SoW blast freeze.
+- Klik equipped item feeding fixed.
+- Klik vs. Mr. Fingers crash fix.
+
 v0.1.5.1: Release:
 - Bugfix: Klik vulnerabilities.
 - Bugfix: Phase shift Klik.

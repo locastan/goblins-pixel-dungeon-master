@@ -29,6 +29,7 @@ import com.shatteredpixel.pixeldungeonunleashed.actors.Actor;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.Mob;
 import com.shatteredpixel.pixeldungeonunleashed.actors.mobs.pets.PET;
 import com.shatteredpixel.pixeldungeonunleashed.effects.Speck;
+import com.shatteredpixel.pixeldungeonunleashed.items.EquipableItem;
 import com.shatteredpixel.pixeldungeonunleashed.items.Item;
 import com.shatteredpixel.pixeldungeonunleashed.items.Torch;
 import com.shatteredpixel.pixeldungeonunleashed.items.armor.ClothArmor;
@@ -265,11 +266,11 @@ public class WndHero extends WndTabbed {
 
 		private void statSlot( String label, String value ) {
 
-			BitmapText txt = PixelScene.createText( label, 8 );
+			BitmapText txt = PixelScene.createText( label, 8, false );
 			txt.y = pos;
 			add( txt );
 
-			txt = PixelScene.createText( value, 8 );
+			txt = PixelScene.createText( value, 8, false );
 			txt.measure();
 			txt.x = PixelScene.align( WIDTH * 0.65f );
 			txt.y = pos;
@@ -325,7 +326,7 @@ public class WndHero extends WndTabbed {
 				icon.y = this.y;
 				add( icon );
 
-				txt = PixelScene.createText( buff.toString(), 8 );
+				txt = PixelScene.createText( buff.toString(), 8, false );
 				txt.x = icon.width + GAP;
 				txt.y = this.y + (int)(icon.height - txt.baseLine()) / 2;
 				add( txt );
@@ -367,7 +368,7 @@ public class WndHero extends WndTabbed {
 
 		public PetTab(final PET heropet) {
 
-			name = PixelScene.createText(Utils.capitalize(heropet.name), 9);
+			name = PixelScene.createText(Utils.capitalize(heropet.name), 9, true);
 			name.hardlight(TITLE_COLOR);
 			name.measure();
 			//add(name);
@@ -436,7 +437,7 @@ public class WndHero extends WndTabbed {
 			statSlot(TXT_ATTACK, heropet.attackSkill(null));
 			statSlot(TXT_HEALTH, heropet.HP + "/" + heropet.HT);
 			statSlot(TXT_KILLS, heropet.kills);
-			statSlot(TXT_EXP, heropet.level<20 ? heropet.experience + "/" + (heropet.level*heropet.level*heropet.level) : "Max");
+			statSlot(TXT_EXP, heropet.level<20 ? heropet.experience + "/" + (heropet.level*(heropet.level+heropet.level)*3) : "Max");
 			if (heropet.type==4 || heropet.type==5 || heropet.type==6 || heropet.type==7 || heropet.type==12){
 				statSlot(TXT_BREATH, heropet.cooldown==0 ? "Ready" : heropet.cooldown + " Turns");
 			} else if (heropet.type==1){
@@ -458,11 +459,11 @@ public class WndHero extends WndTabbed {
 
 		private void statSlot(String label, String value) {
 
-			BitmapText txt = PixelScene.createText(label, 8);
+			BitmapText txt = PixelScene.createText(label, 8, false);
 			txt.y = pos;
 			add(txt);
 
-			txt = PixelScene.createText(value, 8);
+			txt = PixelScene.createText(value, 8, false);
 			txt.measure();
 			txt.x = PixelScene.align(WIDTH * 0.65f);
 			txt.y = pos;
@@ -518,6 +519,9 @@ public class WndHero extends WndTabbed {
 				heropet.checkHP();
 			}
 			heropet.cooldown=1;
+			if (item.isEquipped( Dungeon.hero )) {
+				((EquipableItem)item).doUnequip( Dungeon.hero, true );
+			}
 			item.detach(Dungeon.hero.belongings.backpack);
 			GLog.p("Your pet eats the %s.",item.name());
 		}else if (!nearby){

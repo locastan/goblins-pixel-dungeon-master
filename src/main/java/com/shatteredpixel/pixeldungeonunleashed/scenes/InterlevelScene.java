@@ -111,7 +111,7 @@ public class InterlevelScene extends PixelScene {
 			break;
 		}
 		
-		message = PixelScene.createText( text, 9 );
+		message = PixelScene.createText( text, 9, true );
 		message.measure();
 		message.x = (Camera.main.width - message.width()) / 2;
 		message.y = (Camera.main.height - message.height()) / 2;

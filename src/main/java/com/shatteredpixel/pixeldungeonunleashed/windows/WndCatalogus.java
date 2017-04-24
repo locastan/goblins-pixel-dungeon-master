@@ -71,7 +71,7 @@ public class WndCatalogus extends WndTabbed {
 			resize( WIDTH_P, HEIGHT_P );
 		}
 
-		txtTitle = PixelScene.createText( TXT_TITLE, 9 );
+		txtTitle = PixelScene.createText( TXT_TITLE, 9, true );
 		txtTitle.hardlight(Window.TITLE_COLOR);
 		txtTitle.measure();
 		add(txtTitle);
@@ -241,7 +241,7 @@ public class WndCatalogus extends WndTabbed {
 			sprite = new ItemSprite();
 			add( sprite );
 			
-			label = PixelScene.createText( 8 );
+			label = PixelScene.createText( 8, false );
 			add( label );
 		}
 		

@@ -70,17 +70,17 @@ public class WndSadGhost extends Window {
 			case 1:default:
 				titlebar.icon( new FetidRatSprite() );
 				titlebar.label( "DEFEATED FETID RAT" );
-				message = PixelScene.createMultiline( TXT_RAT+TXT_GIVEITEM, 6 );
+				message = PixelScene.createMultiline( TXT_RAT+TXT_GIVEITEM, 6, false );
 				break;
 			case 2:
 				titlebar.icon( new GnollTricksterSprite() );
 				titlebar.label( "DEFEATED GNOLL TRICKSTER" );
-				message = PixelScene.createMultiline( TXT_GNOLL+TXT_GIVEITEM, 6 );
+				message = PixelScene.createMultiline( TXT_GNOLL+TXT_GIVEITEM, 6, false );
 				break;
 			case 3:
 				titlebar.icon( new GreatCrabSprite());
 				titlebar.label( "DEFEATED GREAT CRAB" );
-				message = PixelScene.createMultiline( TXT_CRAB+TXT_GIVEITEM, 6 );
+				message = PixelScene.createMultiline( TXT_CRAB+TXT_GIVEITEM, 6, false );
 				break;
 
 		}

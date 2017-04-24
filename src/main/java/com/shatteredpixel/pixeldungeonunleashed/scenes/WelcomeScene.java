@@ -35,7 +35,7 @@ public class WelcomeScene extends PixelScene {
 
 	private static final String TTL_Welcome = "Welcome!";
 
-	private static final String TTL_Update = "v0.1.5.1: Release";
+	private static final String TTL_Update = "v0.1.5.2: Release";
 
 	private static final String TTL_Future = "Wait What?";
 
@@ -47,6 +47,11 @@ public class WelcomeScene extends PixelScene {
 			"Enjoy";
 
 	private static final String TXT_Update =
+			"v0.1.5.2: Release\n"+
+					"- New font only for big texts.\n"+
+					"- Fixed SoW blast freeze.\n"+
+					"- Klik equipped item feeding fixed.\n"+
+					"- Klik vs. Mr. Fingers crash fix.\n"+
 			"v0.1.5.1: Release\n"+
 					"- Bugfix for Klik vulnerabilities.\n"+
 					"- Bugfix for phase shift Klik.\n"+
@@ -65,13 +70,7 @@ public class WelcomeScene extends PixelScene {
 					"- Added Klik vulnerabilities.\n"+
 					"- Klik damage declines with health.\n"+
 					"- Klik exp to level up increased.\n"+
-					"- Increased metal klik cooldown.\n"+
-			"v0.1.4: Release\n"+
-					"- Added Kliks as pets! :D\n"+
-					"- Added special healthbar for pet.\n"+
-					"- Changed healing when feeding the pet.\n"+
-					"- Pets follow the descend if in line of sight.\n"+
-					"- Finally fixed the donation freeze. :)\n";
+					"- Increased metal klik cooldown.\n";
 
 	private static final String TXT_Future =
 			"It seems that your current saves are from a future version of Goblins Pixel Dungeon!\n\n"+
@@ -90,18 +89,18 @@ public class WelcomeScene extends PixelScene {
 
 		if (gameversion == 0) {
 
-			text = createMultiline(TXT_Welcome, 9);
-			title = createMultiline(TTL_Welcome, 14);
+			text = createMultiline(TXT_Welcome, 9, false);
+			title = createMultiline(TTL_Welcome, 14, true);
 
 		} else if (gameversion <= Game.versionCode) {
 
-			text = createMultiline(TXT_Update, 6 );
-			title = createMultiline(TTL_Update, 9 );
+			text = createMultiline(TXT_Update, 6, false );
+			title = createMultiline(TTL_Update, 9, true );
 
 		} else {
 
-			text = createMultiline( TXT_Future, 9 );
-			title = createMultiline( TTL_Future, 14 );
+			text = createMultiline( TXT_Future, 9, false );
+			title = createMultiline( TTL_Future, 14, true );
 
 		}
 

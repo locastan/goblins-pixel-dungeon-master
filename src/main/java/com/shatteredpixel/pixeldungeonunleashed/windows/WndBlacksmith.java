@@ -70,7 +70,7 @@ public class WndBlacksmith extends Window {
 		titlebar.setRect( 0, 0, WIDTH, 0 );
 		add( titlebar );
 		
-		BitmapTextMultiline message = PixelScene.createMultiline( TXT_PROMPT, 6 );
+		BitmapTextMultiline message = PixelScene.createMultiline( TXT_PROMPT, 6, false );
 		message.maxWidth = WIDTH;
 		message.measure();
 		message.y = titlebar.bottom() + GAP;

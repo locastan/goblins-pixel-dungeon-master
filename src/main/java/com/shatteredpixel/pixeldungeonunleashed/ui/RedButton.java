@@ -52,7 +52,7 @@ public class RedButton extends Button {
 		bg = Chrome.get( Chrome.Type.BUTTON );
 		add( bg );
 		
-		text = PixelScene.createText( 9 );
+		text = PixelScene.createText( 9, true );
 		add( text );
 	}
 	

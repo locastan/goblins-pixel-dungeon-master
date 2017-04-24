@@ -127,7 +127,7 @@ public class LoadSaveScene extends PixelScene {
                 saveInstructions = "In Normal mode you may save at level entrance signs.";
                 break;
         }
-        BitmapText title = PixelScene.createText( TXT_TITLE + showClassName + " - " + diffLevel, 9 );
+        BitmapText title = PixelScene.createText( TXT_TITLE + showClassName + " - " + diffLevel, 9, true );
         title.hardlight( Window.TITLE_COLOR );
         title.measure();
         title.x = align( (w - title.width()) / 2 );
@@ -139,14 +139,14 @@ public class LoadSaveScene extends PixelScene {
         if (info != null) {
             currentProgress = Utils.format(TXT_DPTH_LVL, info.depth, info.level);
         }
-        BitmapText subTitle = PixelScene.createText( "Currently " + currentProgress, 6 );
+        BitmapText subTitle = PixelScene.createText( "Currently " + currentProgress, 6, false );
         subTitle.hardlight(Window.TITLE_COLOR);
         subTitle.measure();
         subTitle.x = align( (w - title.width()) / 2 );
         subTitle.y =  (BUTTON_HEIGHT / 2) + BUTTON_PADDING ;
         add(subTitle);
 
-        BitmapText saveInfo = PixelScene.createText( saveInstructions, 6 );
+        BitmapText saveInfo = PixelScene.createText( saveInstructions, 6, false );
         saveInfo.hardlight( Window.TITLE_COLOR );
         saveInfo.measure();
         saveInfo.x = align( (w - saveInfo.width()) / 2 );
@@ -165,7 +165,7 @@ public class LoadSaveScene extends PixelScene {
 
         for (String saveSlot : slotList) {
             // add the row caption..
-            BitmapText buttonCapton1 = PixelScene.createText(TXT_SLOTNAME + " " + saveSlot, 9);
+            BitmapText buttonCapton1 = PixelScene.createText(TXT_SLOTNAME + " " + saveSlot, 9, true);
             buttonCapton1.hardlight(CLR_WHITE);
             buttonCapton1.measure();
             buttonCapton1.x = BUTTON_PADDING;
@@ -388,7 +388,7 @@ public class LoadSaveScene extends PixelScene {
         protected void createChildren() {
             super.createChildren();
 
-            secondary = createText( 6 );
+            secondary = createText( 6, false );
             secondary.hardlight( SECONDARY_COLOR );
             add( secondary );
         }

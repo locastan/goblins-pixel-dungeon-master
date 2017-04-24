@@ -228,7 +228,7 @@ public class TitleScene extends PixelScene {
 			image = new Image( Assets.DASHBOARD );
 			add( image );
 			
-			label = createText( 9 );
+			label = createText( 9, true );
 			add( label );
 		}
 		

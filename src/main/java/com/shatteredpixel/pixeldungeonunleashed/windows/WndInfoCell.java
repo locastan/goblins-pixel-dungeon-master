@@ -64,7 +64,7 @@ public class WndInfoCell extends Window {
 		titlebar.setRect( 0, 0, WIDTH, 0 );
 		add( titlebar );
 		
-		BitmapTextMultiline info = PixelScene.createMultiline( 6 );
+		BitmapTextMultiline info = PixelScene.createMultiline( 6, false );
 		add( info );
 		
 		StringBuilder desc = new StringBuilder( Dungeon.level.tileDesc( tile ) );

@@ -102,7 +102,7 @@ public class BadgesList extends ScrollPane {
 			icon = new Image();
 			add( icon );
 			
-			label = PixelScene.createText( 6 );
+			label = PixelScene.createText( 6, false );
 			add( label );
 		}
 		

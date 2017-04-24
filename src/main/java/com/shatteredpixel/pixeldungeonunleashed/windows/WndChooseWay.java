@@ -53,7 +53,7 @@ public class WndChooseWay extends Window {
 		
 		Highlighter hl = new Highlighter( way1.desc() + "\n\n" + way2.desc() + "\n\n" + TXT_MESSAGE );
 		
-		BitmapTextMultiline normal = PixelScene.createMultiline( hl.text, 6 );
+		BitmapTextMultiline normal = PixelScene.createMultiline( hl.text, 6, false );
 		normal.maxWidth = WIDTH;
 		normal.measure();
 		normal.x = titlebar.left();
@@ -63,7 +63,7 @@ public class WndChooseWay extends Window {
 		if (hl.isHighlighted()) {
 			normal.mask = hl.inverted();
 			
-			BitmapTextMultiline highlighted = PixelScene.createMultiline( hl.text, 6 );
+			BitmapTextMultiline highlighted = PixelScene.createMultiline( hl.text, 6, false );
 			highlighted.maxWidth = normal.maxWidth;
 			highlighted.measure();
 			highlighted.x = normal.x;

@@ -80,13 +80,13 @@ public class WndLockpick extends Window {
         hummingtool = hero.belongings.getItem(HummingTool.class);
 		resize(WIDTH, GoblinsPixelDungeon.landscape() ? HEIGHT_L : HEIGHT_P);
 
-		txtTitle = PixelScene.createText(TXT_TITLE, 9);
+		txtTitle = PixelScene.createText(TXT_TITLE, 9, true);
 		txtTitle.hardlight(Window.TITLE_COLOR);
 		txtTitle.measure();
 		txtTitle.x = PixelScene.align(PixelScene.uiCamera, (WIDTH - txtTitle.width()) / 2);
 		add(txtTitle);
 
-        BitmapTextMultiline info = PixelScene.createMultiline( 5 );
+        BitmapTextMultiline info = PixelScene.createMultiline( 5, false );
         add( info );
         info.text( "Click the gears to align the gaps on top." );
         info.maxWidth = WIDTH;
@@ -94,7 +94,7 @@ public class WndLockpick extends Window {
         info.x = 2;
         info.y = 10;
 
-        txtCharge = PixelScene.createText("Tool Charge: " + hummingtool.charge(), 5);
+        txtCharge = PixelScene.createText("Tool Charge: " + hummingtool.charge(), 5, false);
         txtCharge.hardlight(Window.TITLE_COLOR);
         txtCharge.measure();
         txtCharge.x = 50 - txtCharge.width();
@@ -102,7 +102,7 @@ public class WndLockpick extends Window {
         add(txtCharge);
 
         // For debug reasons display the seed number on bottom left corner.
-        txtSeed = PixelScene.createText(String.valueOf(cell), 3);
+        txtSeed = PixelScene.createText(String.valueOf(cell), 3, false);
         txtSeed.hardlight(0xFFCC00);
         txtSeed.measure();
         txtSeed.x = 2;

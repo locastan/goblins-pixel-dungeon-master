@@ -54,7 +54,7 @@ public class WndJournal extends Window {
 		super();
 		resize( WIDTH, GoblinsPixelDungeon.landscape() ? HEIGHT_L : HEIGHT_P );
 
-		txtTitle = PixelScene.createText( TXT_TITLE, 9 );
+		txtTitle = PixelScene.createText( TXT_TITLE, 9, true );
 		txtTitle.hardlight( Window.TITLE_COLOR );
 		txtTitle.measure();
 		txtTitle.x = PixelScene.align( PixelScene.uiCamera, (WIDTH - txtTitle.width()) / 2 );
@@ -105,7 +105,7 @@ public class WndJournal extends Window {
 		
 		@Override
 		protected void createChildren() {
-			feature = PixelScene.createText( 9 );
+			feature = PixelScene.createText( 9, true );
 			add( feature );
 			
 			depth = new BitmapText( PixelScene.font1x );

@@ -141,10 +141,12 @@ public class Fingers extends Mob {
 
     @Override
     public int attackProc( Char enemy, int damage ) {
-        if (Random.Int( 4 ) == 0) {
-            Buff.prolong(enemy, Cripple.class, Cripple.DURATION);
-        } else if (Random.Int( 4 ) == 1) {
-            Buff.prolong(enemy, Weakness.class, Weakness.DURATION );
+        if (enemy == Dungeon.hero) {
+            if (Random.Int(4) == 0) {
+                Buff.prolong(enemy, Cripple.class, Cripple.DURATION);
+            } else if (Random.Int(4) == 1) {
+                Buff.prolong(enemy, Weakness.class, Weakness.DURATION);
+            }
         }
 
         return damage;

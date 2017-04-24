@@ -63,6 +63,7 @@ public class PixelScene extends Scene {
 	public static BitmapText.Font font2x;
 	public static BitmapText.Font font25x;
 	public static BitmapText.Font font3x;
+	public static BitmapText.Font fontcomic;
 	
 	@Override
 	public void create() {
@@ -130,12 +131,17 @@ public class PixelScene extends Scene {
 				BitmapCache.get( Assets.FONTS25X ), 17, 0x00000000, BitmapText.Font.LATIN_FULL );
 			font25x.baseLine = 13;
 			font25x.tracking = -1;
-			
+
 			// 9x15 (18)
 			font3x = Font.colorMarked(
-				BitmapCache.get( Assets.FONTS3X ), 22, 0x00000000, Font.LATIN_FULL );
-			font3x.baseLine = 20;
+					BitmapCache.get( Assets.FONTS3X ), 22, 0x00000000, BitmapText.Font.LATIN_FULL );
+			font3x.baseLine = 17;
 			font3x.tracking = -2;
+
+			fontcomic = Font.colorMarked(
+					BitmapCache.get( Assets.FONTCOMIC ), 22, 0x00000000, BitmapText.Font.LATIN_FULL );
+			fontcomic.baseLine = 20;
+			fontcomic.tracking = -3;
 		}
 	}
 	
@@ -152,86 +158,128 @@ public class PixelScene extends Scene {
 		chooseFont( size, defaultZoom );
 	}
 
-	public static void chooseFont( float size, float zoom ) {
+	public static void chooseComicFont( float size, float zoom ) {
 
 		float pt = size * zoom;
 
 		if (pt >= 19) {
-			
+
 			scale = pt / 24;
 			if (1.5 <= scale && scale < 2) {
-				font = font3x;
+				font = fontcomic;
 				scale = (pt / 26);
 			} else {
-				font = font3x;
+				font = fontcomic;
 				// modified scale to fit the custom font3x.png...
 				//scale = (int)scale;
 			}
-			
+
 		} else if (pt >= 14) {
-			
+
 			scale = pt / 28;
 			if (1.8 <= scale && scale < 2) {
-				font = font3x;
+				font = fontcomic;
 				scale = (pt / 30);
 			} else {
-				font = font3x;
+				font = fontcomic;
 				//scale = (int)scale;
 			}
-			
-		} else if (pt >= 12) {
-			
-			scale = pt / 12;
-			if (1.7 <= scale && scale < 2) {
-				font = font15x;
-				scale = (int)(pt / 10);
-			} else {
-				font = font2x;
-				scale = (int)scale;
-			}
-			
-		} else if (pt >= 10) {
-			
-			scale = pt / 10;
-			if (1.4 <= scale && scale < 2) {
-				font = font1x;
-				scale = (int)(pt / 7);
-			} else {
-				font = font15x;
-				scale = (int)scale;
-			}
-			
+
 		} else {
-			
+
 			font = font1x;
 			scale = Math.max( 1, (int)(pt / 7) );
-			
+
 		}
-		
+
 		scale /= zoom;
 	}
+
+    public static void chooseFont( float size, float zoom ) {
+
+        float pt = size * zoom;
+
+        if (pt >= 19) {
+
+            scale = pt / 19;
+            if (1.5 <= scale && scale < 2) {
+                font = font25x;
+                scale = (int)(pt / 14);
+            } else {
+                font = font3x;
+                scale = (int)scale;
+            }
+
+        } else if (pt >= 14) {
+
+            scale = pt / 14;
+            if (1.8 <= scale && scale < 2) {
+                font = font2x;
+                scale = (int)(pt / 12);
+            } else {
+                font = font25x;
+                scale = (int)scale;
+            }
+
+        } else if (pt >= 12) {
+
+            scale = pt / 12;
+            if (1.7 <= scale && scale < 2) {
+                font = font15x;
+                scale = (int)(pt / 10);
+            } else {
+                font = font2x;
+                scale = (int)scale;
+            }
+
+        } else if (pt >= 10) {
+
+            scale = pt / 10;
+            if (1.4 <= scale && scale < 2) {
+                font = font1x;
+                scale = (int)(pt / 7);
+            } else {
+                font = font15x;
+                scale = (int)scale;
+            }
+
+        } else {
+
+            font = font1x;
+            scale = Math.max( 1, (int)(pt / 7) );
+
+        }
+
+        scale /= zoom;
+    }
 	
-	public static BitmapText createText( float size ) {
-		return createText( null, size );
+	public static BitmapText createText( float size, boolean comic ) {
+		return createText( null, size, comic );
 	}
 	
-	public static BitmapText createText( String text, float size ) {
-		
-		chooseFont( size );
-		
+	public static BitmapText createText( String text, float size, boolean comic ) {
+		if (comic) {
+			chooseComicFont( size, defaultZoom);
+		} else {
+			chooseFont(size);
+		}
 		BitmapText result = new BitmapText( text, font );
 		result.scale.set( scale );
-		
+
 		return result;
 	}
 	
-	public static BitmapTextMultiline createMultiline( float size ) {
-		return createMultiline( null, size );
+	public static BitmapTextMultiline createMultiline( float size, boolean comic ) {
+		return createMultiline( null, size, comic );
 	}
 	
-	public static BitmapTextMultiline createMultiline( String text, float size ) {
-		
-		chooseFont( size );
+	public static BitmapTextMultiline createMultiline( String text, float size, boolean comic ) {
+
+		if (comic) {
+			chooseComicFont( size, defaultZoom);
+		} else {
+			chooseFont(size);
+		}
 		
 		BitmapTextMultiline result = new BitmapTextMultiline( text, font );
 		result.scale.set( scale );

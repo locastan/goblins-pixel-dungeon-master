@@ -368,6 +368,8 @@ public class ShieldOfWonders extends Artifact{
                                 Dungeon.observe();
                                 GLog.s( "Your shield emits a psionic blast!" );
 
+                                user.spendAndNext( 1f );
+
                                 if (!user.isAlive()) {
                                     Dungeon.fail( Utils.format(ResultDescriptions.ITEM, name ));
                                     GLog.n("Your shield tears your mind apart...");

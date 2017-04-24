@@ -22,6 +22,7 @@ import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.ToxicGas;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Amok;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Buff;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Ooze;
+import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Paralysis;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Poison;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Sleep;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Terror;
@@ -101,6 +102,7 @@ public class RottingFist extends Mob {
     static {
         IMMUNITIES.add( Amok.class );
         IMMUNITIES.add( Sleep.class );
+        IMMUNITIES.add( Paralysis.class );
         IMMUNITIES.add( Terror.class );
         IMMUNITIES.add( Poison.class );
         IMMUNITIES.add( Vertigo.class );

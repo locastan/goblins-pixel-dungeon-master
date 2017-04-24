@@ -234,7 +234,7 @@ public class StartScene extends PixelScene {
 
 		if (!(huntressUnlocked = (Badges.isUnlocked( Badges.Badge.BOSS_SLAIN_3 )  || Badges.isUnlocked(Badges.Badge.BETA_TESTER)))) {
 
-			BitmapTextMultiline text = PixelScene.createMultiline( TXT_UNLOCK, 9 );
+			BitmapTextMultiline text = PixelScene.createMultiline( TXT_UNLOCK, 9, true );
 			text.maxWidth = (int)width;
 			text.measure();
 
@@ -387,7 +387,7 @@ public class StartScene extends PixelScene {
 		protected void createChildren() {
 			super.createChildren();
 
-			secondary = createText( 5 );
+			secondary = createText( 5, false );
 			add( secondary );
 		}
 
@@ -470,7 +470,7 @@ public class StartScene extends PixelScene {
 			avatar = new Image( Assets.AVATARS );
 			add( avatar );
 
-			name = PixelScene.createText( 8 );
+			name = PixelScene.createText( 8, true );
 			add( name );
 
 			emitter = new Emitter();

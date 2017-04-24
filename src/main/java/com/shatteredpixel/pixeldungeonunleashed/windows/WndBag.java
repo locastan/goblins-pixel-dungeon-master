@@ -120,7 +120,7 @@ public class WndBag extends WndTabbed {
 		int slotsWidth = SLOT_SIZE * nCols + SLOT_MARGIN * (nCols - 1);
 		int slotsHeight = SLOT_SIZE * nRows + SLOT_MARGIN * (nRows - 1);
 
-		BitmapText txtTitle = PixelScene.createText( title != null ? title : Utils.capitalize( bag.name() ), 9 );
+		BitmapText txtTitle = PixelScene.createText( title != null ? title : Utils.capitalize( bag.name() ), 9, true );
 		txtTitle.hardlight( TITLE_COLOR );
 		txtTitle.measure();
 		txtTitle.x = (int)(slotsWidth - txtTitle.width()) / 2;

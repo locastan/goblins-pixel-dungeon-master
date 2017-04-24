@@ -248,11 +248,11 @@ public class WndRanking extends WndTabbed {
 		
 		private float statSlot( Group parent, String label, String value, float pos ) {
 			
-			BitmapText txt = PixelScene.createText( label, 7 );
+			BitmapText txt = PixelScene.createText( label, 7, false );
 			txt.y = pos;
 			parent.add( txt );
 			
-			txt = PixelScene.createText( value, 7 );
+			txt = PixelScene.createText( value, 7, false );
 			txt.measure();
 			txt.x = PixelScene.align( WIDTH * 0.65f );
 			txt.y = pos;
@@ -366,7 +366,7 @@ public class WndRanking extends WndTabbed {
 			slot = new ItemSlot();
 			add( slot );
 			
-			name = PixelScene.createText( "?", 7 );
+			name = PixelScene.createText( "?", 7, false );
 			add( name );
 			
 			super.createChildren();

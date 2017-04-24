@@ -50,7 +50,7 @@ public class WndChallenges extends Window {
 
 		this.editable = editable;
 
-		BitmapText title = PixelScene.createText( TITLE, 9 );
+		BitmapText title = PixelScene.createText( TITLE, 9, true );
 		title.hardlight( TITLE_COLOR );
 		title.measure();
 		title.x = PixelScene.align( camera, (WIDTH - title.width()) / 2 );

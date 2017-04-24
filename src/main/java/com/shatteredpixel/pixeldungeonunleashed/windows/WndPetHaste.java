@@ -55,7 +55,7 @@ public class WndPetHaste extends Window {
 		add(titlebar);
 
 		BitmapTextMultiline message = PixelScene
-				.createMultiline(TXT_MESSAGE, 6);
+				.createMultiline(TXT_MESSAGE, 6, false);
 		message.maxWidth = WIDTH;
 		message.measure();
 		message.y = titlebar.bottom() + GAP;

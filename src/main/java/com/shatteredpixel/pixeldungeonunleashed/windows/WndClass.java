@@ -119,7 +119,7 @@ public class WndClass extends WndTabbed {
 					pos += GAP;
 				}
 
-				BitmapText dot = PixelScene.createText( DOT, 6 );
+				BitmapText dot = PixelScene.createText( DOT, 6, false );
 				dot.x = MARGIN;
 				dot.y = pos;
 				if (dotWidth == 0) {
@@ -128,7 +128,7 @@ public class WndClass extends WndTabbed {
 				}
 				add( dot );
 
-				BitmapTextMultiline item = PixelScene.createMultiline( items[i], 6 );
+				BitmapTextMultiline item = PixelScene.createMultiline( items[i], 6, false );
 				item.x = dot.x + dotWidth;
 				item.y = pos;
 				item.maxWidth = (int)(WIDTH - MARGIN * 2 - dotWidth);
@@ -178,7 +178,7 @@ public class WndClass extends WndTabbed {
 
 			Highlighter hl = new Highlighter( text );
 
-			normal = PixelScene.createMultiline( hl.text, 6 );
+			normal = PixelScene.createMultiline( hl.text, 6, false );
 			normal.maxWidth = WIDTH - MARGIN * 2;
 			normal.measure();
 			normal.x = MARGIN;
@@ -188,7 +188,7 @@ public class WndClass extends WndTabbed {
 			if (hl.isHighlighted()) {
 				normal.mask = hl.inverted();
 
-				highlighted = PixelScene.createMultiline( hl.text, 6 );
+				highlighted = PixelScene.createMultiline( hl.text, 6, false );
 				highlighted.maxWidth = normal.maxWidth;
 				highlighted.measure();
 				highlighted.x = normal.x;

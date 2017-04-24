@@ -216,7 +216,7 @@ public class WndInfoItem extends Window {
 		titlebar.setRect( 0, 0, WIDTH, 0 );
 		add( titlebar );
 		
-		BitmapTextMultiline txtInfo = PixelScene.createMultiline( info, 6 );
+		BitmapTextMultiline txtInfo = PixelScene.createMultiline( info, 6, false );
 		txtInfo.maxWidth = WIDTH;
 		txtInfo.measure();
 		txtInfo.x = titlebar.left();

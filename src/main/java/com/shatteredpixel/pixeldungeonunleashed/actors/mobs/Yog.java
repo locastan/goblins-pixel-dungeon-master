@@ -33,6 +33,7 @@ import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.ToxicGas;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Amok;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Burning;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Charm;
+import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Paralysis;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Sleep;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Terror;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Vertigo;
@@ -195,6 +196,7 @@ public class Yog extends Mob {
 		IMMUNITIES.add( Sleep.class );
 		IMMUNITIES.add( Burning.class );
 		IMMUNITIES.add( ToxicGas.class );
+		IMMUNITIES.add( Paralysis.class );
 		IMMUNITIES.add( ScrollOfPsionicBlast.class );
 		IMMUNITIES.add( Vertigo.class );
 	}

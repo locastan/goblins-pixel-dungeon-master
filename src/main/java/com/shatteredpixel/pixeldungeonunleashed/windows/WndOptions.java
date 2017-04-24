@@ -37,14 +37,14 @@ public class WndOptions extends Window {
 	public WndOptions( String title, String message, String... options ) {
 		super();
 		
-		BitmapTextMultiline tfTitle = PixelScene.createMultiline( title, 9 );
+		BitmapTextMultiline tfTitle = PixelScene.createMultiline( title, 9, true );
 		tfTitle.hardlight( TITLE_COLOR );
 		tfTitle.x = tfTitle.y = MARGIN;
 		tfTitle.maxWidth = WIDTH - MARGIN * 2;
 		tfTitle.measure();
 		add( tfTitle );
 		
-		BitmapTextMultiline tfMesage = PixelScene.createMultiline( message, 8 );
+		BitmapTextMultiline tfMesage = PixelScene.createMultiline( message, 8, false );
 		tfMesage.maxWidth = WIDTH - MARGIN * 2;
 		tfMesage.measure();
 		tfMesage.x = MARGIN;

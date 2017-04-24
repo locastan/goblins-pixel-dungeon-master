@@ -68,7 +68,7 @@ public class IconTitle extends Component {
 		imIcon = new Image();
 		add( imIcon );
 
-		tfLabel = PixelScene.createMultiline( FONT_SIZE );
+		tfLabel = PixelScene.createMultiline( FONT_SIZE, true );
 		tfLabel.hardlight( Window.TITLE_COLOR );
 		add( tfLabel );
 

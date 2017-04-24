@@ -25,6 +25,7 @@ import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.Fire;
 import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.ToxicGas;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Amok;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Burning;
+import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Paralysis;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Sleep;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Terror;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Vertigo;
@@ -130,6 +131,7 @@ public class BurningFist extends Mob {
         IMMUNITIES.add( Sleep.class );
         IMMUNITIES.add( Terror.class );
         IMMUNITIES.add( Burning.class );
+        IMMUNITIES.add( Paralysis.class );
         IMMUNITIES.add( ScrollOfPsionicBlast.class );
         IMMUNITIES.add( Vertigo.class );
     }

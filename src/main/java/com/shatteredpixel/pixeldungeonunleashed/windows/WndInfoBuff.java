@@ -59,7 +59,7 @@ public class WndInfoBuff extends Window {
 		titlebar.setRect( 0, 0, WIDTH, 0 );
 		add( titlebar );
 
-		BitmapTextMultiline txtInfo = PixelScene.createMultiline(buff.desc(), 6);
+		BitmapTextMultiline txtInfo = PixelScene.createMultiline(buff.desc(), 6, false);
 		txtInfo.maxWidth = WIDTH;
 		txtInfo.measure();
 		txtInfo.x = titlebar.left();
