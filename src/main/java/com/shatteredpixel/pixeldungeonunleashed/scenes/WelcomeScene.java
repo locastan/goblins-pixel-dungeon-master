@@ -35,7 +35,7 @@ public class WelcomeScene extends PixelScene {
 
 	private static final String TTL_Welcome = "Welcome!";
 
-	private static final String TTL_Update = "v0.1.5.2: Release";
+	private static final String TTL_Update = "v0.1.5.3: Release";
 
 	private static final String TTL_Future = "Wait What?";
 
@@ -47,6 +47,12 @@ public class WelcomeScene extends PixelScene {
 			"Enjoy";
 
 	private static final String TXT_Update =
+			"v0.1.5.3: Release\n"+
+					"- Alch. Toolkit no longer consumes potions.\n"+
+					"- Changed Horn of Plenty to Anypot.\n"+
+					"- New Enemies: Bod fly and red snake.\n"+
+					"- Potion of Purification buff.\n"+
+					"- Replaced overpriced ration.\n"+
 			"v0.1.5.2: Release\n"+
 					"- New font only for big texts.\n"+
 					"- Fixed SoW blast freeze.\n"+
@@ -60,17 +66,7 @@ public class WelcomeScene extends PixelScene {
 					"- Added resist and immune sprite info.\n"+
                     "- Slightly nerfed wolves.\n"+
 					"- Bugfixed message log flooding.\n"+
-					"- Changed font.\n"+
-			"v0.1.5: Release\n"+
-					"- Added Lock Picking. :)\n"+
-					"- Added new Artifact: Hummingtool\n"+
-					"- Added Easter Eggs to be hatched.\n"+
-					"- Nerfed Metal Klik.\n"+
-					"- Revamped Klik immunities.\n"+
-					"- Added Klik vulnerabilities.\n"+
-					"- Klik damage declines with health.\n"+
-					"- Klik exp to level up increased.\n"+
-					"- Increased metal klik cooldown.\n";
+					"- Changed font.\n";
 
 	private static final String TXT_Future =
 			"It seems that your current saves are from a future version of Goblins Pixel Dungeon!\n\n"+

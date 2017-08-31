@@ -36,10 +36,7 @@ import com.shatteredpixel.pixeldungeonunleashed.items.artifacts.Artifact;
 import com.shatteredpixel.pixeldungeonunleashed.items.potions.PotionOfHealing;
 import com.shatteredpixel.pixeldungeonunleashed.items.scrolls.Scroll;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.Weapon;
-import com.shatteredpixel.pixeldungeonunleashed.items.weapon.enchantments.Ancient;
-import com.shatteredpixel.pixeldungeonunleashed.items.weapon.enchantments.Glowing;
-import com.shatteredpixel.pixeldungeonunleashed.items.weapon.enchantments.Holy;
-import com.shatteredpixel.pixeldungeonunleashed.items.weapon.enchantments.Luck;
+import com.shatteredpixel.pixeldungeonunleashed.items.weapon.enchantments.*;
 import com.shatteredpixel.pixeldungeonunleashed.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
 import com.shatteredpixel.pixeldungeonunleashed.scenes.GameScene;
@@ -105,7 +102,7 @@ public class Donations extends Blob {
         if (heap != null && hero.donatedLoot != -1) {
             // don't allow accidental donations of important items such as keys or quest items
             // and don't insult the gods with insignificant donations
-            if (heap.peek().unique || heap.peek().price() < 5 || (heap.peek() instanceof MissileWeapon)) {
+            if (heap.peek().unique || heap.peek().price() < 5 || heap.peek() instanceof MissileWeapon) {
                 GLog.p("Herbert refuses your offering.");
                 // throw the item off of the Altar to avoid a redonation loop
 
@@ -158,7 +155,7 @@ public class Donations extends Blob {
                     // upgrade an item
                     Weapon wpn = (Weapon) Generator.random(Generator.Category.MELEE);
                     try {
-                        switch (Random.Int(5)) {
+                        switch (Random.Int(13)) {
                             case 0:
                                 wpn.enchant(Glowing.class.newInstance());
                                 break;
@@ -172,7 +169,31 @@ public class Donations extends Blob {
                                 wpn.enchant(Luck.class.newInstance());
                                 break;
                             case 4:
-                                wpn.enchant();
+                                wpn.enchant(Horror.class.newInstance());
+                                break;
+                            case 5:
+                                wpn.enchant(Death.class.newInstance());
+                                break;
+                            case 6:
+                                wpn.enchant(Midas.class.newInstance());
+                                break;
+                            case 7:
+                                wpn.enchant(Leech.class.newInstance());
+                                break;
+                            case 8:
+                                wpn.enchant(Hunting.class.newInstance());
+                                break;
+                            case 9:
+                                wpn.enchant(com.shatteredpixel.pixeldungeonunleashed.items.weapon.enchantments.Paralysis.class.newInstance());
+                                break;
+                            case 10:
+                                wpn.enchant(Slow.class.newInstance());
+                                break;
+                            case 11:
+                                wpn.enchant(com.shatteredpixel.pixeldungeonunleashed.items.weapon.enchantments.Fire.class.newInstance());
+                                break;
+                            case 12:
+                                wpn.enchant(Instability.class.newInstance());
                                 break;
                         }
                         throwItem(cell, wpn);
@@ -210,11 +231,13 @@ public class Donations extends Blob {
                 GLog.p("Herbert accepts your donation...");
             }
             heap.donate();
+            return;
         } else if (heap != null) {
             if ((heap.peek() instanceof Artifact || heap.peek().level >= 5)) {
                 GLog.p("Herbert grumbles, but accepts your donation and allows you to donate more.");
                 hero.donatedLoot = 0;
                 heap.donate();
+                return;
             } else {
                 GLog.n("Herbert holds a grudge. You need to donate a very powerful item to please him now...");
                 throwItem(cell, heap.pickUp());

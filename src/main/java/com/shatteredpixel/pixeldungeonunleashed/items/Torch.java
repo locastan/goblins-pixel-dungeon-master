@@ -25,6 +25,7 @@ package com.shatteredpixel.pixeldungeonunleashed.items;
 
 import java.util.ArrayList;
 
+import com.shatteredpixel.pixeldungeonunleashed.Assets;
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
 import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.Blob;
 import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.Fire;
@@ -32,6 +33,7 @@ import com.shatteredpixel.pixeldungeonunleashed.levels.Level;
 import com.shatteredpixel.pixeldungeonunleashed.scenes.CellSelector;
 import com.shatteredpixel.pixeldungeonunleashed.scenes.GameScene;
 import com.shatteredpixel.pixeldungeonunleashed.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.noosa.particles.Emitter;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Buff;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Light;
@@ -95,6 +97,7 @@ public class Torch extends Item {
 				if (Level.adjacent(Dungeon.hero.pos, target)) {
 					Item torch = Dungeon.hero.belongings.getItem(Torch.class);
 					torch.detach(Dungeon.hero.belongings.backpack);
+					Sample.INSTANCE.play( Assets.SND_BURNING );
 					GameScene.add(Blob.seed(target, 1, Fire.class));
 				} else {
                     GLog.w( "You can only burn stuff next to you." );

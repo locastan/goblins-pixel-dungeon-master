@@ -125,11 +125,10 @@ public class InfiniteBestiary {
 
         if (subDepth == 1) mobChoice = Random.Int(2);
         else if (subDepth == 2) mobChoice = Random.Int(3);
-        else if (subDepth == 2) mobChoice = Random.Int(3);
-        else if (subDepth == 2) mobChoice = Random.Int(4);
+        else if (subDepth == 3) mobChoice = Random.Int(3);
+        else if (subDepth == 4) mobChoice = Random.Int(4);
         else mobChoice = Random.Int(4) + 1;
 
-       Mob thisMob = null;
 
         if (currentTheme == null) {
             pickNewTheme();
@@ -142,6 +141,7 @@ public class InfiniteBestiary {
                     case 1:  return Slime.class;
                     case 2:  return GreenSnake.class;
                     case 3:  return SewerFly.class;
+                    case 4:  return RedSnake.class;
                     default: return SlimeRed.class;
                 }
             case THEME_UNDEAD:
@@ -158,6 +158,7 @@ public class InfiniteBestiary {
                     case 1:  return GreenSnake.class;
                     case 2:  return Swarm.class;
                     case 3:  return Bat.class;
+                    case 4:  return RedSnake.class;
                     default: return Spinner.class;
                 }
            case THEME_BANDITS:
@@ -198,6 +199,7 @@ public class InfiniteBestiary {
                    case 1:  return Swarm.class;
                    case 2:  return Crab.class;
                    case 3:  return Spinner.class;
+                   case 4:  return RedSnake.class;
                    default: return Succubus.class;
                }
            case THEME_SPIRIT:
@@ -222,6 +224,7 @@ public class InfiniteBestiary {
                    case 1:  return GreenSnake.class;
                    case 2:  return Gnoll.class;
                    case 3:  return SewerFly.class;
+                   case 4:  return RedSnake.class;
                    default: return Slime.class;
                }
            case THEME_PRISON:

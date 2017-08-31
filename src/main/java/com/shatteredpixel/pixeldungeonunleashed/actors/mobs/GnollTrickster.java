@@ -1,6 +1,12 @@
 /*
- * Unleashed Pixel Dungeon
- * Copyright (C) 2015  David Mitchell
+ * Pixel Dungeon
+ * Copyright (C) 2012-2015  Oleg Dolya
+ *
+ * Shattered Pixel Dungeon
+ * Copyright (C) 2014-2015 Evan Debenham
+ *
+ * Goblins Pixel Dungeon
+ * Copyright (C) 2016 Mario Braun
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

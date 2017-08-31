@@ -136,6 +136,7 @@ public enum Badge {
 		DEATH_FROM_GLYPH( "Death from a glyph", 57 ),
 		DEATH_FROM_FALLING( "Death from falling down", 59 ),
 		DEATH_FROM_SOW( "Death by shield of wonder", 2 ),
+	    DEATH_FROM_INF( "Eaten alive!", 3 ),
 		YASD( "Death from fire, poison, toxic gas & hunger", 34, true ),
 
 		BOSS_SLAIN_1( "1st boss slain", 12 ),
@@ -635,6 +636,12 @@ public enum Badge {
 
     public static void validateDeathBySoW() {
         Badge badge = Badge.DEATH_FROM_SOW;
+        local.add( badge );
+        displayBadge( badge );
+    }
+
+    public static void validateDeathByInfestation() {
+        Badge badge = Badge.DEATH_FROM_INF;
         local.add( badge );
         displayBadge( badge );
     }

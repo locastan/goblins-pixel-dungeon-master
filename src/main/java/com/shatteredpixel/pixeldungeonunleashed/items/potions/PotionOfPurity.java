@@ -26,6 +26,9 @@ package com.shatteredpixel.pixeldungeonunleashed.items.potions;
 import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.ConfusionGas;
 import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.StenchGas;
 import com.shatteredpixel.pixeldungeonunleashed.actors.blobs.VenomGas;
+import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Infested;
+import com.shatteredpixel.pixeldungeonunleashed.items.Heap;
+import com.shatteredpixel.pixeldungeonunleashed.items.Item;
 import com.watabou.noosa.audio.Sample;
 import com.shatteredpixel.pixeldungeonunleashed.Assets;
 import com.shatteredpixel.pixeldungeonunleashed.Dungeon;
@@ -46,6 +49,8 @@ public class PotionOfPurity extends Potion {
 
 	private static final String TXT_FRESHNESS	= "You feel uncommon freshness in the air.";
 	private static final String TXT_NO_SMELL	= "You've stopped sensing any smells!";
+    private static final String TXT_UNCURSE	= "A malevolent energy dispersed.";
+    private static final String TXT_DISINFECT	= "Your infestation is cured.";
 	
 	private static final int DISTANCE	= 5;
 	
@@ -96,10 +101,20 @@ public class PotionOfPurity extends Potion {
 		}
 		
 		boolean heroAffected = PathFinder.distance[Dungeon.hero.pos] < Integer.MAX_VALUE;
+
+        Heap heap = Dungeon.level.heaps.get( cell );
 		
 		if (procd) {
 
 			if (Dungeon.visible[cell]) {
+                if (heap != null) {
+                    for (Item i : heap.items) {
+                        if (i != null && i.cursed) {
+                            i.cursed = false;
+                            GLog.p( TXT_UNCURSE );
+                        }
+                    }
+                }
 				splash( cell );
 				Sample.INSTANCE.play( Assets.SND_SHATTER );
 			}
@@ -111,7 +126,15 @@ public class PotionOfPurity extends Potion {
 			}
 			
 		} else {
-			
+
+            if (heap != null) {
+                for (Item i : heap.items) {
+                    if (i != null && i.cursed) {
+                        i.cursed = false;
+                        GLog.p( TXT_UNCURSE );
+                    }
+                }
+            }
 			super.shatter( cell );
 			
 			if (heroAffected) {
@@ -124,8 +147,13 @@ public class PotionOfPurity extends Potion {
 	
 	@Override
 	public void apply( Hero hero ) {
-		GLog.w(TXT_NO_SMELL);
-		Buff.prolong( hero, GasesImmunity.class, GasesImmunity.DURATION );
+        if (hero.buff(Infested.class) != null) {
+            GLog.p(TXT_DISINFECT);
+            Buff.detach(hero, Infested.class);
+        } else {
+            GLog.w(TXT_NO_SMELL);
+            Buff.prolong(hero, GasesImmunity.class, GasesImmunity.DURATION);
+        }
 		setKnown();
 	}
 
@@ -137,8 +165,8 @@ public class PotionOfPurity extends Potion {
 	@Override
 	public String desc() {
 		return
-			"This reagent will quickly neutralize all harmful gases in the area of effect. " +
-			"Drinking it will give you a temporary immunity to such gases.";
+			"This reagent will quickly neutralize all harmful gases in the area of effect and remove curses from items directly hit. " +
+			"Drinking it will give you a temporary immunity to such gases or remove parasites.";
 	}
 	
 	@Override

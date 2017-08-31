@@ -40,6 +40,7 @@ import com.shatteredpixel.pixeldungeonunleashed.items.bags.ScrollHolder;
 import com.shatteredpixel.pixeldungeonunleashed.items.bags.SeedPouch;
 import com.shatteredpixel.pixeldungeonunleashed.items.bags.WandHolster;
 import com.shatteredpixel.pixeldungeonunleashed.items.food.Food;
+import com.shatteredpixel.pixeldungeonunleashed.items.food.Yumyuck;
 import com.shatteredpixel.pixeldungeonunleashed.items.keys.GoldenKey;
 import com.shatteredpixel.pixeldungeonunleashed.items.keys.IronKey;
 import com.shatteredpixel.pixeldungeonunleashed.items.potions.Potion;

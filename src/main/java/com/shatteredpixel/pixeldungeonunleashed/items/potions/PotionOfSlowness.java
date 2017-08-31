@@ -39,7 +39,7 @@ public class PotionOfSlowness  extends Potion {
         for (Mob mob : Dungeon.level.mobs) {
             if (mob.pos == cell) {
                 Buff.affect(mob, Slow.class, Slow.DURATION);
-                GLog.i("The " + mob.description() + " slows down");
+                GLog.i(mob.name + " slows down");
             }
         }
 
@@ -57,7 +57,7 @@ public class PotionOfSlowness  extends Potion {
 
     @Override
     public String desc() {
-        return "This potion runs like molasses.  Drinking this potion will make you move slower.";
+        return "This potion runs like molasses. Drinking this potion will make you move slower.";
     }
 
     @Override

@@ -29,16 +29,16 @@ import com.shatteredpixel.pixeldungeonunleashed.sprites.ItemSpriteSheet;
 public class OverpricedRation extends Food {
 
 	{
-		name = "overpriced food ration";
+		name = "compressed food ration";
 		image = ItemSpriteSheet.OVERPRICED;
-		energy = Hunger.STARVING - Hunger.HUNGRY;
-		message = "That food tasted ok.";
+		energy = Hunger.HUNGRY;
+		message = "That food tasted ok. Could use some garlic, though.";
 		hornValue = 1;
 	}
 	
 	@Override
 	public String info() {
-		return "It looks exactly like a standard ration of food but smaller.";
+		return "An ancient dwarven formula makes this small package as nourishing and filling as the best meal. Use condiments.";
 	}
 	
 	@Override

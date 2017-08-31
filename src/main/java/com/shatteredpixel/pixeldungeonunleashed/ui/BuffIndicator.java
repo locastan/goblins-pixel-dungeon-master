@@ -82,6 +82,7 @@ public class BuffIndicator extends Component {
 	public static final int BLESS       = 37;
 	public static final int HASTED      = 38;
 	public static final int EUPHORIA      = 39;
+	public static final int INFESTED      = 40;
 
 	public static final int SIZE	= 7;
 	

@@ -20,33 +20,33 @@ package com.shatteredpixel.pixeldungeonunleashed.actors.mobs;
 import com.shatteredpixel.pixeldungeonunleashed.actors.Char;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Buff;
 import com.shatteredpixel.pixeldungeonunleashed.actors.buffs.Poison;
-import com.shatteredpixel.pixeldungeonunleashed.sprites.SlimeRedSprite;
+
+import com.shatteredpixel.pixeldungeonunleashed.sprites.RedSnakeSprite;
 import com.watabou.utils.Random;
 
-public class SlimeRed  extends Mob {
+public class RedSnake extends Mob {
 
     {
-        name = "red slime";
-        spriteClass = SlimeRedSprite.class;
+        name = "red snake";
+        spriteClass = RedSnakeSprite.class;
 
-        HP = HT = 15;
-        defenseSkill = 5;
-        atkSkill = 11;
-        dmgRed = 4;
-        dmgMin = 3;
-        dmgMax = 6;
+        HP = HT = 12;
+        defenseSkill = 3;
+        atkSkill = 9;
+        dmgRed = 1;
+        dmgMin = 1;
+        dmgMax = 5;
+        EXP = 3;
 
-        EXP = 5;
-        maxLvl = 11;
-
-        mobType = MOBTYPE_DEBUFF;
+        TYPE_ANIMAL = true;
+        maxLvl = 10;
     }
 
     @Override
-    public int attackProc( Char enemy, int damage ) {
+    public int attackProc(Char enemy, int damage ) {
 
         if (Random.Int( 3 ) == 0) {
-            Buff.affect(enemy, Poison.class).set(Random.Int(1, 3) * Poison.durationFactor(enemy));
+            Buff.affect(enemy, Poison.class).set(Random.Int(2, 4) * Poison.durationFactor(enemy));
         }
 
         return damage;
@@ -55,7 +55,7 @@ public class SlimeRed  extends Mob {
     @Override
     public String description() {
         return
-                "Slimes look like icky little piles of goo, but they can pack a bite." +
-                        " The red slimes are poisonous in addition to other icky characteristics.";
+                "Rare red dungeon snakes thrive in the dark and damp environments found in caves and sewers. They are known to be poisonous!";
     }
 }
+

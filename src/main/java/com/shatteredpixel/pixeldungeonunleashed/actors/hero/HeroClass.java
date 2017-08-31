@@ -34,14 +34,18 @@ import com.shatteredpixel.pixeldungeonunleashed.items.TomeOfMastery;
 // import com.shatteredpixel.pixeldungeonunleashed.items.armor.ClothArmor;
 import com.shatteredpixel.pixeldungeonunleashed.items.Torch;
 import com.shatteredpixel.pixeldungeonunleashed.items.armor.PlateArmor;
+import com.shatteredpixel.pixeldungeonunleashed.items.artifacts.AlchemistsToolkit;
 import com.shatteredpixel.pixeldungeonunleashed.items.artifacts.CloakOfShadows;
 import com.shatteredpixel.pixeldungeonunleashed.items.artifacts.HummingTool;
 import com.shatteredpixel.pixeldungeonunleashed.items.artifacts.ShieldOfWonders;
 import com.shatteredpixel.pixeldungeonunleashed.items.bags.AnkhChain;
+import com.shatteredpixel.pixeldungeonunleashed.items.bags.PotionBandolier;
+import com.shatteredpixel.pixeldungeonunleashed.items.bags.SeedPouch;
 import com.shatteredpixel.pixeldungeonunleashed.items.food.Food;
 import com.shatteredpixel.pixeldungeonunleashed.items.keys.GoldenKey;
 import com.shatteredpixel.pixeldungeonunleashed.items.keys.IronKey;
 import com.shatteredpixel.pixeldungeonunleashed.items.potions.PotionOfExperience;
+import com.shatteredpixel.pixeldungeonunleashed.items.potions.PotionOfHealing;
 import com.shatteredpixel.pixeldungeonunleashed.items.potions.PotionOfMight;
 import com.shatteredpixel.pixeldungeonunleashed.items.potions.PotionOfMindVision;
 import com.shatteredpixel.pixeldungeonunleashed.items.potions.PotionOfToxicGas;
@@ -160,16 +164,16 @@ public enum HeroClass {
 		hero.HT = 80;
 		hero.HP = 80;
 		new ShieldOfWonders().identify().collect();
-		new Egg().collect();
 		new AnkhChain().collect();
+        new PotionBandolier().collect();
+        new SeedPouch().collect();
         new PlateArmor().identify().upgrade(10).collect();
         new Glaive().identify().upgrade(10).collect();
-		new HummingTool().identify().collect();
-        new GoldenKey().collect();
-        new IronKey().collect();
+        new AlchemistsToolkit().identify().collect();
 		// things we only want a few of..
 		for (int i = 0; i < 4; i++) {
 			new PotionOfMight().collect();
+			new PotionOfHealing().collect();
 			new ScrollOfRemoveCurse().collect();
 		}
 		for (int i = 0; i < 34; i++) {

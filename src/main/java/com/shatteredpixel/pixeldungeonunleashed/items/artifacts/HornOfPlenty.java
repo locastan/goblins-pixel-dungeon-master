@@ -48,7 +48,7 @@ public class HornOfPlenty extends Artifact {
 
 
 	{
-		name = "Horn of Plenty";
+		name = "Anypot";
 		image = ItemSpriteSheet.ARTIFACT_HORN1;
 
 		level = 0;
@@ -87,8 +87,8 @@ public class HornOfPlenty extends Artifact {
 
 		if (action.equals(AC_EAT)){
 
-			if (!isEquipped(hero)) GLog.i("You need to equip your horn to do that.");
-			else if (charge == 0)  GLog.i("Your horn has no food in it to eat!");
+			if (!isEquipped(hero)) GLog.i("You need to equip your pot to do that.");
+			else if (charge == 0)  GLog.i("Your pot has no food in it to eat!");
 			else {
 				(hero.buff(Hunger.class)).satisfy(energy * charge);
 
@@ -127,7 +127,7 @@ public class HornOfPlenty extends Artifact {
 				hero.busy();
 				SpellSprite.show(hero, SpellSprite.FOOD);
 				Sample.INSTANCE.play(Assets.SND_EAT);
-				GLog.i("You eat from the horn.");
+				GLog.i("You eat from the pot.");
 
 				hero.spend(TIME_TO_EAT);
 
@@ -151,27 +151,27 @@ public class HornOfPlenty extends Artifact {
 
 	@Override
 	public String desc() {
-		String desc = "This horn can't be blown into, but instead seems to fill up with food over time.\n\n";
+		String desc = "A sophisticated dwarven adventuring tool. Similar to the famous Anymug, this pot creates delicious food over a period of time.\n\n";
 
 		if (charge == 0)
-			desc += "The horn is completely empty.";
+			desc += "The pot is completely empty.";
 		else if (charge < 3)
-			desc += "The horn is almost empty, a few small fruits and berries sit in the back.";
+			desc += "The pot is almost empty, a few ounces of vegetable stew swirl around.";
 		else if (charge < 7)
-			desc += "The horn is partially filled, you can see several fruits & vegetables inside.";
+			desc += "The pot is partially filled, you can see several pieces of meat & vegetables in the stew.";
 		else if (charge < 10)
-			desc += "The horn is getting quite full, several pieces of fresh produce are poking up towards the front.";
+			desc += "The pot is getting quite full, bigger pieces of vegetables and a larger bit of meat is visible.";
 		else
-			desc += "The horn is overflowing! A delicious array of fruit and veg is filling the horn up to its brim.";
+			desc += "The horn is overflowing! Large pieces of vegetables and a bit of meat are poking through the surface of the hearty stew.";
 
 		if ( isEquipped( Dungeon.hero ) ){
 			if (!cursed) {
-				desc += "\n\nThe horn rests at your side and is surprisingly lightweight, even with food in it.";
+				desc += "\n\nThe pot rests at your side and is surprisingly lightweight, even with food in it.";
 
 				if (level < 15)
-					desc += " Perhaps there is a way to increase the horn's power by giving it food energy.";
+					desc += " Perhaps there is a way to increase the pot's power by giving it food energy.";
 			} else {
-				desc += "\n\nThe cursed horn has bound itself to your side, " +
+				desc += "\n\nThe cursed pot has bound itself to your side, " +
 						"it seems to be eager to take food rather than produce it.";
 			}
 		}
@@ -204,7 +204,7 @@ public class HornOfPlenty extends Artifact {
 						image = ItemSpriteSheet.ARTIFACT_HORN1;
 
 					if (charge == chargeCap){
-						GLog.p("Your horn is full of food!");
+						GLog.p("Your anypot is full of food!");
 						partialCharge = 0;
 					}
 
@@ -225,7 +225,7 @@ public class HornOfPlenty extends Artifact {
 		public void onSelect( Item item ) {
 			if (item != null && item instanceof Food) {
 				if (item instanceof Yumyuck && ((Yumyuck) item).potionAttrib == null){
-					GLog.w("your horn rejects the unprepared blandfruit.");
+					GLog.w("your pot rejects the unprepared blandfruit.");
 				} else {
 					Hero hero = Dungeon.hero;
 					hero.sprite.operate( hero.pos );
@@ -237,9 +237,9 @@ public class HornOfPlenty extends Artifact {
                     }
 					if (curItem.level >= 30){
 						curItem.level = 30;
-						GLog.p("your horn has consumed all the food it can!");
+						GLog.p("your pot has consumed all the food it can!");
 					} else
-						GLog.p("the horn consumes your food offering and grows in strength!");
+						GLog.p("the pot consumes your food offering and grows in strength!");
 					item.detach(hero.belongings.backpack);
 				}
 

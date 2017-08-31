@@ -41,6 +41,7 @@ public class ResultDescriptions {
 	public static final String BURNING	= "Burned to Ash";
 	public static final String HUNGER	= "Starved to Death";
 	public static final String POISON	= "Succumbed to Poison";
+	public static final String INFEST	= "Succumbed to Infestation";
 	public static final String GAS		= "Suffocated";
 	public static final String BLEEDING	= "Bled to Death";
 	public static final String OOZE		= "Melted Away";

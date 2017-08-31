@@ -51,7 +51,7 @@ public class Slime extends Mob {
     public String description() {
         return
                 "Slimes look like icky little piles of goo, but they can pack a bite." +
-                        "Green slimes bash their prey around and then engulf them to eat.";
+                        " Green slimes bash their prey around and then engulf them to eat.";
     }
 
 }

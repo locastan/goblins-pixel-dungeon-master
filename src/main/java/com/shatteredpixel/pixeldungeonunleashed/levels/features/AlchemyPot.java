@@ -28,9 +28,11 @@ import com.shatteredpixel.pixeldungeonunleashed.actors.hero.Hero;
 import com.shatteredpixel.pixeldungeonunleashed.items.Heap;
 import com.shatteredpixel.pixeldungeonunleashed.items.Item;
 import com.shatteredpixel.pixeldungeonunleashed.items.food.Yumyuck;
+import com.shatteredpixel.pixeldungeonunleashed.levels.Terrain;
 import com.shatteredpixel.pixeldungeonunleashed.scenes.GameScene;
 import com.shatteredpixel.pixeldungeonunleashed.windows.WndBag;
 import com.shatteredpixel.pixeldungeonunleashed.windows.WndOptions;
+import com.watabou.utils.Random;
 
 import java.util.Iterator;
 

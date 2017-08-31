@@ -15,31 +15,32 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
-package com.shatteredpixel.pixeldungeonunleashed.actors.mobs;
+package com.shatteredpixel.pixeldungeonunleashed.sprites;
 
-import com.shatteredpixel.pixeldungeonunleashed.sprites.SlimeBrownSprite;
+import com.shatteredpixel.pixeldungeonunleashed.Assets;
+import com.watabou.noosa.TextureFilm;
 
-public class SlimeBrown extends Mob {
-    {
-        name = "brown slime";
-        spriteClass = SlimeBrownSprite.class;
+public class RedSnakeSprite extends MobSprite {
 
-        HP = HT = 14;
-        defenseSkill = 4;
-        atkSkill = 10;
-        dmgRed = 3;
-        dmgMin = 3;
-        dmgMax = 6;
+    public RedSnakeSprite() {
+        super();
 
-        EXP = 3;
-        maxLvl = 10;
+        texture( Assets.SNAKE );
 
-    }
+        TextureFilm frames = new TextureFilm( texture, 16, 16 );
 
-    @Override
-    public String description() {
-        return
-                "Slimes look like icky little piles of goo, but they can pack a bite." +
-                        " The brown slime is probably the weakest of the dungeon slimes.";
+        idle = new Animation( 2, true );
+        idle.frames( frames, 8, 8, 8, 9 );
+
+        run = new Animation( 10, true );
+        run.frames( frames, 13, 12, 11, 12, 13 );
+
+        attack = new Animation( 14, false );
+        attack.frames( frames, 8, 9, 10, 8 );
+
+        die = new Animation( 10, false );
+        die.frames( frames, 10, 14, 15 );
+
+        play( idle );
     }
 }

@@ -121,7 +121,7 @@ public class AlchemistsToolkit extends Artifact {
 		if (score == 0){
 
 			GLog.i("Your mixture is complete, but none of the potions you used seem to react well. " +
-					"The brew is useless, you throw it away.");
+					"The catalyst is useless, you throw it away.");
 
 		} else if (score > level) {
 
@@ -136,13 +136,13 @@ public class AlchemistsToolkit extends Artifact {
 				GLog.p("The mixture you've created seems perfect, you don't think there is any way to improve it!");
 			} else {
 				GLog.w("you finish mixing potions, " + brewDesc(numWrongPlace, numRight) +
-						". This is your best brew yet!");
+						". This is your best catalyst yet!");
 			}
 
 		} else {
 
 			GLog.w("you finish mixing potions, " + brewDesc(numWrongPlace, numRight) +
-					". This brew isn't as good as the current one, you throw it away.");
+					". This catalyst isn't as good as the current one, you throw it away.");
 		}
 		curGuess = new ArrayList<String>();
 
@@ -168,7 +168,7 @@ public class AlchemistsToolkit extends Artifact {
 
 	@Override
 	public String desc() {
-		String result = "This toolkit contains a number of regents and herbs used to improve the process of " +
+		String result = "This toolkit contains a number of reagents and herbs used to improve the process of " +
 				"cooking potions.\n\n";
 
 		if (isEquipped(Dungeon.hero))
@@ -179,7 +179,7 @@ public class AlchemistsToolkit extends Artifact {
 
 		if (level == 0){
 			result += "The toolkit seems to be missing a key tool, a catalyst mixture. You'll have to make your own " +
-					"out of three common potions to get the most out of the toolkit.";
+					"from small portions of three common potions to get the most out of the toolkit.";
 		} else if (level == 10) {
 			result += "The mixture you have created seems perfect, and the toolkit is working at maximum efficiency.";
 		} else if (!bstGuess.isEmpty()) {
@@ -270,7 +270,8 @@ public class AlchemistsToolkit extends Artifact {
 					hero.spend( 2f );
 					Sample.INSTANCE.play(Assets.SND_DRINK);
 
-					item.detach(hero.belongings.backpack);
+					// No longer consume the potion used in figuring out the catalyst mixture. The toolkit is too weak in any case to even have this downside.
+					//item.detach(hero.belongings.backpack);
 
 					curGuess.add(convertName(item.getClass().getSimpleName()));
 					if (curGuess.size() == 3){
