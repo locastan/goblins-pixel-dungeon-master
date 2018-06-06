@@ -1,7 +1,7 @@
 # goblins-pixel-dungeon-master
 Goblins Pixel Dungeon
 
-This is the old pre-gradle version. The new one can be found at this repository: https://github.com/locastan/GoblinsPixelDungeonGradle
+# This is the old pre-gradle version. The new one can be found at this repository: https://github.com/locastan/GoblinsPixelDungeonGradle
 
 "Goblins Pixel Dungeon". It is a fandom modification based on Unleashed PD by David Mitchell with artwork, items, characters and lore from Tarol Hunt-Stephens www.goblinscomic.org. :)
 
